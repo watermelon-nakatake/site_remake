@@ -1,0 +1,262 @@
+@charset "UTF-8";
+abbr, address, article, aside, audio, b, blockquote, body, canvas, caption, cite, code, dd, del, details, dfn, div, dl,
+dt, em, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins,
+kbd, label, legend, li, mark, menu, nav, object, ol, p, pre, q, samp, section, small, span, strong, sub, summary, sup,
+table, tbody, td, tfoot, th, thead, time, tr, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: 0 0
+}
+
+body {
+    line-height: 1
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block
+}
+
+nav ul {
+    list-style: none
+}
+
+blockquote, q {
+    quotes: none
+}
+
+blockquote:after, blockquote:before, q:after, q:before {
+    content: none
+}
+
+a {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: 0 0
+}
+
+ins {
+    background-color: #ff9;
+    color: #000;
+    text-decoration: none
+}
+
+mark {
+    background-color: #ff9;
+    color: #000;
+    font-style: italic;
+    font-weight: 700
+}
+
+del {
+    text-decoration: line-through
+}
+
+abbr[title], dfn[title] {
+    border-bottom: 1px dotted;
+    cursor: help
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0
+}
+
+input, select {
+    vertical-align: middle
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    line-height: 0
+}
+
+/* ここまでresetCSS */
+
+/* layout */
+body {
+    font-family: ヒラギノ角ゴ ProN W3, HiraKakuProN-W3, ヒラギノ角ゴ Pro W3, HiraKakuPro-W3, メイリオ, Meiryo,
+    ＭＳ\ Ｐゴシック, MS Pgothic, Osaka, sans-serif;
+    line-height: 1.8;
+    color: #333333 /* 全体の文字色 */
+}
+
+header {
+    height: 100px;
+    /*background-color: #9B9B9B*/
+}
+
+.wrapper, #h_wrapper, #f_wrapper {
+    width: 100%
+}
+
+/* #h_wrapper, #f_wrapper{width:100%} */
+
+
+#side_bar {
+    float: none;
+    width: 100%;
+    /*background-color: orange;*/
+}
+
+main {
+    width: 100%;
+    padding: 5px 1%;
+    float: none;
+    /*background-color: #BC8F8F;*/
+}
+
+#side_bar {
+    width: 20%; /* サイドバー幅 */
+    float: left; /* サイドバー位置 */
+}
+
+footer {
+    /*background-color: #1CD9C3;*/
+}
+
+/* color */
+a {
+    color: #0074a2;
+}
+
+/* side bar */
+
+.sb_section {
+    width: 90%;
+    padding: 10px 5%;
+    margin-bottom: 30px;
+}
+
+.sb_section li {
+    list-style: none;
+    margin: 10px 0;
+}
+
+.sb_section li a {
+    display: block;
+    text-decoration: none;
+}
+
+/* header */
+
+#site_title {
+    float: left;
+    width: 30%;
+}
+
+#g_nav {
+    float: right;
+    width: 50%;
+    margin-top: 50px;
+}
+
+#g_nav li {
+    list-style: none;
+    float: right;
+    width: 25%;
+    height: 48px;
+
+}
+
+#g_nav li a {
+    text-decoration: none;
+    display: block;
+    width: 92%;
+    height: 100%;
+    margin: 0 4%;
+}
+
+/* main content */
+
+article section {
+    width: 96%;
+    margin: 20px 2%;
+}
+
+article p {
+    width: 97%;
+    margin-left: 3%;
+    margin-bottom: 20px;
+}
+
+.sp_li2, .sp_li3{
+    height: 150px;
+    margin-top: 10px;
+}
+
+.sp_li2 a, .sp_li3 a{
+    display: block;
+    height: 100%;
+}
+
+
+
+/* 見出しデザイン */
+h2 {
+    border-left: #1CD9C3 5px solid;
+    padding-left: 2%;
+    width: 97%;
+    margin-bottom: 10px;
+    margin-left: 1%;
+}
+
+/* clear fix */
+.wrapper:after, .h_wrapper:after, #g_nav:after, .split_li:after {
+    content: "";
+    display: block;
+    clear: both
+}
+
+
+/* タブレット */
+@media screen and (min-width: 768px) and ( max-width: 1019px) {
+    .sp_li2, .sp_li3{
+        float: left;
+        list-style: none
+}
+    .sp_li2{width: 50%}
+    .sp_li3{width: 33%}
+}
+
+/* デスクトップ */
+@media screen and (min-width: 1020px)/* ラッパー幅 */ {
+    .wrapper, #h_wrapper, #f_wrapper {
+        width: 1020px; /* ラッパー幅 */
+        margin: 0 auto;
+    }
+
+    #sb_main {
+        width: 78%; /* main幅 */
+        padding: 5px 1%;
+        float: left; /* サイドバー位置 */
+        /*background-color: #BC8F8F;*/
+    }
+
+    #side_bar {
+        width: 20%; /* サイドバー幅 */
+        float: left; /* サイドバー位置 */
+    }
+
+    .sp_li2, .sp_li3{
+        float: left;
+        list-style: none
+}
+    .sp_li2{width: 50%}
+    .sp_li3{width: 33%}
+}
