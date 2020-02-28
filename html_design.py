@@ -4,6 +4,7 @@ import os
 import markdown
 import datetime
 import shutil
+import time
 
 css_vars = ['wrapper_width', 'main_width_per', 'header_height', 'footer_height']
 
@@ -12,6 +13,7 @@ def main(case_name, domain_name, category_list, site_name, unlock_list):
     # new_case_preparation(case_name)
     case_name = 'case_dir/' + case_name
     md_list = pick_up_md_files(case_name, unlock_list)
+    md_list = pickup_mod_md_files(case_name, md_list)
     print(md_list)
     if case_name + '/md/index.md' in md_list:
         import_from_markdown([case_name + '/md/index.md'],
@@ -40,6 +42,14 @@ def new_case_preparation(case_name):
     for file_name_c in ['css/base.css']:
         if not os.path.exists(case_name + '/' + file_name_c):
             shutil.copyfile(file_name_c, case_name + '/product/' + file_name_c)
+
+
+def pickup_mod_md_files(case_name, md_list):
+    now = time.time()
+    current_mod = read_pickle('md_mod_time', case_name)
+    result = [x for x in md_list if os.path.getmtime(x) > current_mod]
+    save_data_to_pickle(now, 'md_mod_time', case_name)
+    return result
 
 
 def pick_up_md_files(directory, unlock_list):
@@ -119,6 +129,12 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                     title_str = title_l[0]
                 else:
                     print('There is no title!!')
+                if '%%fsp%%' in plain_txt:
+                    fsp_str = re.findall(r'%%fsp%%([\s\S]*?)%', plain_txt)[0]
+                    fsp_str = fsp_str.strip()
+                    plain_txt = re.sub(r'%%fsp%%([\s\S])*$', '', plain_txt)
+                else:
+                    fsp_str = ''
                 # コメントアウト削除
                 plain_txt = re.sub(r'\(\)\[.*?\]\n', '', plain_txt)
                 plain_txt = re.sub(r'\n(<!--.+?-->)\n', r'\n\1', plain_txt)
@@ -163,6 +179,8 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                 new_str = new_str.replace('<!--title-->', title_str.replace('<br />', ''))
                 new_str = new_str.replace('<!--description-->', description)
                 new_str = new_str.replace('<!--h1_text-->', h1_text)
+                if fsp_str:
+                    new_str = new_str.replace('<!--free_script-->', fsp_str)
                 if new_path.count('/') == 3:
                     new_str = new_str.replace('<link href="css/base.css"', '<link href="css/base.css"')
                 elif new_path.count('/') == 4:
@@ -173,6 +191,9 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                 new_str = insert_split_list(new_str)
                 if id_str:
                     new_str = new_str.replace('<body>', '<body id="' + id_str + '">')
+                if '<!--site_name-->' in new_str:
+                    new_str = new_str.replace('<!--site_name-->', site_name)
+                new_str = new_str.replace('<dl>', '<dl class="tbl_dl">')
                 # print(new_str)
 
                 with open(new_path, 'w', encoding='utf-8') as g:
@@ -266,6 +287,12 @@ def save_data_to_pickle(data, pickle_name, case_name):
         pickle.dump(data, p)
 
 
+def read_pickle(pickle_name, case_name):
+    with open(case_name + '/pickle_pot/' + pickle_name + '.pkl', 'rb') as f:
+        pk_data = pickle.load(f)
+    return pk_data
+
+
 def css_setup(case_name, css_data):
     if len(css_vars) != len(css_data):
         print('the number of css is not equal!!')
@@ -312,4 +339,3 @@ if __name__ == '__main__':
     # css_setup('test_case', [1100, 75, 0, 0])
     # gradation_maker('#ffffff', 'a')
     # todo: 複数パターンのhtmlサンプルを一括作成　パラメータは色、サイズ、フォント等
-    # todo: upload前に置き換えるファイルのバックアップ作成

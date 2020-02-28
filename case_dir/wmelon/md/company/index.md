@@ -38,7 +38,7 @@ k::ウォーターメロン プロフィール
 
 <dl>
 <dt>氏名</dt><dd>中武 哲彦 (なかたけ てつひこ)</dd>
-<dt>年齢</dt><script>let dp=0;if(new Date().getMonth()>=10){dp=1}document.write(String(new Date().getFullYear()-1977+dp))</script>歳<dd></dd>
+<dt>年齢</dt><dd><span id="t_age"></span>歳</dd>
 <dt>出身地</dt><dd>宮崎県えびの市</dd>
 <dt>趣味</dt><dd>読書、ブラジリアン柔術</dd>
 <dt>座右の銘</dt><dd>急がば回れ</dd>
@@ -53,3 +53,13 @@ k::ウォーターメロン プロフィール
 そこで、以前より興味があったIT方面で身を立てていくことを思い立ち、個人事業主としてWebサイト運営などを始める。
 平成24年に株式会社ウォーターメロンを設立。
 現在まで独力でウォーターメロンを運営している。
+
+
+%%fsp%%
+<script>
+	let dp = 0;
+	if (new Date().getMonth() >= 10){dp = 1}
+    let tAge = document.getElementById('t_age');
+	tAge.innerText = String(new Date().getFullYear() - 1977 + dp);
+</script>
+%%%%

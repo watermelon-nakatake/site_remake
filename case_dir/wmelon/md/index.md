@@ -20,7 +20,7 @@ k::宮崎県 宮崎市 webサイト作成 スマホ対応
 %li3
 
 - [Webサイトの新規作成%%新しいwebサイトを一から作るお手伝いを致します](../product/making_site/index.html#sec01)
-- [既存webサイトのスマホ対応%%既存のサイトのスマホ対応作業を格安で！！](../product/technology/index.html#sec01)
+- [既存webサイトのスマホ対応%%既存のサイトのスマホ対応作業をお求めやすい料金で！！](../product/technology/index.html#sec01)
 - 既存webサイトのデザイン変更
 - webサイトの表示の高速化
 - 構造化データの設置

@@ -274,43 +274,52 @@ footer {
     text-align: center;
     padding-bottom: 30px;
 }
-#footer_l{
+
+#footer_l {
     margin-top: 30px;
 }
+
 #footer_l ul {
     list-style: none;
     font-size: 13px;
     width: 94%;
     margin: 7px auto 0;
 }
-#company_info{
+
+#company_info {
     width: 50%;
     margin: 10px auto 0;
 }
-#company_info ul{
+
+#company_info ul {
     list-style: none;
 }
-#c_name_o{
+
+#c_name_o {
     display: block;
     float: left;
     width: 250px;
     height: 60px;
 }
-#c_name{
+
+#c_name {
     display: block;
     margin-left: 40px;
 }
-#c_name img{
+
+#c_name img {
     width: 225px;
     height: 37px;
 }
-#c_address, #c_tel{
+
+#c_address, #c_tel {
     float: right;
     width: 250px;
     height: 20px;
     margin-bottom: 10px;
 }
-#c_address{
+
+#c_address {
     margin-top: 20px;
 }
 
@@ -428,12 +437,14 @@ h2 span {
     padding-top: 90px;
     margin-top: -90px;
 }
-.z_m{
+
+.z_m {
     margin-top: 20px;
 }
 
 /* clear fix */
-.wrapper:after, .h_wrapper:after, #g_nav:after, .split_li:after, #footer_l:after, #g_nav:after, #header_i:after,#company_info:after {
+.wrapper:after, .h_wrapper:after, #g_nav:after, .split_li:after, #footer_l:after, #g_nav:after, #header_i:after,
+#company_info:after {
     content: "";
     display: block;
     clear: both
@@ -548,7 +559,7 @@ h2 span {
     overflow: hidden;
 }
 
-.l_view{
+.l_view {
     position: relative
 }
 
@@ -612,4 +623,44 @@ h2 span {
 
 #move-page-top:hover {
     opacity: 0.85;
+}
+
+.tbl_dl,
+.tbl_dl dt,
+.tbl_dl dd {
+    box-sizing: border-box;
+}
+
+.tbl_dl {
+    background: #eee;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    width: 70%;
+    margin: 10px auto;
+}
+
+.tbl_dl dt,
+.tbl_dl dd {
+    padding: 10px 10px 0 10px;
+    border-top: 1px solid #ccc;
+}
+
+.tbl_dl dt {
+    width: 40%;
+    float: left;
+    text-align: center;
+}
+
+.tbl_dl dd {
+    background: #fff;
+    margin-left: 40%;
+    padding-bottom: 10px;
+    border-left: 1px solid #ccc;
+}
+
+.tbl_dl dd:after {
+    content: '';
+    display: block;
+    clear: both;
 }

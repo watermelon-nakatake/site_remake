@@ -4,6 +4,8 @@ import paramiko
 import scp
 import re
 import datetime
+import time
+import html_design
 
 
 def all_upload(case_name, domain_str, user_name, password_str, root_directory):
@@ -13,9 +15,18 @@ def all_upload(case_name, domain_str, user_name, password_str, root_directory):
         first_backup(domain_str, user_name, password_str, root_directory, backup_dir)
     up_list = [x.replace('case_dir/' + case_name + '/product/', '')
                for x in file_pickup('case_dir/' + case_name + '/product')]
+    up_list = pickup_mod_files('case_dir/' + case_name, up_list)
     print(up_list)
     # ftp_upload(case_name, domain_str, user_name, password_str, root_directory, up_list)
     scp_upload(case_name, domain_str, user_name, password_str, root_directory, up_list)
+
+
+def pickup_mod_files(case_name, up_list):
+    now = time.time()
+    current_mod = html_design.read_pickle('up_time', case_name)
+    result = [x for x in up_list if os.path.getmtime(case_name + '/product/' + x) > current_mod]
+    html_design.save_data_to_pickle(now, 'up_time', case_name)
+    return result
 
 
 def scp_upload(case_name, domain_str, user_name, password_str, root_directory, up_file_list):
@@ -126,10 +137,10 @@ def search_files_in_scp(directory_name, sftp_connection):
 
 
 if __name__ == '__main__':
-    # all_upload('wmelon', 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon')
+    all_upload('wmelon', 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon')
 
     # first_backup('wmelon', 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon')
 
-    scp_upload('wmelon', 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon', ['contact/mail.php'])
+    # scp_upload('wmelon', 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon', ['contact/mail.php'])
     # ftp_upload('wmelon', 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon',
     # ['policy/index.html', 'css/base.css'])
