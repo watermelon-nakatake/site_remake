@@ -7,29 +7,35 @@
 	<meta name="description" content="<!--description-->">
 	<meta name="robots" content="index,follow"/>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link href="../product/css/base.css" rel="stylesheet" type="text/css"/>
+	<link href="../product/css/base1.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <header id="page_t">
 	<div id="h_wrapper">
 		<div id="header_i">
-			<div id="site_title"><a href="../product/index.html"><img src="../product/images/logo2.png"
+			<div id="site_title"><a href="../product/index.html"><img src="../product/images/logo3.png"
 			                                                          alt="株式会社ウォーターメロン"></a></div>
 			<nav id="g_nav">
 				<ul>
-					<li><a href="../product/making_site/">サイト作成</a></li>
-					<li><a href="../product/technology/">Web技術</a></li>
-					<li><a href="../product/company">会社案内</a></li>
-					<li><a href="../product/contact">お問合せ</a></li>
+					<li><a href="../product/making_site/"><span class="g_o"><span data-hover="サイト作成"
+					                                                              class="g_i">サイト作成</span></span></a>
+					</li>
+					<li><a href="../product/technology/"><span class="g_o"><span data-hover="Web技術"
+					                                                             class="g_i">Web技術</span></span></a>
+					</li>
+					<li><a href="../product/company"><span class="g_o"><span data-hover="会社案内"
+					                                                         class="g_i">会社案内</span></span></a></li>
+					<li><a href="../product/contact"><span class="g_o"><span data-hover="お問い合わせ"
+					                                                         class="g_i">お問い合わせ</span></span></a></li>
 				</ul>
 			</nav>
 		</div>
 		<div id="bread_crumb"><!--b_c--></div>
 	</div>
 </header>
-<div class="wrapper">
-	<main role="main">
-		<article>
+<main role="main">
+	<article>
+		<div class="wrapper">
 			<section>
 				<h2>H2 text</h2>
 				<p>p text<br>ああああああああああああああああああああああああああああああああああああああああああああああああ
@@ -47,16 +53,16 @@
 					<li class="sp_li3"><a href="../product/making_site/">テキスト</a></li>
 				</ul>
 			</div>
+		</div>
+	</article>
+</main>
 
-
-		</article>
-	</main>
-</div>
-<footer>
+<footer class="main_cl_bg">
 	<div id="f_wrapper">
 		<div id="company_info">
 			<ul>
-				<li id="c_name_o"><img src="../product/images/logo_w.png" id="c_logo" alt="ウォーターメロンロゴ"/><span id="c_name">株式会社ウォーターメロン</span>
+				<li id="c_name_o"><img src="../product/images/logo_w.png" id="c_logo" alt="ウォーターメロンロゴ"/><span
+						id="c_name">株式会社ウォーターメロン</span>
 				</li>
 				<li id="c_address">宮崎県宮崎市清武町</li>
 				<li id="c_tel">090-1873-5668</li>
@@ -86,7 +92,7 @@
 						<li><a href="../product/company/index.html#sec03">代表プロフィール</a></li>
 					</ul>
 				</li>
-				<li class="fl_cat"><a href="../product/contact/" class="bold_f">お問合せ</a>
+				<li class="fl_cat"><a href="../product/contact/" class="bold_f">お問い合わせ</a>
 					<ul>
 						<li><a href="../product/contact/">メール</a></li>
 					</ul>
@@ -105,51 +111,74 @@
 		</div>
 	</div>
 </footer>
-<div class="page-top"><p><a href="#page_t" id="move-page-top"><img src="../product/images/big2.png" alt="ページTOPに戻る"/></a></p>
+<div class="page-top"><p><a href="#page_t" id="move-page-top" class="sa"><img src="../product/images/big2.png"
+                                                                              alt="ページTOPに戻る"/></a></p>
 </div>
 <!--free_script-->
 <script>
-    let now = new Date().getFullYear();
-    let cpY = document.getElementById('cp_year');
+    const now = new Date().getFullYear();
+    const cpY = document.getElementById('cp_year');
     if (now > 2014) {
         cpY.innerText = "- " + new Date().getFullYear()
     }
 </script>
 <script>
-    var sH = window.innerHeight;
+    const sH = window.innerHeight;
     console.log(sH);
-    var b_height = document.getElementsByClassName('bc_view');
-    for (var i = 0; i < b_height.length; i++) {
-        b_height[i].style.height = String(sH + 20) + 'px'
+    const b_height = document.getElementsByClassName('bc_view');
+    for (let i = 0; i < b_height.length; i++) {
+        b_height[i].style.height = String(sH - 80) + 'px'
     }
-    var m_height = document.getElementsByClassName('mc_view');
-    for (var j = 0; j < m_height.length; j++) {
-        m_height[j].style.height = String(sH + 20) + 'px'
-    }
-    var t_height = document.getElementsByClassName('top_img');
-    for (var k = 0; k < t_height.length; k++) {
-        t_height[k].style.height = String(sH - 255) + 'px'
+    const m_height = document.getElementsByClassName('mc_view');
+    for (let j = 0; j < m_height.length; j++) {
+        m_height[j].style.height = String(sH - 127) + 'px'
     }
 </script>
 <script>
-    var scrollElm = (function () {
+    let TopPosition = 0;
+    const documentElement = document.documentElement;
+    const toTop = document.getElementById('move-page-top');
+    const hdBottom = document.getElementById('header_i');
+    let timer = null;
+    const scrollAnimationFunc = function () {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            TopPosition = documentElement.scrollTop;
+            console.log(TopPosition);
+            if (window.innerHeight / 3 * 2 < TopPosition) {
+                toTop.classList.add('show');
+            } else if (window.innerHeight / 3 * 2 > TopPosition) {
+                toTop.classList.remove('show')
+            }
+            if (TopPosition > 100) {
+                hdBottom.style.boxShadow = '0 3px 3px 0 rgba(40, 40, 40, 0.1)'
+            } else if (TopPosition < 300) {
+                hdBottom.style.boxShadow = 'none'
+            }
+        }, 100);
+    };
+    window.addEventListener('load', scrollAnimationFunc);
+    window.addEventListener('scroll', scrollAnimationFunc);
+</script>
+<script>
+    const scrollElm = (function () {
         if ('scrollingElement' in document) return document.scrollingElement;
-        if (navigator.userAgent.indexOf('WebKit') != -1) return document.body;
+        if (navigator.userAgent.indexOf('WebKit') !== -1) return document.body;
         return document.documentElement;
     })();
     (function () {
-        var duration = 600;
-        var ignore = '.noscroll';
-        var easing = function (t, b, c, d) {
+        const duration = 600;
+        const ignore = '.noscroll';
+        const easing = function (t, b, c, d) {
             return c * (0.5 - Math.cos(t / d * Math.PI) / 2) + b;
         };
-        var smoothScrollElm = document.querySelectorAll('a[href^="#"]:not(' + ignore + ')');
+        const smoothScrollElm = document.querySelectorAll('a[href^="#"]:not(' + ignore + ')');
         Array.prototype.forEach.call(smoothScrollElm, function (elm) {
             elm.addEventListener('click', function (e) {
                 e.preventDefault();
-                var targetElm = document.querySelector(elm.getAttribute('href'));
+                const targetElm = document.querySelector(elm.getAttribute('href'));
                 if (!targetElm) return;
-                var targetPos;
+                let targetPos;
                 if (targetElm.id !== 'page_t') {
                     targetPos = targetElm.getBoundingClientRect().top + 15;
                     console.log('true')
@@ -158,10 +187,10 @@
                     console.log('False')
                 }
                 console.log(targetPos);
-                var startTime = Date.now();
-                var scrollFrom = scrollElm.scrollTop;
+                const startTime = Date.now();
+                const scrollFrom = scrollElm.scrollTop;
                 (function loop() {
-                    var currentTime = Date.now() - startTime;
+                    const currentTime = Date.now() - startTime;
                     if (currentTime < duration) {
                         scrollTo(0, easing(currentTime, scrollFrom, targetPos, duration));
                         window.requestAnimationFrame(loop);

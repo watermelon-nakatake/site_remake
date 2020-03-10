@@ -100,10 +100,6 @@ header {
     background-color: #ffffff
 }
 
-.wrapper {
-    padding-top: 10px;
-}
-
 /* #h_wrapper, #f_wrapper{width:100%} */
 
 
@@ -115,15 +111,19 @@ header {
 
 main {
     width: 100%;
-    padding: 5px 1%;
     float: none;
     overflow: hidden;
     /*background-color: #BC8F8F;*/
 }
 
 #top_page main {
-    margin-top: 80px;
+    margin: 0;
 }
+
+.tpt_p {
+
+}
+
 
 #side_bar {
     width: 20%; /* サイドバー幅 */
@@ -137,10 +137,6 @@ footer {
 /* color */
 a {
     color: #0074a2;
-}
-
-footer {
-    background-color: darkcyan;
 }
 
 /* side bar */
@@ -169,12 +165,12 @@ footer {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.9);
     z-index: 1000;
 }
 
 #top_page #header_i {
-    height: 80px;
+    box-shadow: 0 3px 3px 0 rgba(40, 40, 40, 0.1);
 }
 
 #site_title {
@@ -189,22 +185,9 @@ footer {
     height: 50px;
 }
 
-#top_h1 {
-    width: 230px;
-    margin-left: 90px;
-    color: darkcyan;
-    line-height: 1;
-    font-weight: bold;
-    margin-top: -5px;
-}
-
 #g_nav {
     float: right;
     width: 50%;
-    margin-top: 30px;
-}
-
-#top_page #g_nav {
     margin-top: 30px;
 }
 
@@ -220,21 +203,47 @@ footer {
     text-decoration: none;
     display: block;
     width: 92%;
-    height: 37px;
+    height: 40px;
     margin: 0 4%;
     padding-top: 10px;
     color: #333333;
     text-align: center;
-    border-top: solid 3px #ffffff;
+    background-clip: border-box;
+    overflow: hidden;
+
 }
 
-#g_nav li a:hover {
-    border-top: solid 3px darkcyan;
-    -webkit-transition: 1.2s;
-    -moz-transition: 1.2s;
-    -o-transition: 1.2s;
-    transition: 1.2s;
+.g_o {
+    height: 25px;
+    overflow: hidden;
+    display: inline-block;
 }
+
+#g_nav li a .g_i {
+    position: relative;
+    display: inline-block;
+    -webkit-transition: -webkit-transform 0.3s;
+    -moz-transition: -moz-transform 0.3s;
+    transition: transform 0.3s;
+}
+
+#g_nav li a .g_i:before {
+    position: absolute;
+    top: 100%;
+    content: attr(data-hover);
+    font-weight: bold;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+#g_nav li a:focus .g_i, #g_nav li a:hover .g_i {
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    transform: translateY(-100%);
+    color: orangered;
+}
+
 
 #bread_crumb {
     list-style: none;
@@ -350,8 +359,13 @@ footer {
 article p {
     width: 97%;
     margin-left: 3%;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
+
+#top_page article .top_page_top p {
+    margin-bottom: 20px;
+}
+
 
 .split_li {
     border-bottom: 1px solid #cccccc;
@@ -411,6 +425,34 @@ article ol li {
     margin-bottom: 15px;
 }
 
+.arrow_box, .sim_box {
+    width: 80%;
+    background-color: #eeeeee;
+    position: relative;
+    padding: 15px;
+}
+
+.sim_box {
+    margin: 25px auto;
+}
+
+.arrow_box {
+    margin: 10px auto 40px;
+}
+
+.arrow_box:after {
+    content: "";
+    border-top: darkcyan 25px solid;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: -35px;
+    right: 45%;
+
+}
+
 
 /* 見出しデザイン */
 h2 {
@@ -423,7 +465,7 @@ h2 {
 }
 
 h2 span {
-    border-bottom: 2px solid darkcyan;
+    border-bottom: 2px solid;
     padding-left: 0;
     display: inline-block;
     width: auto;
@@ -432,10 +474,20 @@ h2 span {
     font-weight: 400;
 }
 
+h3.pup {
+    color: orange;
+    font-size: 21px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
 .ach {
     display: block;
     padding-top: 90px;
     margin-top: -90px;
+    z-index: -100;
 }
 
 .z_m {
@@ -444,7 +496,7 @@ h2 span {
 
 /* clear fix */
 .wrapper:after, .h_wrapper:after, #g_nav:after, .split_li:after, #footer_l:after, #g_nav:after, #header_i:after,
-#company_info:after {
+#company_info:after, .l_view:after {
     content: "";
     display: block;
     clear: both
@@ -472,11 +524,6 @@ h2 span {
     .wrapper {
         width: 1020px; /* ラッパー幅 */
         margin: 0 auto;
-    }
-
-    #top_page .wrapper {
-        width: 100%;
-        margin: 0;
         padding: 0;
     }
 
@@ -487,6 +534,45 @@ h2 span {
     .top_img img {
         width: 100%;
 
+    }
+
+    #top_page_nav {
+        height: 120px;
+        margin-top: 0;
+    }
+
+    #top_page_nav ul {
+        width: 100%;
+        height: 100px;
+        padding: 10px 0;
+    }
+
+    #top_page_nav li {
+        list-style: none;
+        width: 24%;
+        border-right: #ffffff dotted 1px;
+        float: left;
+        height: 100px;
+    }
+
+    #top_page_nav li:last-child {
+        border-right: none;
+    }
+
+    #top_page_nav li a {
+        text-decoration: none;
+        color: #ffffff;
+        padding: 0 10%;
+        width: 80%;
+        height: 100px;
+        display: block;
+        text-align: center;
+        position: relative;
+    }
+
+    #top_page_nav li a span {
+        height: 80px;
+        display: block;
     }
 
     #contact .wrapper {
@@ -525,9 +611,10 @@ h2 span {
     position: relative;
     width: 100%; /*背景画像の横幅*/
     height: 500px; /*背景画像の縦幅*/
-    background-image: url(../images/top1.jpg);
+    background-image: url(../images/top_t.jpg);
     background-size: cover;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
+    margin-top: 80px;
 }
 
 
@@ -547,20 +634,20 @@ h2 span {
 
 .mc_view {
     height: 500px;
-    background-color: darkcyan;
-    color: #ffffff;
     position: relative;
+    margin-bottom: 90px;
 }
 
 .bc_view {
     height: 500px;
-    background-color: #ffffff;
     position: relative;
     overflow: hidden;
+    margin-bottom: 90px;
 }
 
 .l_view {
-    position: relative
+    position: relative;
+    margin-bottom: 90px;
 }
 
 .l_image {
@@ -621,10 +708,6 @@ h2 span {
     transition: all 0.3s;
 }
 
-#move-page-top:hover {
-    opacity: 0.85;
-}
-
 .tbl_dl,
 .tbl_dl dt,
 .tbl_dl dd {
@@ -663,4 +746,250 @@ h2 span {
     content: '';
     display: block;
     clear: both;
+}
+
+.top_section {
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative
+}
+
+.top_section::before {
+    /* 透過した黒を上から重ねるイメージ */
+    background-color: rgba(0, 0, 0, 0.3);
+    /* 自由に位置指定 */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    content: ' ';
+}
+
+#top_making_site {
+    background-image: url("../images/making_site_t.jpg");
+}
+
+#top_technology {
+    background-image: url("../images/technology_t.jpg");
+}
+
+#top_company {
+    background-image: url("../images/company_t.jpg");
+}
+
+#page_title {
+    margin: auto auto;
+    width: 30%;
+    height: 150px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    font-weight: bold;
+    z-index: 200;
+
+}
+
+.ptm {
+    color: #ffffff;
+    display: inline-block;
+    border-bottom: #ffffff 2px solid;
+    font-size: 40px;
+    height: 65px;
+}
+
+.pte {
+    color: #ffffff;
+    display: block;
+    font-size: 25px;
+    line-height: 1;
+    margin-top: 8px;
+    height: 50px;
+}
+
+.ts_nav_o {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.ts_nav {
+    margin: 0 auto;
+    width: 1000px;
+    height: 50px
+}
+
+.ts_nav li {
+    height: 100px;
+    float: left;
+    list-style: none;
+}
+
+.ts_nav li a {
+    text-decoration: none;
+    color: #ffffff;
+    text-align: center;
+    display: block;
+    width: 90%;
+    height: 80px;
+    margin: 0 auto;
+    font-size: 18px;
+    z-index: 190;
+    position: relative;
+}
+
+.ts_a {
+    display: block;
+    line-height: 1.5;
+}
+
+.ts_a:after {
+    content: "";
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: block;
+    background-image: url("../images/angle-arrow-down-w1.png");
+    background-size: 15px 15px;
+    height: 15px;
+    width: 15px;
+    -webkit-transition: 0.3s ease-in-out;
+    -moz-transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+}
+
+
+.ts_nav a:hover {
+    color: #eeeeee;
+}
+
+a:hover .ts_a:after {
+    margin-top: 15px;
+    -webkit-transition: 0.3s ease-in-out;
+    -moz-transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+}
+
+.sa {
+    opacity: 0;
+    transition: all .5s ease;
+}
+
+.sa.show {
+    opacity: 1;
+    transform: none;
+}
+
+.width_100 {
+    width: 100%;
+}
+
+.width_50 {
+    width: 50%;
+}
+
+.width_33 {
+    width: 33%;
+}
+
+.width_25 {
+    width: 25%;
+}
+
+.width_20 {
+    width: 20%;
+}
+
+.next {
+    width: 300px;
+    height: 36px;
+    position: absolute;
+    right: 70px;
+    bottom: 5px;
+}
+
+.next a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 3px 0;
+}
+
+.l_view .next {
+    position: relative;
+    margin-top: 30px;
+    float: right;
+}
+
+/* テスト用CSS */
+/* イメージ切り替えボタン */
+.test_button {
+    position: fixed;
+    top: 200px;
+    left: 200px;
+    width: 500px;
+    height: 50px;
+    color: red;
+    background-color: yellow;
+    padding: 10px;
+}
+
+/*色変更テスト用クラス*/
+.main_cl_cl {
+    color: darkcyan;
+}
+
+.main_cl_bg {
+    background-color: darkcyan;
+}
+
+.main_cl_bdb {
+    border-bottom-color: darkcyan;
+}
+
+.main_cl_bdt:hover {
+    border-top-color: darkcyan;
+}
+.q_a{
+    margin-top: 60px;
+}
+.q_a dt {
+    background-color: #eeeeee;
+    padding: 10px 10px 10px 35px;
+    margin-left: 60px;
+    margin-bottom: 30px;
+    text-indent: -25px;
+    border-radius: 10px;
+}
+
+.q_a dd {
+    margin-left: 60px;
+    margin-bottom: 60px;
+    text-indent: -25px;
+    padding: 10px 10px 10px 35px;
+}
+
+.q_a dt:before {
+    content: 'Q.';
+    margin-right: 10px;
+    font-weight: bold;
+
+}
+
+.q_a dd:before {
+    content: 'A.';
+    margin-right: 10px;
+    font-weight: bold;
 }

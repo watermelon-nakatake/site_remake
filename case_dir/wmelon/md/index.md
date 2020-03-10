@@ -6,14 +6,17 @@ k::宮崎県 宮崎市 webサイト作成 スマホ対応
 
 # 株式会社ウォーターメロン
 
-<div class="top_img"><p class="blend__text">PCよりも<br>スマホで調べ物をする人の方が<br>多いんです</p></div>
-
-インターネットをスマートフォンで利用するようになり、
-企業のWebサイトもスマートフォンに対応するのが必須です。
-弊社では、Webサイトのスマートフォン対応をお手頃な価格で実現します。
-
-
-新規でのスマホ対応ホームページの作成でも、既存のサイトのスマホ表示への対応作業も致します。
+<section class="mc_view top_page_top">
+			<div class="top_img"><p class="blend__text">PCよりも<br>スマホで調べ物をする人の方が<br>多いんです</p></div>
+			<div id="top_page_nav" class="main_cl_bg">
+				<ul>
+					<li><a href="#sec01"><span class="ts_a">自社サイトをスマホに対応<br />させると集客アップ</span></a></li>
+					<li><a href="#sec01"><span class="ts_a">お客様の立場で<br />有意義なご提案をします</span></a></li>
+					<li><a href="#sec01"><span class="ts_a">コスト面でもお任せください</span></a></li>
+					<li><a href="#sec01"><span class="ts_a">弊社の業務内容</span></a></li>
+				</ul>
+			</div>
+		</section>
 
 ## 弊社の主な業務内容
 

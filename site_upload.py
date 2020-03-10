@@ -97,7 +97,7 @@ def file_pickup(target_directory):
     result = []
     file_list = os.listdir(target_directory)
     for file_str in file_list:
-        if '.' not in file_str:
+        if '.' not in file_str and '_test' not in file_str:
             result.extend(file_pickup(target_directory + '/' + file_str))
         elif '_test' not in file_str and '_copy' not in file_str:
             result.append(target_directory + '/' + file_str)
@@ -143,4 +143,4 @@ if __name__ == '__main__':
 
     # scp_upload('wmelon', 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon', ['contact/mail.php'])
     # ftp_upload('wmelon', 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon',
-    # ['policy/index.html', 'css/base.css'])
+    # ['policy/index.html', 'css/base1.css'])

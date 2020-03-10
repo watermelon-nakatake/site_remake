@@ -7,21 +7,21 @@ import shutil
 import time
 
 css_vars = ['wrapper_width', 'main_width_per', 'header_height', 'footer_height']
+width_class_list = ['', 'width_100', 'width_50', 'width_33', 'width_25', 'width_20']
 
 
 def main(case_name, domain_name, category_list, site_name, unlock_list):
     # new_case_preparation(case_name)
     case_name = 'case_dir/' + case_name
-    md_list = pick_up_md_files(case_name, unlock_list)
-    md_list = pickup_mod_md_files(case_name, md_list)
+    md_list = pick_up_md_files(case_name)
+    md_list = pickup_mod_md_files(case_name, md_list, unlock_list)
     print(md_list)
     if case_name + '/md/index.md' in md_list:
         import_from_markdown([case_name + '/md/index.md'],
-                             case_name + '/template/top_tmp.html', domain_name, site_name,
-                             category_list, case_name)
+                             case_name + '/template/top_tmp.html', domain_name, site_name, category_list, case_name)
         md_list.remove(case_name + '/md/index.md')
-    import_from_markdown(md_list, case_name + '/template/main_tmp.html', domain_name, site_name,
-                         category_list, case_name)
+    import_from_markdown(md_list, case_name + '/template/main_tmp.html', domain_name, site_name, category_list,
+                         case_name)
 
 
 def link_filter(long_str, new_path):
@@ -39,20 +39,23 @@ def new_case_preparation(case_name):
     for file_name in ['main_tmp.html', 'top_tmp.html']:
         if not os.path.exists(case_name + '/template/' + file_name):
             shutil.copyfile(file_name, case_name + '/template/' + file_name.replace('base', 'tmp'))
-    for file_name_c in ['css/base.css']:
+    for file_name_c in ['css/base1.css']:
         if not os.path.exists(case_name + '/' + file_name_c):
             shutil.copyfile(file_name_c, case_name + '/product/' + file_name_c)
 
 
-def pickup_mod_md_files(case_name, md_list):
-    now = time.time()
-    current_mod = read_pickle('md_mod_time', case_name)
-    result = [x for x in md_list if os.path.getmtime(x) > current_mod]
-    save_data_to_pickle(now, 'md_mod_time', case_name)
-    return result
+def pickup_mod_md_files(case_name, md_list, unlock_list):
+    if unlock_list[0] == 'all':
+        return md_list
+    else:
+        now = time.time()
+        current_mod = read_pickle('md_mod_time', case_name)
+        result = [x for x in md_list if os.path.getmtime(x) > current_mod]
+        save_data_to_pickle(now, 'md_mod_time', case_name)
+        return result
 
 
-def pick_up_md_files(directory, unlock_list):
+def pick_up_md_files(directory):
     result = []
     md_list = os.listdir(directory)
     for file_name in md_list:
@@ -62,13 +65,10 @@ def pick_up_md_files(directory, unlock_list):
             if '.' not in file_name:
                 if not os.path.isdir(html_path):
                     os.mkdir(html_path)
-                result.extend(pick_up_md_files(mk_dir_path, unlock_list))
+                result.extend(pick_up_md_files(mk_dir_path))
             elif '.md' in file_name:
-                if unlock_list[0] == 'all':
+                if os.path.exists(html_path):
                     result.append(mk_dir_path)
-                else:
-                    if not os.path.exists(html_path) or html_path in unlock_list:
-                        result.append(mk_dir_path)
             else:
                 pass
     return result
@@ -87,6 +87,17 @@ def insert_split_list(long_str):
                         x_r = '<div class="sp_ti">' + x.replace('%%', '</div><span>') + '</span>'
                         li3_str_r = li3_str_r.replace(x, x_r)
                 long_str = long_str.replace(li3_str, li3_str_r)
+    return long_str
+
+
+def insert_class(long_str):
+    long_str = re.sub(r'<h([3|4])>([^<]+?)%%pup</h', r'<h\1 class="pup">\2</h', long_str)
+    return long_str
+
+
+def make_class_box(long_str):
+    long_str = re.sub(r'<p>%arbox%</p>([^%]+?)<p>%%%</p>', r'<div class="arrow_box">\1</div>', long_str)
+    long_str = re.sub(r'<p>%sibox%</p>([^%]+?)<p>%%%</p>', r'<div class="sim_box">\1</div>', long_str)
     return long_str
 
 
@@ -120,6 +131,10 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                     keyword = keyword_str.split(' ')
                     if '' in keyword:
                         keyword.remove('')
+                if 'e::' in plain_txt:
+                    e_title = re.findall(r'e::(.+?)\n', plain_txt)[0]
+                else:
+                    e_title = 'no english title!!'
                 if 'id::' in plain_txt:
                     id_str = re.findall(r'id::(.+?)\n', plain_txt)[0]
                 else:
@@ -148,7 +163,6 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                     tmp_str = tmp_str.replace('<main role="main">', '<main role="main" id="sb_main">')
                 else:
                     tmp_str = re.sub(r'</main>[\s\S]*?<!--e/side_bar-->', '</main>', tmp_str)
-
                 # print(plain_txt)
                 # print('markdown start!')
                 con_str = markdown.markdown(plain_txt, extensions=['tables'])
@@ -156,13 +170,12 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                 h1_text = re.findall(r'<h1>(.+?)</h1>', con_str)[0]
                 con_str = re.sub(r'^[\s\S]*</h1>', '', con_str)
                 # print(con_str)
-
                 new_str = tmp_str.replace('<!--meta-key-->', ','.join(keyword))
                 html_path = re.sub(r'^.*?/', '', md_file_path).replace('.md', '.html')
                 url_str = domain_name + '/' + html_path
                 new_str = new_str.replace('<!--file-path-->', url_str)
-                new_str = re.sub(r'<article>[\s\S]*</article>', '<article><section class="z_m">' + con_str
-                                 + '</section></article>', new_str)
+                new_str = re.sub(r'<article>[\s\S]*</article>', '<article><section class="z_m">'
+                                 + con_str + '</section></article>', new_str)
                 new_str = new_str.replace('<!--mod-date-->', str(now.date()))
                 new_str = new_str.replace('<!--mod-date-j-->',
                                           str(now.year) + '/' + str(now.month) + '/' + str(now.day))
@@ -182,13 +195,21 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                 if fsp_str:
                     new_str = new_str.replace('<!--free_script-->', fsp_str)
                 if new_path.count('/') == 3:
-                    new_str = new_str.replace('<link href="css/base.css"', '<link href="css/base.css"')
+                    new_str = new_str.replace('<link href="css/base1.css"', '<link href="css/base1.css"')
                 elif new_path.count('/') == 4:
-                    new_str = new_str.replace('<link href="css/base.css"', '<link href="../css/base.css"')
+                    new_str = new_str.replace('<link href="css/base1.css"', '<link href="../css/base1.css"')
                 new_str = new_str.replace('.md"', '.html"')
                 new_str = link_filter(new_str, new_path)
-                new_str = insert_anchor(new_str)
+                new_str, h2_dec = insert_anchor(new_str)
+                new_str = insert_wrapper(new_str)
+                if 'index.html' in new_path and 'product/index.html' not in new_path and e_title != 'no_top':
+                    new_str = insert_top_section(new_str, h2_dec, h1_text)
+                    new_str = insert_next_link(new_str, h2_dec)
+                    new_str = new_str.replace('<!--dir_name-->', directory)
                 new_str = insert_split_list(new_str)
+                new_str = insert_class(new_str)
+                new_str = make_class_box(new_str)
+                new_str = new_str.replace('<!--e_title-->', e_title)
                 if id_str:
                     new_str = new_str.replace('<body>', '<body id="' + id_str + '">')
                 if '<!--site_name-->' in new_str:
@@ -205,23 +226,64 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
     return upload_list, pk_dec
 
 
+def insert_next_link(long_str, h2_dec):
+    sec_tag_list = re.findall(r'</section>.+?<h2>', long_str)
+    for i in range(1, len(h2_dec)):
+        long_str = long_str.replace(sec_tag_list[i],
+                                    '<div class="next main_cl_bg"><a href="#sec' + str(i + 1).zfill(2) + '">Next '
+                                    + h2_dec[i + 1] + '</a></div>' + sec_tag_list[i])
+    return long_str
+
+
+def insert_top_section(long_str, h2_dec, page_title):
+    insert_str = '<section id="top_<!--dir_name-->" class="mc_view top_section"><div id="page_title">' \
+                 '<span class="ptm">' + page_title + '</span><span class="pte"><!--e_title--></span></div>' \
+                                                     '<div class="ts_nav_o"><ul class="ts_nav">'
+    width_class = width_class_list[len(h2_dec)]
+    for i in h2_dec:
+        insert_str += '<li class="' + width_class + '"><a href="#sec' + str(i).zfill(2) + '"><span class="ts_a">' +\
+                      h2_dec[i] + '</span></a></li>'
+    insert_str += '</ul></div></section>'
+    long_str = re.sub(r'<article>', r'<article>' + insert_str, long_str)
+    return long_str
+
+
 def make_side_bar(sb_str):
     result = re.sub(r'%sb%(.+?)%%%', r'\1', sb_str)
     return result
 
 
 def insert_anchor(long_str):
+    h2_dec = {}
     h2_list = re.findall(r'<h2>.+?</h2>', long_str)
     for i in range(len(h2_list)):
         if '%%long' in h2_list[i]:
-            long_str = long_str.replace(h2_list[i], '</section><section class="l_view"><a id="sec'
-                                        + str(i + 1).zfill(2) + '" class="ach"></a>' + h2_list[i]).replace('%%long', '')
+            long_str = long_str.replace(h2_list[i],
+                                        '</section><section class="l_view"><a id="sec'
+                                        + str(i + 1).zfill(2) + '" class="ach"></a>' + h2_list[i].replace('%%long', ''))
+            h2_dec[i + 1] = re.sub(r'<h2>(.+?)%%long</h2>', r'\1', h2_list[i])
         else:
-            long_str = long_str.replace(h2_list[i], '</section><section class="bc_view"><a id="sec'
+            long_str = long_str.replace(h2_list[i],
+                                        '</section><section class="bc_view"><a id="sec'
                                         + str(i + 1).zfill(2) + '" class="ach"></a>' + h2_list[i])
+            h2_dec[i + 1] = re.sub(r'<h2>(.+?)</h2>', r'\1', h2_list[i])
     long_str = long_str.replace('<section class="z_m"></section>', '')
-    long_str = long_str.replace('<h2>', '<h2><span>')
+    long_str = long_str.replace('<section class="z_m"><section', '<section')
+    long_str = long_str.replace('</section></section>', '</section>')
+    long_str = long_str.replace('<h2>', '<h2><span class="main_cl_bdb">')
     long_str = long_str.replace('</h2>', '</span></h2>')
+    return long_str, h2_dec
+
+
+def insert_wrapper(long_str):
+    section_list = re.findall(r'<section.+?</section>', long_str)
+    if section_list:
+        for section_str in section_list:
+            if 'top_page_top' not in section_str and 'top_section' not in section_str:
+                print(section_str)
+                replaced_sec = re.sub(r'<section(.+?)>', r'<section\1><div class="wrapper">', section_str)
+                replaced_sec = replaced_sec.replace('</section>', '</div></section>')
+                long_str = long_str.replace(section_str, replaced_sec)
     return long_str
 
 
@@ -310,7 +372,7 @@ def css_setup(case_name, css_data):
         css_tmp = re.sub(r'/\*side_bar_width\*[\s\S]*?\*side_bar_width_e\*/',
                          'width:' + str(side_bar_width) + '%;/*side_bar_width*/', css_tmp)
         print(css_tmp)
-    with open(case_name + '/base.css', 'w', encoding='utf-8') as g:
+    with open(case_name + '/base1.css', 'w', encoding='utf-8') as g:
         g.write(css_tmp)
 
 
@@ -330,11 +392,25 @@ def gradation_maker(base_color):
         print(max_i)
 
 
+# イメージ切り替えテスト用画像リスト作成
+def make_test_image_list(dir_path):
+    files = os.listdir(dir_path)
+    print(files)
+    result = [x for x in files if '.jpeg' in x or '.jpg' in x]
+    print(result)
+
+
+# todo:イメージ、背景色、レイアウト、フォント等をテストできるjavascript 一つのダイアログ風の箱で浮かせる
+# todo:事前にインタビューした好みや方針、セールスポイント等から叩き台のデザインを作るアプリ
+
+
 if __name__ == '__main__':
     category_li = {'works': '実績', 'company': '会社案内', 'making_site': 'サイト作成', 'contact': 'お問い合わせ',
                    'technology': 'web技術', 'policy': 'サイトポリシー'}
     unlock_l = ['all']
     main('wmelon', 'https://www.wmelon.co.jp', category_li, '株式会社ウォーターメロン', unlock_l)
+
+    # make_test_image_list('/Users/nakataketetsuhiko/Downloads/watermelon_images/photo/preview/about_us')
 
     # css_setup('test_case', [1100, 75, 0, 0])
     # gradation_maker('#ffffff', 'a')
