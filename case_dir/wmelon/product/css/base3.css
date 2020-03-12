@@ -120,10 +120,6 @@ main {
     margin: 0;
 }
 
-.tpt_p {
-
-}
-
 
 #side_bar {
     width: 20%; /* サイドバー幅 */
@@ -160,7 +156,7 @@ a {
 /* header */
 
 #header_i {
-    height: 80px;
+    height: 90px;
     width: 100%;
     position: fixed;
     top: 0;
@@ -174,21 +170,17 @@ a {
 }
 
 #site_title {
-    float: left;
-    width: 300px;
-    margin-top: 17px;
-    margin-left: 20px;
+    width: 200px;
+    margin-top: 5px;
+    margin-left: 5px;
 }
 
 #site_title img {
-    width: 300px;
-    height: 50px;
+    width: 240px;
+    height: 40px;
 }
 
 #g_nav {
-    float: right;
-    width: 50%;
-    margin-top: 30px;
 }
 
 #g_nav li {
@@ -205,7 +197,6 @@ a {
     width: 92%;
     height: 40px;
     margin: 0 4%;
-    padding-top: 10px;
     color: #333333;
     text-align: center;
     background-clip: border-box;
@@ -254,7 +245,7 @@ a {
     background-color: #f5f5f5;
     border-top: solid #dcdcdc 1px;
     border-bottom: solid #dcdcdc 1px;
-    margin-top: 80px;
+    margin-top: 90px;
 
 }
 
@@ -360,6 +351,7 @@ article p {
     width: 97%;
     margin-left: 3%;
     margin-bottom: 20px;
+    letter-spacing: 1px;
 }
 
 #top_page article .top_page_top p {
@@ -458,7 +450,7 @@ article ol li {
 h2 {
     border-left: none;
     padding: 0;
-    margin: 20px 0 40px;
+    margin: 20px 0 60px;
     height: 30px;
     width: 100%;
     text-align: center;
@@ -466,12 +458,13 @@ h2 {
 
 h2 span {
     border-bottom: 2px solid;
-    padding-left: 0;
+    padding: 0 3px;
     display: inline-block;
     width: auto;
     margin: 0 auto;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 400;
+    letter-spacing: 1px;
 }
 
 h3.pup {
@@ -503,118 +496,14 @@ h3 {
 }
 
 
-/* タブレット */
-@media screen and (min-width: 768px) and ( max-width: 1019px) {
-    .sp_li2, .sp_li3 {
-        float: left;
-        list-style: none
-    }
-
-    .sp_li2 {
-        width: 50%
-    }
-
-    .sp_li3 {
-        width: 33%
-    }
-}
-
-/* デスクトップ */
-@media screen and (min-width: 1020px)/* ラッパー幅 */ {
-    .wrapper {
-        width: 1020px; /* ラッパー幅 */
-        margin: 0 auto;
-        padding: 0;
-    }
-
-    #top_page main {
-        padding: 0;
-    }
-
-    .top_img img {
-        width: 100%;
-
-    }
-
-    #top_page_nav {
-        height: 120px;
-        margin-top: 0;
-    }
-
-    #top_page_nav ul {
-        width: 100%;
-        height: 100px;
-        padding: 10px 0;
-    }
-
-    #top_page_nav li {
-        list-style: none;
-        width: 24%;
-        border-right: #ffffff dotted 1px;
-        float: left;
-        height: 100px;
-    }
-
-    #top_page_nav li:last-child {
-        border-right: none;
-    }
-
-    #top_page_nav li a {
-        text-decoration: none;
-        color: #ffffff;
-        padding: 0 10%;
-        width: 80%;
-        height: 100px;
-        display: block;
-        text-align: center;
-        position: relative;
-    }
-
-    #top_page_nav li a span {
-        height: 80px;
-        display: block;
-    }
-
-    #contact .wrapper {
-        width: 800px; /* ラッパー幅 */
-        margin: 0 auto;
-    }
-
-    #sb_main {
-        width: 78%; /* main幅 */
-        padding: 5px 1%;
-        float: left; /* サイドバー位置 */
-        /*background-color: #BC8F8F;*/
-    }
-
-    #side_bar {
-        width: 20%; /* サイドバー幅 */
-        float: left; /* サイドバー位置 */
-    }
-
-    .sp_li2, .sp_li3 {
-        float: left;
-        list-style: none
-    }
-
-    .sp_li2 {
-        width: 50%
-    }
-
-    .sp_li3 {
-        width: 33.2%
-    }
-}
-
-
 .top_img {
     position: relative;
     width: 100%; /*背景画像の横幅*/
-    height: 500px; /*背景画像の縦幅*/
+    height: 150px; /*背景画像の縦幅*/
     background-image: url(../images/top_t.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    margin-top: 80px;
+    margin-top: 90px;
 }
 
 
@@ -628,7 +517,7 @@ h3 {
     top: 180px;
     left: 20px;
     padding: 10px;
-    width: 290px;
+    width: 310px;
     background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -800,6 +689,8 @@ h3 {
     border-bottom: #ffffff 2px solid;
     font-size: 40px;
     height: 65px;
+    letter-spacing: 5px;
+    padding: 0 3px;
 }
 
 .pte {
@@ -809,6 +700,7 @@ h3 {
     line-height: 1;
     margin-top: 8px;
     height: 50px;
+    letter-spacing: 1px;
 }
 
 .ts_nav_o {
@@ -838,6 +730,7 @@ h3 {
     height: 80px;
     margin: 0 auto;
     font-size: 18px;
+    letter-spacing: 1px;
     z-index: 190;
     position: relative;
 }
@@ -962,9 +855,11 @@ a:hover .ts_a:after {
 .main_cl_bdt:hover {
     border-top-color: darkcyan;
 }
-.q_a{
+
+.q_a {
     margin-top: 60px;
 }
+
 .q_a dt {
     background-color: #eeeeee;
     padding: 10px 10px 10px 35px;
@@ -992,4 +887,155 @@ a:hover .ts_a:after {
     content: 'A.';
     margin-right: 10px;
     font-weight: bold;
+}
+
+/* タブレット */
+@media screen and (min-width: 768px) and ( max-width: 1019px) {
+    .sp_li2, .sp_li3 {
+        float: left;
+        list-style: none
+    }
+
+    .sp_li2 {
+        width: 50%
+    }
+
+    .sp_li3 {
+        width: 33%
+    }
+
+    #site_title {
+        float: left;
+        width: 300px;
+        margin-top: 17px;
+        margin-left: 20px;
+    }
+
+    #site_title img {
+        width: 300px;
+        height: 50px;
+    }
+}
+
+/* デスクトップ */
+@media screen and (min-width: 1020px)/* ラッパー幅 */ {
+    .wrapper {
+        width: 1020px; /* ラッパー幅 */
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    #top_page main {
+        padding: 0;
+    }
+
+    .top_img img {
+        width: 100%;
+
+    }
+
+    #top_page_nav {
+        height: 120px;
+        margin-top: 0;
+    }
+
+    #top_page_nav ul {
+        width: 100%;
+        height: 100px;
+        padding: 10px 0;
+    }
+
+    #top_page_nav li {
+        list-style: none;
+        width: 24%;
+        border-right: #ffffff dotted 1px;
+        float: left;
+        height: 100px;
+    }
+
+    #top_page_nav li:last-child {
+        border-right: none;
+    }
+
+    #top_page_nav li a {
+        text-decoration: none;
+        color: #ffffff;
+        padding: 0 10%;
+        width: 80%;
+        height: 100px;
+        display: block;
+        text-align: center;
+        position: relative;
+    }
+
+    #top_page_nav li a span {
+        height: 80px;
+        display: block;
+    }
+
+    #site_title {
+        float: left;
+        width: 300px;
+        margin-top: 17px;
+        margin-left: 20px;
+    }
+
+    #site_title img {
+        width: 300px;
+        height: 50px;
+    }
+
+    #g_nav {
+        float: right;
+        width: 50%;
+        margin-top: 30px;
+    }
+
+    #g_nav li a {
+        padding-top: 10px;
+    }
+
+    #header_i {
+        height: 80px;
+    }
+
+    .top_img {
+        height: 500px; /*背景画像の縦幅*/
+        background-image: url(../images/top_t.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin-top: 80px;
+    }
+    #bread_crumb {
+    margin-top: 80px;}
+
+    #contact .wrapper {
+        width: 800px; /* ラッパー幅 */
+        margin: 0 auto;
+    }
+
+    #sb_main {
+        width: 78%; /* main幅 */
+        padding: 5px 1%;
+        float: left; /* サイドバー位置 */
+        /*background-color: #BC8F8F;*/
+    }
+
+    #side_bar {
+        width: 20%; /* サイドバー幅 */
+        float: left; /* サイドバー位置 */
+    }
+
+    .sp_li2, .sp_li3 {
+        float: left;
+        list-style: none
+    }
+
+    .sp_li2 {
+        width: 50%
+    }
+
+    .sp_li3 {
+        width: 33.2%
+    }
 }

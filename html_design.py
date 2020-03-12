@@ -39,7 +39,7 @@ def new_case_preparation(case_name):
     for file_name in ['main_tmp.html', 'top_tmp.html']:
         if not os.path.exists(case_name + '/template/' + file_name):
             shutil.copyfile(file_name, case_name + '/template/' + file_name.replace('base', 'tmp'))
-    for file_name_c in ['css/base1.css']:
+    for file_name_c in ['css/base3.css']:
         if not os.path.exists(case_name + '/' + file_name_c):
             shutil.copyfile(file_name_c, case_name + '/product/' + file_name_c)
 
@@ -195,9 +195,9 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                 if fsp_str:
                     new_str = new_str.replace('<!--free_script-->', fsp_str)
                 if new_path.count('/') == 3:
-                    new_str = new_str.replace('<link href="css/base1.css"', '<link href="css/base1.css"')
+                    new_str = new_str.replace('<link href="css/base3.css"', '<link href="css/base3.css"')
                 elif new_path.count('/') == 4:
-                    new_str = new_str.replace('<link href="css/base1.css"', '<link href="../css/base1.css"')
+                    new_str = new_str.replace('<link href="css/base3.css"', '<link href="../css/base3.css"')
                 new_str = new_str.replace('.md"', '.html"')
                 new_str = link_filter(new_str, new_path)
                 new_str, h2_dec = insert_anchor(new_str)
@@ -241,7 +241,7 @@ def insert_top_section(long_str, h2_dec, page_title):
                                                      '<div class="ts_nav_o"><ul class="ts_nav">'
     width_class = width_class_list[len(h2_dec)]
     for i in h2_dec:
-        insert_str += '<li class="' + width_class + '"><a href="#sec' + str(i).zfill(2) + '"><span class="ts_a">' +\
+        insert_str += '<li class="' + width_class + '"><a href="#sec' + str(i).zfill(2) + '"><span class="ts_a">' + \
                       h2_dec[i] + '</span></a></li>'
     insert_str += '</ul></div></section>'
     long_str = re.sub(r'<article>', r'<article>' + insert_str, long_str)
@@ -280,7 +280,6 @@ def insert_wrapper(long_str):
     if section_list:
         for section_str in section_list:
             if 'top_page_top' not in section_str and 'top_section' not in section_str:
-                print(section_str)
                 replaced_sec = re.sub(r'<section(.+?)>', r'<section\1><div class="wrapper">', section_str)
                 replaced_sec = replaced_sec.replace('</section>', '</div></section>')
                 long_str = long_str.replace(section_str, replaced_sec)
@@ -311,12 +310,12 @@ def punctuation_filter(long_str):
 def breadcrumb_maker(category, directory, md_path):
     if directory:
         result = '<ol id="bread" itemscope itemtype="https://schema.org/BreadcrumbList">' \
-               '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="brd1">' \
-               '<a href="../" itemprop="item"><span itemprop="name">TOP</span></a>' \
-               '<meta itemprop="position" content="1" /></li><li>></li>'
+                 '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="brd1">' \
+                 '<a href="../" itemprop="item"><span itemprop="name">TOP</span></a>' \
+                 '<meta itemprop="position" content="1" /></li><li>></li>'
         if 'index.md' not in md_path:
             result += '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="brd2">' \
-                      '<a href="../' + directory + '/" itemprop="item"><span itemprop="name">' + category\
+                      '<a href="../' + directory + '/" itemprop="item"><span itemprop="name">' + category \
                       + '</span></a><meta itemprop="position" content="2" /></li><li>>></li>'
             result += '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="brd3">' \
                       '<h1><span itemprop="name"><!--h1_text--></span></h1><meta itemprop="position" content="3" />' \
@@ -324,11 +323,11 @@ def breadcrumb_maker(category, directory, md_path):
         else:
             result += '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="brd2">' \
                       '<h1><span itemprop="name">' + category + '</span></h1><meta itemprop="position" content="2" />' \
-                      '</li>'
+                                                                '</li>'
     else:
         result = '<ol id="bread" itemscope itemtype="https://schema.org/BreadcrumbList">' \
-               '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="brd1">' \
-               '<h1><span itemprop="name"><!--h1_text--></span></h1><meta itemprop="position" content="1" /></li>'
+                 '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="brd1">' \
+                 '<h1><span itemprop="name"><!--h1_text--></span></h1><meta itemprop="position" content="1" /></li>'
     return result + '</ol>'
 
 
@@ -372,7 +371,7 @@ def css_setup(case_name, css_data):
         css_tmp = re.sub(r'/\*side_bar_width\*[\s\S]*?\*side_bar_width_e\*/',
                          'width:' + str(side_bar_width) + '%;/*side_bar_width*/', css_tmp)
         print(css_tmp)
-    with open(case_name + '/base1.css', 'w', encoding='utf-8') as g:
+    with open(case_name + '/base3.css', 'w', encoding='utf-8') as g:
         g.write(css_tmp)
 
 
@@ -387,7 +386,7 @@ def gradation_maker(base_color):
 
         c_list = [r_int, g_int, b_int]
         max_i = c_list.index(max(c_list))
-        
+
         print(r_int)
         print(max_i)
 
@@ -398,6 +397,37 @@ def make_test_image_list(dir_path):
     print(files)
     result = [x for x in files if '.jpeg' in x or '.jpg' in x]
     print(result)
+
+
+# 新規案件でdictからディレクトリとmdファイルを作成
+def constitute_md_files(case_name, c_dic):
+    """
+    ex. c_dic = {'company': {'index': '会社紹介', 'policy': '弊社の方針'},
+             'contact': {'index': 'お問い合わせ', 'mail': 'メールフォーム'},
+             'technology': {'index': '弊社の技術', 'web': 'ウェブ技術'}}
+    """
+    with open('main_temp/md_tmp.md', 'r') as t:
+        md_tmp = t.read()
+    if not os.path.exists('case_dir/' + case_name):
+        os.mkdir('case_dir/' + case_name)
+    if not os.path.exists('case_dir/' + case_name + '/md'):
+        os.mkdir('case_dir/' + case_name + '/md')
+    for r1 in c_dic:
+        if type(c_dic[r1]) == str:
+            md_str = md_tmp.replace('t::', 't::' + c_dic[r1])
+            with open('case_dir/' + case_name + '/md/' + r1 + '.md', 'w') as f:
+                f.write(md_str)
+        elif type(c_dic[r1]) == dict:
+            if type(c_dic[r1]) != str and not os.path.exists('case_dir/' + case_name + '/md/' + r1):
+                os.mkdir('case_dir/' + case_name + '/md/' + r1)
+            for r2 in c_dic[r1]:
+                if type(c_dic[r1][r2]) == str:
+                    md_str2 = md_tmp.replace('t::', 't::' + c_dic[r1][r2])
+                    with open('case_dir/' + case_name + '/md/' + r1 + '/' + r2 + '.md', 'w') as f:
+                        f.write(md_str2)
+                else:
+                    print('error!!')
+                    return
 
 
 # todo:イメージ、背景色、レイアウト、フォント等をテストできるjavascript 一つのダイアログ風の箱で浮かせる
@@ -411,6 +441,11 @@ if __name__ == '__main__':
     main('wmelon', 'https://www.wmelon.co.jp', category_li, '株式会社ウォーターメロン', unlock_l)
 
     # make_test_image_list('/Users/nakataketetsuhiko/Downloads/watermelon_images/photo/preview/about_us')
+
+    ec_dic = {'company': {'index': '会社紹介', 'policy': '弊社の方針'},
+              'contact': {'index': 'お問い合わせ', 'mail': 'メールフォーム'},
+              'technology': {'index': '弊社の技術', 'web': 'ウェブ技術'}}
+    # constitute_md_files('test_dir', ec_dic)
 
     # css_setup('test_case', [1100, 75, 0, 0])
     # gradation_maker('#ffffff', 'a')
