@@ -7,7 +7,7 @@ k::宮崎県 宮崎市 webサイト作成 スマホ対応
 # 株式会社ウォーターメロン
 
 <section class="mc_view top_page_top">
-			<div class="top_img"><p class="blend__text">PCよりも<br>スマホで調べ物をする人の方が<br>多いんです</p></div>
+			<div id="top_img"><p class="blend__text">PCよりも<br>スマホで調べ物をする人の方が<br>多いんです</p></div>
 			<div id="top_page_nav" class="main_cl_bg">
 				<ul>
 					<li><a href="#sec01"><span class="ts_a">自社サイトをスマホに対応<br />させると集客アップ</span></a></li>

@@ -7,7 +7,7 @@
 	<meta name="description" content="株式会社ウォーターメロンでは、Webサイトの作成代行以外でも、Webサイトに関するいろいろなご提案が可能です。">
 	<meta name="robots" content="index,follow"/>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link href="../css/base3.css" rel="stylesheet" type="text/css"/>
+	<link href="../css/base3_test2.css" rel="stylesheet" type="text/css"/>
 	<link rel="shortcut icon" href="../images/favicon.ico">
 </head>
 <body>
@@ -49,12 +49,15 @@
 <main role="main">
 	<article>
 		<section id="top_technology" class="mc_view top_section">
-			<div class="mob_img"><div id="page_title"><span class="ptm">Web技術</span><span class="pte">Out technology</span></div></div>
+
+			<div id="page_title"><span class="ptm">Web技術</span><span class="pte">Out technology</span></div>
+
 			<div class="ts_nav_o">
 				<ul class="ts_nav">
 					<li class="width_33"><a href="#sec01"><span class="ts_a">スマホ対応サイトリニューアル</span></a></li>
 					<li class="width_33"><a href="#sec02"><span class="ts_a">既存のサイトを改善する技術</span></a></li>
 					<li class="width_33"><a href="#sec03"><span class="ts_a">弊社で解決可能な一例</span></a></li>
+
 				</ul>
 			</div>
 		</section>
@@ -165,21 +168,29 @@
     }
 </script>
 <script>
-	const sW = window.innerWidth;
+    const sW = window.innerWidth;
     const sH = window.innerHeight;
-    let hPlus = 0;
-    console.log(sH);
-    const b_height = document.getElementsByClassName('bc_view');
-    if (sW < 768){
-        hPlus = 230
-    }
-    console.log(hPlus);
-    for (let i = 0; i < b_height.length; i++) {
-        b_height[i].style.height = String(sH - 80 - hPlus) + 'px'
-    }
+    let hPlus;
+    console.log('sH : '+ String(sH));
     const m_height = document.getElementsByClassName('mc_view');
-    for (let j = 0; j < m_height.length; j++) {
-        m_height[j].style.height = String(sH - 127 - hPlus) + 'px'
+    if (sW < 768) {
+        hPlus = 0
+    } else {
+        hPlus = 0
+    }
+    for (let i = 0; i < m_height.length; i++) {
+        m_height[i].style.height = String(sH - 127) + 'px'
+    }
+    const b_height = document.getElementsByClassName('bc_view');
+    let bcH;
+    if (sW >= 769) {
+        bcH = String(sH - 127) + 'px'
+    } else {
+        bcH = 'auto'
+    }
+    console.log('bcH: ' + String(bcH));
+    for (let j = 0; j < b_height.length; j++) {
+        b_height[j].style.height = bcH
     }
 </script>
 <script>

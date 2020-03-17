@@ -143,4 +143,4 @@ if __name__ == '__main__':
 
     # scp_upload('wmelon', 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon', ['contact/mail.php'])
     # ftp_upload('wmelon', 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon',
-    # ['policy/index.html', 'css/base3.css'])
+    # ['policy/index.html', 'css/base5.css'])

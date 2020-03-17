@@ -7,7 +7,7 @@
 	<meta name="description" content="<!--description-->">
 	<meta name="robots" content="index,follow"/>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link href="../product/css/base3.css" rel="stylesheet" type="text/css"/>
+	<link href="../product/css/base5.css" rel="stylesheet" type="text/css"/>
 	<link rel="shortcut icon" href="../product/images/favicon.ico">
 </head>
 <body>
@@ -26,8 +26,8 @@
 					</li>
 					<li><a href="../product/company"><span class="g_o"><span data-hover="会社案内"
 					                                                         class="g_i">会社案内</span></span></a></li>
-					<li><a href="../product/contact"><span class="g_o"><span data-hover="お問い合わせ"
-					                                                         class="g_i">お問い合わせ</span></span></a></li>
+					<li><a href="../product/contact"><span class="g_o"><span data-hover="お問合せ"
+					                                                         class="g_i">お問合せ</span></span></a></li>
 				</ul>
 			</nav>
 		</div>
@@ -93,7 +93,7 @@
 						<li><a href="../product/company/index.html#sec03">代表プロフィール</a></li>
 					</ul>
 				</li>
-				<li class="fl_cat"><a href="../product/contact/" class="bold_f">お問い合わせ</a>
+				<li class="fl_cat"><a href="../product/contact/" class="bold_f">お問合せ</a>
 					<ul>
 						<li><a href="../product/contact/">メール</a></li>
 					</ul>
@@ -124,15 +124,29 @@
     }
 </script>
 <script>
+    const sW = window.innerWidth;
     const sH = window.innerHeight;
-    console.log(sH);
-    const b_height = document.getElementsByClassName('bc_view');
-    for (let i = 0; i < b_height.length; i++) {
-        b_height[i].style.height = String(sH - 80) + 'px'
-    }
+    let hPlus;
+    console.log('sH : '+ String(sH));
     const m_height = document.getElementsByClassName('mc_view');
-    for (let j = 0; j < m_height.length; j++) {
-        m_height[j].style.height = String(sH - 127) + 'px'
+    if (sW < 768) {
+        hPlus = 0
+    } else {
+        hPlus = 0
+    }
+    for (let i = 0; i < m_height.length; i++) {
+        m_height[i].style.height = String(sH - 127 - hPlus) + 'px'
+    }
+    const b_height = document.getElementsByClassName('bc_view');
+    let bcH;
+    if (sW >= 769) {
+        bcH = String(sH - 127) + 'px'
+    } else {
+        bcH = 'auto'
+    }
+    console.log('bcH: ' + String(bcH));
+    for (let j = 0; j < b_height.length; j++) {
+        b_height[j].style.height = bcH
     }
 </script>
 <script>

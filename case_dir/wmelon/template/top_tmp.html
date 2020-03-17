@@ -7,7 +7,7 @@
 	<meta name="description" content="<!--description-->">
 	<meta name="robots" content="index,follow"/>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link href="../product/css/base3.css" rel="stylesheet" type="text/css"/>
+	<link href="../product/css/base5.css" rel="stylesheet" type="text/css"/>
 	<link rel="shortcut icon" href="../product/images/favicon.ico">
 </head>
 <body id="top_page">
@@ -25,8 +25,8 @@
 					</li>
 					<li><a href="../product/company"><span class="g_o"><span data-hover="会社案内"
 					                                                         class="g_i">会社案内</span></span></a></li>
-					<li><a href="../product/contact"><span class="g_o"><span data-hover="お問い合わせ"
-					                                                         class="g_i">お問い合わせ</span></span></a></li>
+					<li><a href="../product/contact"><span class="g_o"><span data-hover="お問合せ"
+					                                                         class="g_i">お問合せ</span></span></a></li>
 				</ul>
 			</nav>
 		</div>
@@ -92,7 +92,7 @@
 						<li><a href="../product/company/index.html#sec03">代表プロフィール</a></li>
 					</ul>
 				</li>
-				<li class="fl_cat"><a href="../product/contact/" class="bold_f">お問い合わせ</a>
+				<li class="fl_cat"><a href="../product/contact/" class="bold_f">お問合せ</a>
 					<ul>
 						<li><a href="../product/contact/">メール</a></li>
 					</ul>
@@ -127,7 +127,7 @@
 <!--画面への高さ合わせ-->
 <script>
     const sH = window.innerHeight;
-    console.log(sH);
+    const sW = window.innerWidth;
     const b_height = document.getElementsByClassName('bc_view');
     for (let i = 0; i < b_height.length; i++) {
         b_height[i].style.height = String(sH - 80) + 'px'
@@ -136,10 +136,13 @@
     for (let j = 0; j < m_height.length; j++) {
         m_height[j].style.height = String(sH - 127) + 'px'
     }
-    const t_height = document.getElementsByClassName('top_img');
-    for (let k = 0; k < t_height.length; k++) {
-        t_height[k].style.height = String(sH - 200) + 'px'
+    const t_height = document.getElementById('top_img');
+    let tpH = 0;
+    if (sW < 768) {
+        tpH = 100
     }
+    console.log(String(sH - 200 - tpH) + 'px');
+    t_height.style.height = String(sH - 200 - tpH) + 'px'
 </script>
 <!--back_tot_opの表示操作-->
 <script>

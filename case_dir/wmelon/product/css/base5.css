@@ -1,8 +1,8 @@
 @charset "UTF-8";
-abbr, address, article, aside, audio, b, blockquote, body, canvas, caption, cite, code, dd, del, details, dfn, div, dl,
-dt, em, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins,
-kbd, label, legend, li, mark, menu, nav, object, ol, p, pre, q, samp, section, small, span, strong, sub, summary, sup,
-table, tbody, td, tfoot, th, thead, time, tr, ul, var, video {
+article, aside, b, blockquote, body, canvas, caption, cite, code, dd, del, details, dfn, div, dl, dt, em, fieldset,
+figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label,
+legend, li, mark, menu, nav, object, ol, p, pre, q, samp, section, small, span, strong, sub, summary, sup, table,
+tbody, td, tfoot, th, thead, time, tr, ul, var, video {
     margin: 0;
     padding: 0;
     border: 0;
@@ -10,10 +10,6 @@ table, tbody, td, tfoot, th, thead, time, tr, ul, var, video {
     font-size: 100%;
     vertical-align: baseline;
     background: 0 0
-}
-
-body {
-    line-height: 1
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -37,7 +33,8 @@ a {
     padding: 0;
     font-size: 100%;
     vertical-align: baseline;
-    background: 0 0
+    background: 0 0;
+    color: #0074a2
 }
 
 ins {
@@ -86,74 +83,57 @@ img {
     line-height: 0
 }
 
-/* ここまでresetCSS */
-
-/* layout */
 body {
     font-family: ヒラギノ角ゴ ProN W3, HiraKakuProN-W3, ヒラギノ角ゴ Pro W3, HiraKakuPro-W3, メイリオ, Meiryo,
     ＭＳ\ Ｐゴシック, MS Pgothic, Osaka, sans-serif;
     line-height: 1.8;
-    color: #333333 /* 全体の文字色 */
+    color: #333333
 }
 
 header {
     background-color: #ffffff
 }
 
-/* #h_wrapper, #f_wrapper{width:100%} */
-
+.wrapper {
+    width: 100%;
+    position: relative
+}
 
 #side_bar {
     float: none;
-    width: 100%;
-    /*background-color: orange;*/
+    width: 100%
 }
 
 main {
     width: 100%;
     float: none;
-    overflow: hidden;
-    /*background-color: #BC8F8F;*/
+    overflow: hidden
 }
 
 #top_page main {
-    margin: 0;
-}
-
-
-#side_bar {
-    width: 20%; /* サイドバー幅 */
-    float: left; /* サイドバー位置 */
+    margin: 0
 }
 
 footer {
     color: #ffffff;
+    padding-top: 30px
 }
-
-/* color */
-a {
-    color: #0074a2;
-}
-
-/* side bar */
 
 .sb_section {
     width: 90%;
     padding: 10px 5%;
-    margin-bottom: 30px;
+    margin-bottom: 30px
 }
 
 .sb_section li {
     list-style: none;
-    margin: 10px 0;
+    margin: 10px 0
 }
 
 .sb_section li a {
     display: block;
-    text-decoration: none;
+    text-decoration: none
 }
-
-/* header */
 
 #header_i {
     height: 90px;
@@ -162,33 +142,33 @@ a {
     top: 0;
     left: 0;
     background-color: rgba(255, 255, 255, 0.9);
-    z-index: 1000;
+    z-index: 1000
 }
 
 #top_page #header_i {
-    box-shadow: 0 3px 3px 0 rgba(40, 40, 40, 0.1);
+    box-shadow: 0 3px 3px 0 rgba(40, 40, 40, 0.1)
 }
 
 #site_title {
     width: 200px;
     margin-top: 5px;
-    margin-left: 5px;
+    margin-left: 5px
+}
+
+#site_title a {
+    display: block;
 }
 
 #site_title img {
     width: 240px;
-    height: 40px;
-}
-
-#g_nav {
+    height: 40px
 }
 
 #g_nav li {
     list-style: none;
     float: left;
     width: 25%;
-    height: 60px;
-
+    height: 40px
 }
 
 #g_nav li a {
@@ -200,14 +180,13 @@ a {
     color: #333333;
     text-align: center;
     background-clip: border-box;
-    overflow: hidden;
-
+    overflow: hidden
 }
 
 .g_o {
     height: 25px;
     overflow: hidden;
-    display: inline-block;
+    display: inline-block
 }
 
 #g_nav li a .g_i {
@@ -215,7 +194,7 @@ a {
     display: inline-block;
     -webkit-transition: -webkit-transform 0.3s;
     -moz-transition: -moz-transform 0.3s;
-    transition: transform 0.3s;
+    transition: transform 0.3s
 }
 
 #g_nav li a .g_i:before {
@@ -225,16 +204,15 @@ a {
     font-weight: bold;
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0)
 }
 
 #g_nav li a:focus .g_i, #g_nav li a:hover .g_i {
     -webkit-transform: translateY(-100%);
     -moz-transform: translateY(-100%);
     transform: translateY(-100%);
-    color: orangered;
+    color: orangered
 }
-
 
 #bread_crumb {
     list-style: none;
@@ -245,91 +223,82 @@ a {
     background-color: #f5f5f5;
     border-top: solid #dcdcdc 1px;
     border-bottom: solid #dcdcdc 1px;
-    margin-top: 90px;
-
+    margin-top: 90px
 }
 
 #bread_crumb li {
     display: inline-block;
     margin: 0 10px;
-    padding: 0;
+    padding: 0
 }
 
 #bread_crumb a {
     text-decoration: none;
-    color: #333333;
+    color: #333333
 }
 
 #bread_crumb h1 {
     font-size: 14px;
-    font-weight: normal;
-}
-
-/* footer */
-footer {
-    padding-top: 30px;
+    font-weight: normal
 }
 
 #company_info {
     text-align: center;
     padding-bottom: 30px;
+    width: 80%;
+    margin: 10px auto 0
 }
 
 #footer_l {
-    margin-top: 30px;
+    margin-top: 30px
 }
 
 #footer_l ul {
     list-style: none;
     font-size: 13px;
     width: 94%;
-    margin: 7px auto 0;
-}
-
-#company_info {
-    width: 50%;
-    margin: 10px auto 0;
+    margin: 7px auto 0
 }
 
 #company_info ul {
-    list-style: none;
+    list-style: none
 }
 
 #c_name_o {
     display: block;
     float: left;
     width: 250px;
-    height: 60px;
+    height: 60px
 }
 
 #c_name {
     display: block;
-    margin-left: 40px;
+    margin-left: 40px
 }
 
 #c_name img {
     width: 225px;
-    height: 37px;
+    height: 37px
 }
 
 #c_address, #c_tel {
     float: right;
     width: 250px;
     height: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 #c_address {
-    margin-top: 20px;
+    margin-top: 20px
 }
 
 #footer_l a {
     color: #ffffff;
-    text-decoration: none;
+    text-decoration: none
 }
 
 .fl_cat {
-    width: 20%;
+    width: 48%;
     float: left;
 }
 
@@ -337,35 +306,65 @@ footer {
     margin-top: 30px;
     color: #ffffff;
     text-align: center;
-    font-size: 13px;
+    font-size: 13px
 }
 
 .bold_f {
-    font-weight: bold;
+    font-weight: bold
 }
-
-/* main content */
-
 
 article p {
     width: 97%;
     margin-left: 3%;
     margin-bottom: 20px;
-    letter-spacing: 1px;
+    letter-spacing: 1px
 }
 
 #top_page article .top_page_top p {
-    margin-bottom: 20px;
+    margin-bottom: 20px
 }
 
+#top_page_nav {
+    height: 210px;
+    margin-top: 0
+}
+
+#top_page_nav ul {
+    width: 100%;
+    height: 190px;
+    padding: 10px 0
+}
+
+#top_page_nav li {
+    list-style: none;
+    width: 50%;
+    float: left;
+    height: 90px
+}
+
+#top_page_nav li a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 0 5%;
+    width: 90%;
+    height: 100%;
+    display: block;
+    text-align: center;
+    position: relative
+}
+
+#top_page_nav li a span {
+    height: 90px;
+    display: block
+}
 
 .split_li {
     border-bottom: 1px solid #cccccc;
-    border-right: 1px solid #cccccc;
+    border-right: 1px solid #cccccc
 }
 
 .sp_li2, .sp_li3 {
-    height: 150px;
+    height: 150px
 }
 
 .sp_li2 a, .sp_li3 a {
@@ -374,7 +373,7 @@ article p {
     width: 80%;
     padding: 10px 10%;
     border-left: 1px solid #cccccc;
-    border-top: 1px solid #cccccc;
+    border-top: 1px solid #cccccc
 }
 
 .sp_li2 a:hover, .sp_li3 a:hover {
@@ -382,54 +381,53 @@ article p {
     -webkit-transition: 0.8s;
     -moz-transition: 0.8s;
     -o-transition: 0.8s;
-    transition: 0.8s;
+    transition: 0.8s
 }
 
 .split_li a {
     text-decoration: none;
-    color: #333333;
+    color: #333333
 }
 
 .sp_ti {
     text-align: center;
     color: darkcyan;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 18px
 }
 
 .split_li span {
     text-align: center;
     margin-top: 10px;
-    display: block;
+    display: block
 }
 
-
 .contact_btn {
-    text-align: center;
+    text-align: center
 }
 
 article ol {
-    margin-bottom: 30px;
+    margin-bottom: 30px
 }
 
 article ol li {
     margin-left: 50px;
-    margin-bottom: 15px;
+    margin-bottom: 15px
 }
 
 .arrow_box, .sim_box {
     width: 80%;
     background-color: #eeeeee;
     position: relative;
-    padding: 15px;
+    padding: 15px
 }
 
 .sim_box {
-    margin: 25px auto;
+    margin: 25px auto
 }
 
 .arrow_box {
-    margin: 10px auto 40px;
+    margin: 10px auto 40px
 }
 
 .arrow_box:after {
@@ -441,19 +439,16 @@ article ol li {
     height: 0;
     position: absolute;
     bottom: -35px;
-    right: 45%;
-
+    right: 45%
 }
 
-
-/* 見出しデザイン */
 h2 {
     border-left: none;
     padding: 0;
     margin: 20px 0 60px;
     height: 30px;
     width: 100%;
-    text-align: center;
+    text-align: center
 }
 
 h2 span {
@@ -464,67 +459,66 @@ h2 span {
     margin: 0 auto;
     font-size: 22px;
     font-weight: 400;
-    letter-spacing: 1px;
+    letter-spacing: 1px
 }
 
 h3.pup {
     color: orange;
-    font-size: 21px;
+    font-size: 21px
 }
 
 h3 {
-    font-size: 20px;
+    font-size: 20px
 }
 
 .ach {
     display: block;
     padding-top: 90px;
     margin-top: -90px;
-    z-index: -100;
+    z-index: -100
 }
 
 .z_m {
-    margin-top: 20px;
+    margin-top: 20px
 }
 
-/* clear fix */
 .wrapper:after, .h_wrapper:after, #g_nav:after, .split_li:after, #footer_l:after, #g_nav:after, #header_i:after,
-#company_info:after, .l_view:after {
+#company_info:after, .l_view:after, .ts_nav:after, section:after {
     content: "";
     display: block;
     clear: both
 }
 
-
-.top_img {
+#top_img {
     position: relative;
-    width: 100%; /*背景画像の横幅*/
-    height: 150px; /*背景画像の縦幅*/
-    background-image: url(../images/top_t.jpg);
+    width: 100%;
+    height: 150px;
+    background-image: url(../images/top_mb.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    margin-top: 90px;
+    margin-top: 90px
 }
-
 
 .blend__text {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: #ffffff;
-    /*line-height: 450px;*/ /*親要素の背景画像の縦幅*/
-    /*値を変更すれば様々な効果を与えられます*/
     position: absolute;
-    top: 180px;
-    left: 20px;
-    padding: 10px;
-    width: 310px;
+    bottom: 10px;
+    left: 0;
+    margin: auto;
+    right: 0;
+    padding: 10px 5%;
+    width: 80%;
     background-color: rgba(0, 0, 0, 0.4);
+    line-height: 1.5;
 }
+
 
 .mc_view {
     height: 500px;
     position: relative;
-    margin-bottom: 90px;
+    margin-bottom: 90px
 }
 
 .bc_view {
@@ -532,11 +526,12 @@ h3 {
     position: relative;
     overflow: hidden;
     margin-bottom: 90px;
+    padding-bottom: 50px;
 }
 
 .l_view {
     position: relative;
-    margin-bottom: 90px;
+    margin-bottom: 90px
 }
 
 .l_image {
@@ -552,27 +547,27 @@ h3 {
     position: absolute;
     top: 100px;
     left: 40%;
-    background-color: #cccccc;
+    background-color: #cccccc
 }
 
 .top_text {
     color: #333333;
     position: relative;
-    margin-top: 30px;
+    margin-top: 30px
 }
 
 .top_text p {
     margin: 20px 5%;
-    width: 90%;
+    width: 90%
 }
 
 .center {
-    margin: 0 auto;
+    margin: 0 auto
 }
 
 .page-top {
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .page-top p {
@@ -594,13 +589,11 @@ h3 {
     text-align: center;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
-    transition: all 0.3s;
+    transition: all 0.3s
 }
 
-.tbl_dl,
-.tbl_dl dt,
-.tbl_dl dd {
-    box-sizing: border-box;
+.tbl_dl, .tbl_dl dt, .tbl_dl dd {
+    box-sizing: border-box
 }
 
 .tbl_dl {
@@ -609,78 +602,73 @@ h3 {
     border-bottom: 1px solid #ccc;
     border-left: 1px solid #ccc;
     width: 70%;
-    margin: 10px auto;
+    margin: 10px auto
 }
 
-.tbl_dl dt,
-.tbl_dl dd {
+.tbl_dl dt, .tbl_dl dd {
     padding: 10px 10px 0 10px;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #ccc
 }
 
 .tbl_dl dt {
     width: 40%;
     float: left;
-    text-align: center;
+    text-align: center
 }
 
 .tbl_dl dd {
     background: #fff;
     margin-left: 40%;
     padding-bottom: 10px;
-    border-left: 1px solid #ccc;
+    border-left: 1px solid #ccc
 }
 
 .tbl_dl dd:after {
     content: '';
     display: block;
-    clear: both;
+    clear: both
 }
 
 .top_section {
-
+    height: 500px;
     background-size: cover;
     background-repeat: no-repeat;
     position: relative
 }
 
 .top_section::before {
-    /* 透過した黒を上から重ねるイメージ */
     background-color: rgba(0, 0, 0, 0.3);
-    /* 自由に位置指定 */
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    content: ' ';
+    content: ' '
 }
 
 #top_making_site {
-    background-image: url("../images/making_site_t.jpg");
+    background-image: url("../images/making_site_mb.jpg")
 }
 
 #top_technology {
-    background-image: url("../images/technology_t.jpg");
+    background-image: url("../images/technology_mb.jpg")
 }
 
 #top_company {
-    background-image: url("../images/company_t.jpg");
+    background-image: url("../images/company_mb.jpg")
 }
 
 #page_title {
     margin: auto auto;
-    width: 30%;
+    width: 90%;
     height: 150px;
     position: absolute;
-    top: 0;
+    top: 100px;
     right: 0;
-    bottom: 0;
     left: 0;
     text-align: center;
     font-weight: bold;
-    z-index: 200;
-
+    z-index: 200
 }
 
 .ptm {
@@ -690,7 +678,7 @@ h3 {
     font-size: 40px;
     height: 65px;
     letter-spacing: 5px;
-    padding: 0 3px;
+    padding: 0 3px
 }
 
 .pte {
@@ -700,25 +688,29 @@ h3 {
     line-height: 1;
     margin-top: 8px;
     height: 50px;
-    letter-spacing: 1px;
+    letter-spacing: 1px
 }
 
 .ts_nav_o {
     position: absolute;
     bottom: 0;
+    background-color: darkcyan;
     width: 100%;
 }
 
 .ts_nav {
-    margin: 0 auto;
-    width: 1000px;
-    height: 50px
+    height: 180px;
+    width: 100%;
 }
 
 .ts_nav li {
-    height: 100px;
-    float: left;
+    height: 85px;
+    width: 50%;
     list-style: none;
+    position: relative;
+    float: left;
+    margin-bottom: 10px;
+
 }
 
 .ts_nav li a {
@@ -727,23 +719,24 @@ h3 {
     text-align: center;
     display: block;
     width: 90%;
-    height: 80px;
+    height: 100%;
     margin: 0 auto;
     font-size: 18px;
     letter-spacing: 1px;
     z-index: 190;
     position: relative;
+    padding-top: 5px
 }
 
 .ts_a {
     display: block;
-    line-height: 1.5;
+    line-height: 1.5
 }
 
 .ts_a:after {
     content: "";
     position: absolute;
-    top: 60px;
+    bottom: 5px;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -755,12 +748,11 @@ h3 {
     -webkit-transition: 0.3s ease-in-out;
     -moz-transition: 0.3s ease-in-out;
     -o-transition: 0.3s ease-in-out;
-    transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out
 }
 
-
 .ts_nav a:hover {
-    color: #eeeeee;
+    color: #eeeeee
 }
 
 a:hover .ts_a:after {
@@ -768,37 +760,17 @@ a:hover .ts_a:after {
     -webkit-transition: 0.3s ease-in-out;
     -moz-transition: 0.3s ease-in-out;
     -o-transition: 0.3s ease-in-out;
-    transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out
 }
 
 .sa {
     opacity: 0;
-    transition: all .5s ease;
+    transition: all .5s ease
 }
 
 .sa.show {
     opacity: 1;
-    transform: none;
-}
-
-.width_100 {
-    width: 100%;
-}
-
-.width_50 {
-    width: 50%;
-}
-
-.width_33 {
-    width: 33%;
-}
-
-.width_25 {
-    width: 25%;
-}
-
-.width_20 {
-    width: 20%;
+    transform: none
 }
 
 .next {
@@ -806,7 +778,7 @@ a:hover .ts_a:after {
     height: 36px;
     position: absolute;
     right: 70px;
-    bottom: 5px;
+    bottom: 5px
 }
 
 .next a {
@@ -817,17 +789,15 @@ a:hover .ts_a:after {
     width: 100%;
     height: 100%;
     text-align: center;
-    padding: 3px 0;
+    padding: 3px 0
 }
 
 .l_view .next {
     position: relative;
     margin-top: 30px;
-    float: right;
+    float: right
 }
 
-/* テスト用CSS */
-/* イメージ切り替えボタン */
 .test_button {
     position: fixed;
     top: 200px;
@@ -836,28 +806,27 @@ a:hover .ts_a:after {
     height: 50px;
     color: red;
     background-color: yellow;
-    padding: 10px;
+    padding: 10px
 }
 
-/*色変更テスト用クラス*/
 .main_cl_cl {
-    color: darkcyan;
+    color: darkcyan
 }
 
 .main_cl_bg {
-    background-color: darkcyan;
+    background-color: darkcyan
 }
 
 .main_cl_bdb {
-    border-bottom-color: darkcyan;
+    border-bottom-color: darkcyan
 }
 
 .main_cl_bdt:hover {
-    border-top-color: darkcyan;
+    border-top-color: darkcyan
 }
 
 .q_a {
-    margin-top: 60px;
+    margin-top: 60px
 }
 
 .q_a dt {
@@ -866,27 +835,26 @@ a:hover .ts_a:after {
     margin-left: 60px;
     margin-bottom: 30px;
     text-indent: -25px;
-    border-radius: 10px;
+    border-radius: 10px
 }
 
 .q_a dd {
     margin-left: 60px;
     margin-bottom: 60px;
     text-indent: -25px;
-    padding: 10px 10px 10px 35px;
+    padding: 10px 10px 10px 35px
 }
 
 .q_a dt:before {
     content: 'Q.';
     margin-right: 10px;
-    font-weight: bold;
-
+    font-weight: bold
 }
 
 .q_a dd:before {
     content: 'A.';
     margin-right: 10px;
-    font-weight: bold;
+    font-weight: bold
 }
 
 /* タブレット */
@@ -908,41 +876,101 @@ a:hover .ts_a:after {
         float: left;
         width: 300px;
         margin-top: 17px;
-        margin-left: 20px;
+        margin-left: 20px
     }
 
     #site_title img {
         width: 300px;
-        height: 50px;
+        height: 50px
+    }
+
+    .top_section {
+        height: 500px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative
+    }
+
+    #top_making_site {
+        background-image: url("../images/making_site_t.jpg")
+    }
+
+    #top_technology {
+        background-image: url("../images/technology_t.jpg")
+    }
+
+    #top_company {
+        background-image: url("../images/company_t.jpg")
+    }
+
+    .fl_cat {
+        width: 20%;
+        float: left
+    }
+
+    #company_info {
+        width: 50%;
+    }
+
+    #g_nav li {
+        height: 60px
+    }
+
+    #top_page_nav {
+        height: 120px;
+        margin-top: 0
+    }
+
+    #top_page_nav ul {
+        height: 120px;
+    }
+
+    .blend__text {
+        font-size: 20px;
+        font-weight: bold;
+        color: #ffffff;
+        position: absolute;
+        top: 180px;
+        left: 20px;
+        right: auto;
+        bottom: auto;
+        padding: 10px;
+        width: 310px;
+        background-color: rgba(0, 0, 0, 0.4)
+    }
+
+    .bc_view {
+        padding-bottom: 0;
     }
 }
 
 /* デスクトップ */
 @media screen and (min-width: 1020px)/* ラッパー幅 */ {
     .wrapper {
-        width: 1020px; /* ラッパー幅 */
+        width: 1020px;
         margin: 0 auto;
-        padding: 0;
+        padding: 0
     }
 
     #top_page main {
-        padding: 0;
+        padding: 0
     }
 
-    .top_img img {
+    #top_img {
         width: 100%;
-
+        background-image: url("../images/top_t.jpg");
+        background-size: cover;
     }
 
     #top_page_nav {
         height: 120px;
-        margin-top: 0;
+        margin-top: 0
     }
 
     #top_page_nav ul {
         width: 100%;
-        height: 100px;
-        padding: 10px 0;
+        height: 120px;
+        padding: 10px 0
     }
 
     #top_page_nav li {
@@ -950,11 +978,11 @@ a:hover .ts_a:after {
         width: 24%;
         border-right: #ffffff dotted 1px;
         float: left;
-        height: 100px;
+        height: 100px
     }
 
     #top_page_nav li:last-child {
-        border-right: none;
+        border-right: none
     }
 
     #top_page_nav li a {
@@ -965,65 +993,154 @@ a:hover .ts_a:after {
         height: 100px;
         display: block;
         text-align: center;
-        position: relative;
+        position: relative
     }
 
     #top_page_nav li a span {
         height: 80px;
-        display: block;
+        display: block
     }
 
     #site_title {
         float: left;
         width: 300px;
         margin-top: 17px;
-        margin-left: 20px;
+        margin-left: 20px
     }
 
     #site_title img {
         width: 300px;
-        height: 50px;
+        height: 50px
     }
 
     #g_nav {
         float: right;
         width: 50%;
-        margin-top: 30px;
+        margin-top: 30px
     }
 
     #g_nav li a {
-        padding-top: 10px;
+        padding-top: 10px
     }
 
     #header_i {
-        height: 80px;
+        height: 80px
     }
 
-    .top_img {
-        height: 500px; /*背景画像の縦幅*/
-        background-image: url(../images/top_t.jpg);
+    #top_img {
+        height: 500px;
         background-size: cover;
-        background-repeat: no-repeat;
-        margin-top: 80px;
+        margin-top: 80px
     }
+
     #bread_crumb {
-    margin-top: 80px;}
+        margin-top: 80px
+    }
 
     #contact .wrapper {
-        width: 800px; /* ラッパー幅 */
+        width: 800px;
+        margin: 0 auto
+    }
+
+    .top_section {
+        background-repeat: no-repeat
+    }
+
+    .top_section::before {
+        position: absolute;
+        right: 0;
+        left: 0
+    }
+
+    #page_title {
+        width: 30%;
+        top: 0;
+        bottom: 0
+    }
+
+    .ts_nav_o {
+        top: auto;
+        bottom: 0;
+        height: 110px;
+        width: 100%;
+        background: none
+    }
+
+    .ts_nav {
         margin: 0 auto;
+        width: 1000px;
+        height: 50px
+    }
+
+    .ts_nav li {
+        float: left
+    }
+
+    .ts_nav li a {
+        color: #ffffff;
+        display: block;
+        height: 80px;
+        font-size: 18px;
+        z-index: 190
+    }
+
+    .ts_a {
+        line-height: 1.5
+    }
+
+    .ts_a:after {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        margin: 0 auto;
+        background-image: url("../images/angle-arrow-down-w1.png");
+        height: 15px;
+        -webkit-transition: 0.3s ease-in-out;
+        -o-transition: 0.3s ease-in-out
+    }
+
+    a:hover .ts_a:after {
+        -webkit-transition: 0.3s ease-in-out;
+        -o-transition: 0.3s ease-in-out
+    }
+
+    .sa {
+        transition: all .5s ease
+    }
+
+    .sa.show {
+        transform: none
+    }
+
+    .ts_nav .width_100 {
+        width: 100%
+    }
+
+    .ts_nav .width_50 {
+        width: 50%
+    }
+
+    .ts_nav .width_33 {
+        width: 33%
+    }
+
+    .ts_nav .width_25 {
+        width: 25%
+    }
+
+    .ts_nav .width_20 {
+        width: 20%
     }
 
     #sb_main {
-        width: 78%; /* main幅 */
+        width: 78%;
         padding: 5px 1%;
-        float: left; /* サイドバー位置 */
-        /*background-color: #BC8F8F;*/
+        float: left
     }
 
     #side_bar {
-        width: 20%; /* サイドバー幅 */
-        float: left; /* サイドバー位置 */
+        width: 20%;
+        float: left
     }
 
     .sp_li2, .sp_li3 {
@@ -1037,5 +1154,19 @@ a:hover .ts_a:after {
 
     .sp_li3 {
         width: 33.2%
+    }
+
+    .blend__text {
+        font-size: 20px;
+        font-weight: bold;
+        color: #ffffff;
+        position: absolute;
+        top: 180px;
+        left: 20px;
+        right: auto;
+        bottom: auto;
+        padding: 10px;
+        width: 310px;
+        background-color: rgba(0, 0, 0, 0.4)
     }
 }

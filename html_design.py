@@ -39,7 +39,7 @@ def new_case_preparation(case_name):
     for file_name in ['main_tmp.html', 'top_tmp.html']:
         if not os.path.exists(case_name + '/template/' + file_name):
             shutil.copyfile(file_name, case_name + '/template/' + file_name.replace('base', 'tmp'))
-    for file_name_c in ['css/base3.css']:
+    for file_name_c in ['css/base5.css']:
         if not os.path.exists(case_name + '/' + file_name_c):
             shutil.copyfile(file_name_c, case_name + '/product/' + file_name_c)
 
@@ -195,9 +195,9 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                 if fsp_str:
                     new_str = new_str.replace('<!--free_script-->', fsp_str)
                 if new_path.count('/') == 3:
-                    new_str = new_str.replace('<link href="css/base3.css"', '<link href="css/base3.css"')
+                    new_str = new_str.replace('<link href="css/base5.css"', '<link href="css/base5.css"')
                 elif new_path.count('/') == 4:
-                    new_str = new_str.replace('<link href="css/base3.css"', '<link href="../css/base3.css"')
+                    new_str = new_str.replace('<link href="css/base5.css"', '<link href="../css/base5.css"')
                 new_str = new_str.replace('.md"', '.html"')
                 new_str = link_filter(new_str, new_path)
                 new_str, h2_dec = insert_anchor(new_str)
@@ -371,7 +371,7 @@ def css_setup(case_name, css_data):
         css_tmp = re.sub(r'/\*side_bar_width\*[\s\S]*?\*side_bar_width_e\*/',
                          'width:' + str(side_bar_width) + '%;/*side_bar_width*/', css_tmp)
         print(css_tmp)
-    with open(case_name + '/base3.css', 'w', encoding='utf-8') as g:
+    with open(case_name + '/base5.css', 'w', encoding='utf-8') as g:
         g.write(css_tmp)
 
 
@@ -403,7 +403,7 @@ def make_test_image_list(dir_path):
 def constitute_md_files(case_name, c_dic):
     """
     ex. c_dic = {'company': {'index': '会社紹介', 'policy': '弊社の方針'},
-             'contact': {'index': 'お問い合わせ', 'mail': 'メールフォーム'},
+             'contact': {'index': 'お問合せ', 'mail': 'メールフォーム'},
              'technology': {'index': '弊社の技術', 'web': 'ウェブ技術'}}
     """
     with open('main_temp/md_tmp.md', 'r') as t:
@@ -430,20 +430,77 @@ def constitute_md_files(case_name, c_dic):
                     return
 
 
+# cssでmediaクエリの重複を消す
+def clear_css_duplication(css_path):
+    main_dict = {}
+    with open(css_path, 'r') as f:
+        css_str = f.read()
+        new_str = re.sub(r'/\*.+?\*/', '', css_str)
+        str_li = new_str.splitlines()
+        j_str = ''.join([x.strip() for x in str_li])
+        sp_str_l = j_str.split('@')
+
+        for i in range(1, 4):
+            sub_dict = {}
+            if i != 1:
+                sp_str = re.sub(r'\}$', '', sp_str_l[i])
+                sp_str = re.sub(r'^.+?{', '', sp_str)
+            else:
+                sp_str = sp_str_l[i].replace('charset "UTF-8";', '')
+            pro_str_l = sp_str.split('}')
+            for xb in pro_str_l:
+                if xb != '':
+                    x = re.findall(r'^(.+?){(.*?)$', xb)[0]
+                    if x[0].strip() in sub_dict:
+                        sub_dict[x[0].strip()].extend([y.strip() for y in x[1].split(';') if y.strip() != ''])
+                    else:
+                        sub_dict[x[0].strip()] = [y.strip() for y in x[1].split(';') if y.strip() != '']
+            main_dict[i] = sub_dict
+        for s2 in main_dict[2]:
+            if s2 in main_dict[1]:
+                for con_s2 in main_dict[2][s2]:
+                    if con_s2 in main_dict[1][s2]:
+                        main_dict[2][s2].remove(con_s2)
+        for s3 in main_dict[3]:
+            if s3 in main_dict[1]:
+                for con_s3 in main_dict[3][s3]:
+                    if con_s3 in main_dict[1][s3]:
+                        main_dict[3][s3].remove(con_s3)
+        result_str = make_css_str(main_dict)
+        print(result_str)
+        new_path = css_path.replace('.css', '_test.css')
+        with open(new_path, 'w') as g:
+            g.write(result_str)
+
+
+def make_css_str(css_dict):
+    css_str = '@charset "UTF-8";<!--1-->' + \
+              '/* タブレット */@media screen and (min-width: 768px) and ( max-width: 1019px) {<!--2-->}' + \
+              '/* デスクトップ */@media screen and (min-width: 1020px)/* ラッパー幅 */ {<!--3-->}'
+    for i in css_dict:
+        insert_str = ''
+        for selector in css_dict[i]:
+            if css_dict[i][selector]:
+                insert_str += selector + ' {' + ';'.join(css_dict[i][selector]) + '}'
+        css_str = css_str.replace('<!--' + str(i) + '-->', insert_str)
+    return css_str
+
+
 # todo:イメージ、背景色、レイアウト、フォント等をテストできるjavascript 一つのダイアログ風の箱で浮かせる
 # todo:事前にインタビューした好みや方針、セールスポイント等から叩き台のデザインを作るアプリ
 
-
 if __name__ == '__main__':
-    category_li = {'works': '実績', 'company': '会社案内', 'making_site': 'サイト作成', 'contact': 'お問い合わせ',
+    category_li = {'works': '実績', 'company': '会社案内', 'making_site': 'サイト作成', 'contact': 'お問合せ',
                    'technology': 'web技術', 'policy': 'サイトポリシー'}
     unlock_l = ['all']
     main('wmelon', 'https://www.wmelon.co.jp', category_li, '株式会社ウォーターメロン', unlock_l)
 
+    # clear_css_duplication('case_dir/wmelon/product/css/base5.css')
+
     # make_test_image_list('/Users/nakataketetsuhiko/Downloads/watermelon_images/photo/preview/about_us')
 
     ec_dic = {'company': {'index': '会社紹介', 'policy': '弊社の方針'},
-              'contact': {'index': 'お問い合わせ', 'mail': 'メールフォーム'},
+              'contact': {'index': 'お問合せ', 'mail': 'メールフォーム'},
               'technology': {'index': '弊社の技術', 'web': 'ウェブ技術'}}
     # constitute_md_files('test_dir', ec_dic)
 
