@@ -363,11 +363,11 @@ article p {
     border-right: 1px solid #cccccc
 }
 
-.sp_li2, .sp_li3 {
+.split_li .sp_li2, .split_li .sp_li3 {
     height: 150px
 }
 
-.sp_li2 a, .sp_li3 a {
+.split_li .sp_li2 a, .split_li .sp_li3 a {
     display: block;
     height: 130px;
     width: 80%;
@@ -376,7 +376,7 @@ article p {
     border-top: 1px solid #cccccc
 }
 
-.sp_li2 a:hover, .sp_li3 a:hover {
+.split_li .sp_li2 a:hover, .split_li .sp_li3 a:hover {
     box-shadow: 0 0 45px 0 rgba(200, 200, 200, 0.9);
     -webkit-transition: 0.8s;
     -moz-transition: 0.8s;
@@ -389,7 +389,7 @@ article p {
     color: #333333
 }
 
-.sp_ti {
+.split_li .sp_ti {
     text-align: center;
     color: darkcyan;
     font-weight: bold;
@@ -400,6 +400,37 @@ article p {
     text-align: center;
     margin-top: 10px;
     display: block
+}
+.mc_li{
+    margin: 50px 0;
+}
+
+.mc_li li{
+    background-color: #7bd8d8;
+    height: 100px;
+    margin: 20px auto;
+    width: 90%;
+    border-radius: 7px;
+    overflow: hidden;;
+
+}
+.mc_li .sp_ti{
+    background-color: darkcyan;
+    color: #ffffff;
+    height: 30px;
+
+}
+.mc_li a, .mc_li span{
+    color: #333333;
+}
+.mc_li span{
+    display: block;
+    padding: 10px 5%;
+    width: 90%;
+    line-height: 1.5;
+}
+.mc_li .sp_ti{
+    text-align: center;
 }
 
 .contact_btn {
@@ -483,7 +514,7 @@ h3 {
 }
 
 .wrapper:after, .h_wrapper:after, #g_nav:after, .split_li:after, #footer_l:after, #g_nav:after, #header_i:after,
-#company_info:after, .l_view:after, .ts_nav:after, section:after {
+#company_info:after, .l_view:after, .ts_nav:after, section:after, .mc_li:after {
     content: "";
     display: block;
     clear: both
@@ -858,18 +889,27 @@ a:hover .ts_a:after {
 }
 
 /* タブレット */
-@media screen and (min-width: 768px) and ( max-width: 1019px) {
+@media screen and (min-width: 768px) {
     .sp_li2, .sp_li3 {
         float: left;
         list-style: none
     }
 
-    .sp_li2 {
+    .split_li .sp_li2 {
         width: 50%
     }
 
-    .sp_li3 {
+    .split_li .sp_li3 {
         width: 33%
+    }
+    . mc_li li.sp_li2 {
+        width: 40%;
+        margin-left: 2%;
+    }
+
+    .mc_li li.sp_li3 {
+        width: 30%;
+        margin-left: 2%;
     }
 
     #site_title {

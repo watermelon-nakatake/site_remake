@@ -78,16 +78,36 @@ def insert_split_list(long_str):
     for sp_num in ['2', '3']:
         if '%li' + sp_num in long_str:
             long_str = long_str.replace('<p>%li' + sp_num + '</p><ul>', '<ul class="split_li">')
-            li3_str_l = re.findall(r'<ul class="split_li">(.+?)</ul>', long_str)
-            for li3_str in li3_str_l:
-                li3_str_r = li3_str.replace('<li>', '<li class="sp_li' + sp_num + '">')
-                li3_l = re.findall(r'<a href=".+?">(.+?)</a>', li3_str_r)
-                for x in li3_l:
-                    if '%%' in x:
-                        x_r = '<div class="sp_ti">' + x.replace('%%', '</div><span>') + '</span>'
-                        li3_str_r = li3_str_r.replace(x, x_r)
-                long_str = long_str.replace(li3_str, li3_str_r)
+            li3_str_l1 = re.findall(r'<ul class="split_li">(.+?)</ul>', long_str)
+            long_str = make_split_list_inner(li3_str_l1, long_str, sp_num)
+        if '%mcli' + sp_num in long_str:
+            long_str = long_str.replace('<p>%mcli' + sp_num + '</p><ul>', '<ul class="mc_li">')
+            li3_str_l2 = re.findall(r'<ul class="mc_li">(.+?)</ul>', long_str)
+            long_str = make_split_list_inner(li3_str_l2, long_str, sp_num)
     return long_str
+
+
+def make_split_list_inner(li3_str_l, long_str, sp_num):
+    for li3_str in li3_str_l:
+        li3_str_r = li3_str.replace('<li>', '<li class="sp_li' + sp_num + '">')
+        if '<a href' in li3_str_r:
+            li3_l = re.findall(r'<a href=".+?">(.+?)</a>', li3_str_r)
+            for x in li3_l:
+                if '%%' in x:
+                    x_r = '<div class="sp_ti">' + x.replace('%%', '</div><span>') + '</span>'
+                    li3_str_r = li3_str_r.replace(x, x_r)
+        else:
+            print(li3_str_r)
+            li3_l = re.findall(r'<li class=".+?">(.+?)</li>', li3_str_r)
+            print('li3_l')
+            print(li3_l)
+            for x in li3_l:
+                print(x)
+                if '%%' in x:
+                    x_r = '<div class="sp_ti">' + x.replace('%%', '</div><span>') + '</span>'
+                    li3_str_r = li3_str_r.replace(x, x_r)
+        long_str = long_str.replace(li3_str, li3_str_r)
+        return long_str
 
 
 def insert_class(long_str):
@@ -203,9 +223,10 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                 new_str, h2_dec = insert_anchor(new_str)
                 new_str = insert_wrapper(new_str)
                 if 'index.html' in new_path and 'product/index.html' not in new_path and e_title != 'no_top':
-                    new_str = insert_top_section(new_str, h2_dec, h1_text)
-                    new_str = insert_next_link(new_str, h2_dec)
+                    new_str, h2_dec_r = insert_top_section(new_str, h2_dec, h1_text)
+                    new_str = insert_next_link(new_str, h2_dec_r)
                     new_str = new_str.replace('<!--dir_name-->', directory)
+                    new_str = new_str.replace('%%nolist', '')
                 new_str = insert_split_list(new_str)
                 new_str = insert_class(new_str)
                 new_str = make_class_box(new_str)
@@ -235,7 +256,9 @@ def insert_next_link(long_str, h2_dec):
     return long_str
 
 
-def insert_top_section(long_str, h2_dec, page_title):
+# ページトップの画像部分作成
+def insert_top_section(long_str, h2_dec_o, page_title):
+    h2_dec = {x: h2_dec_o[x] for x in h2_dec_o if '%%nolist' not in h2_dec_o[x]}
     insert_str = '<section id="top_<!--dir_name-->" class="mc_view top_section"><div id="page_title">' \
                  '<span class="ptm">' + page_title + '</span><span class="pte"><!--e_title--></span></div>' \
                                                      '<div class="ts_nav_o"><ul class="ts_nav">'
@@ -245,7 +268,8 @@ def insert_top_section(long_str, h2_dec, page_title):
                       h2_dec[i] + '</span></a></li>'
     insert_str += '</ul></div></section>'
     long_str = re.sub(r'<article>', r'<article>' + insert_str, long_str)
-    return long_str
+    h2_dec_r = {x: h2_dec_o[x].replace('%%nolist', '') for x in h2_dec_o}
+    return long_str, h2_dec_r
 
 
 def make_side_bar(sb_str):
@@ -253,6 +277,7 @@ def make_side_bar(sb_str):
     return result
 
 
+# h２見出しの装飾とアンカー設置
 def insert_anchor(long_str):
     h2_dec = {}
     h2_list = re.findall(r'<h2>.+?</h2>', long_str)
@@ -275,6 +300,7 @@ def insert_anchor(long_str):
     return long_str, h2_dec
 
 
+# sectionの中をwrapperで囲む
 def insert_wrapper(long_str):
     section_list = re.findall(r'<section.+?</section>', long_str)
     if section_list:
@@ -286,6 +312,7 @@ def insert_wrapper(long_str):
     return long_str
 
 
+# 平文の句読点の整理
 def punctuation_filter(long_str):
     new_str = long_str.replace('<br /></p>', '</p>')
     new_str = new_str.replace('。。<br />', '。</p><p>')
@@ -307,6 +334,7 @@ def punctuation_filter(long_str):
     return new_str
 
 
+# パンクズリストの作成
 def breadcrumb_maker(category, directory, md_path):
     if directory:
         result = '<ol id="bread" itemscope itemtype="https://schema.org/BreadcrumbList">' \
@@ -331,6 +359,7 @@ def breadcrumb_maker(category, directory, md_path):
     return result + '</ol>'
 
 
+# ピクルにデータ追加
 def add_pickle_dec(pk_dec, new_data, case_name):
     path_list = [pk_dec[x][0] for x in pk_dec]
     if new_data[0] not in path_list:
