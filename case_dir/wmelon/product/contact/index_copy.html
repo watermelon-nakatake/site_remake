@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>お問い合わせ|株式会社ウォーターメロン</title>
+	<meta name="keywords" content="お問い合わせ,メールフォーム">
+	<meta name="description" content="株式会社ウォーターメロンにご用の方は、お気軽にお問い合わせフォームからご連絡ください。早急に折り返しご連絡差し上げます。">
+	<meta name="robots" content="index,follow"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link href="../css/base6.css" rel="stylesheet" type="text/css"/>
+	<link rel="shortcut icon" href="../images/favicon.ico">
+</head>
+<body id="contact">
+<header id="page_t">
+	<div id="h_wrapper">
+		<div id="header_i">
+			<div id="site_title"><a href="../index.html"><img src="../images/logo3.png"
+			                                                  alt="株式会社ウォーターメロン"></a></div>
+			<nav id="g_nav">
+				<ul>
+					<li><a href="../making_site/"><span class="g_o"><span data-hover="サイト作成"
+					                                                      class="g_i">サイト作成</span></span></a>
+					</li>
+					<li><a href="../technology/"><span class="g_o"><span data-hover="Web技術"
+					                                                     class="g_i">Web技術</span></span></a>
+					</li>
+					<li><a href="../company"><span class="g_o"><span data-hover="会社案内"
+					                                                 class="g_i">会社案内</span></span></a></li>
+					<li><a href="../contact"><span class="g_o"><span data-hover="お問合せ"
+					                                                 class="g_i">お問合せ</span></span></a></li>
+				</ul>
+			</nav>
+		</div>
+		<div id="bread_crumb">
+			<ol id="bread" itemscope itemtype="https://schema.org/BreadcrumbList">
+				<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="brd1"><a
+						href="../" itemprop="item"><span itemprop="name">TOP</span></a>
+					<meta itemprop="position" content="1"/>
+				</li>
+				<li>></li>
+				<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="brd2"><h1><span
+						itemprop="name">お問合せ</span></h1>
+					<meta itemprop="position" content="2"/>
+				</li>
+			</ol>
+		</div>
+	</div>
+</header>
+<main role="main">
+	<article>
+		<section class="z_m">
+			<div class="wrapper">
+				<form method="post" action="mail.php">
+					<dl class="contact_dl">
+						<dt><label for="f_email">Mail（半角）（正確にご記入ください） <span class="c_acc">必須</span></label></dt>
+						<dd><input size="30" type="text" name="Email" id="f_email"/></dd>
+						<dt><label for="f_name">お名前 <span class="c_acc">必須</span></label></dt>
+						<dd><input size="20" type="text" name="お名前" id="f_name"/></dd>
+						<dt><label for="f_org">組織名</label></dt>
+						<dd><input size="20" type="text" name="組織名" id="f_org"/></dd>
+						<dt><label for="f_tel">電話番号（半角）</label></dt>
+						<dd><input size="30" type="text" name="電話番号" id="f_tel"/></dd>
+						<dt><label for="f_url">サイトURL（半角）</label></dt>
+						<dd><input size="30" type="text" name="url" id="f_url"/></dd>
+						<dt>ご用件 <span class="c_acc">必須</span></dt>
+						<dd class="contact_radio">
+							<span><input type="radio" name="ご用件" value="新規Webサイト作成のご依頼" id="f_request1">
+							<label for="f_request1">新規Webサイト作成のご依頼</label>
+
+							</span><span><input type="radio" name="ご用件" value="既存Webサイトリフォームのご依頼" id="f_request2">
+							<label for="f_request2">新規Webサイトリフォームのご依頼</label>
+
+							</span><span><input type="radio" name="ご用件" value="ご質問・お問い合わせ" id="f_request3">
+							<label for="f_request3">ご質問・お問い合わせ</label></span>
+						</dd>
+
+						<dt><label for="f_text">お問い合わせ内容</label></dt>
+						<dd><textarea name="お問い合わせ内容" cols="50" rows="5" id="f_text"></textarea></dd>
+					</dl>
+					<div class="contact_btn"><input type="submit" value="　 確認 　"/><input type="reset" value="リセット" class="reset"/>
+					</div>
+				</form>
+			</div>
+		</section>
+	</article>
+</main>
+
+<footer class="main_cl_bg">
+	<div id="f_wrapper">
+		<div id="company_info">
+			<ul>
+				<li id="c_name_o"><img src="../images/logo_w.png" id="c_logo" alt="ウォーターメロンロゴ"/><span
+						id="c_name">株式会社ウォーターメロン</span>
+				</li>
+				<li id="c_address">宮崎県宮崎市清武町</li>
+				<li id="c_tel">090-1873-5668</li>
+			</ul>
+		</div>
+		<div id="footer_l">
+			<ul>
+				<li class="fl_cat"><a href="../making_site/" class="bold_f">サイト作成</a>
+					<ul>
+						<li><a href="../making_site/index.html#sec01">Webサイト作成の流れ</a></li>
+						<li><a href="../making_site/index.html#sec02">サイト作成料金</a></li>
+						<li><a href="../making_site/index.html#sec03">よくあるご質問</a></li>
+					</ul>
+				</li>
+				<li class="fl_cat"><a href="../technology/" class="bold_f">Web技術</a>
+					<ul>
+						<li><a href="../technology/">Webサイトのモバイル対応</a></li>
+						<li><a href="../technology/">SSL対応</a></li>
+						<li><a href="../technology/">表示速度の高速化</a></li>
+						<li><a href="../technology/">構造化データの追加</a></li>
+					</ul>
+				</li>
+				<li class="fl_cat"><a href="../company/" class="bold_f">会社案内</a>
+					<ul>
+						<li><a href="../company/index.html#sec01">会社情報</a></li>
+						<li><a href="../company/index.html#sec02">弊社の強み</a></li>
+						<li><a href="../company/index.html#sec03">代表プロフィール</a></li>
+					</ul>
+				</li>
+				<li class="fl_cat"><a href="../contact/" class="bold_f">お問合せ</a>
+					<ul>
+						<li><a href="../contact/">メール</a></li>
+					</ul>
+				</li>
+				<li class="fl_cat"><a href="../policy/" class="bold_f">サイトポリシー</a>
+					<ul>
+						<li><a href="../policy/index.html#sec01">プライバシーポリシー</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div id="copy_rights">&copy; 2014
+			<span id="cp_year"></span>
+			Watermelon Co., Ltd.
+		</div>
+	</div>
+</footer>
+<div class="page-top"><p><a href="#page_t" id="move-page-top" class="sa"><img src="../images/big2.png"
+                                                                              alt="ページTOPに戻る"/></a></p>
+</div>
+<!--free_script-->
+<script>
+    const now = new Date().getFullYear();
+    const cpY = document.getElementById('cp_year');
+    if (now > 2014) {
+        cpY.innerText = "- " + new Date().getFullYear()
+    }
+</script>
+<script>
+    const sW = window.innerWidth;
+    const sH = window.innerHeight;
+    let hPlus;
+    console.log('sH : ' + String(sH));
+    const m_height = document.getElementsByClassName('mc_view');
+    if (sW < 768) {
+        hPlus = 0
+    } else {
+        hPlus = 0
+    }
+    for (let i = 0; i < m_height.length; i++) {
+        m_height[i].style.height = String(sH - 127 - hPlus) + 'px'
+    }
+    const b_height = document.getElementsByClassName('bc_view');
+    let bcH;
+    if (sW >= 769) {
+        bcH = String(sH - 127) + 'px'
+    } else {
+        bcH = 'auto'
+    }
+    console.log('bcH: ' + String(bcH));
+    for (let j = 0; j < b_height.length; j++) {
+        b_height[j].style.height = bcH
+    }
+</script>
+<script>
+    let TopPosition = 0;
+    const documentElement = document.documentElement;
+    const toTop = document.getElementById('move-page-top');
+    const hdBottom = document.getElementById('header_i');
+    let timer = null;
+    const scrollAnimationFunc = function () {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            TopPosition = documentElement.scrollTop;
+            console.log(TopPosition);
+            if (window.innerHeight / 3 * 2 < TopPosition) {
+                toTop.classList.add('show');
+            } else if (window.innerHeight / 3 * 2 > TopPosition) {
+                toTop.classList.remove('show')
+            }
+            if (TopPosition > 100) {
+                hdBottom.style.boxShadow = '0 3px 3px 0 rgba(40, 40, 40, 0.1)'
+            } else if (TopPosition < 300) {
+                hdBottom.style.boxShadow = 'none'
+            }
+        }, 100);
+    };
+    window.addEventListener('load', scrollAnimationFunc);
+    window.addEventListener('scroll', scrollAnimationFunc);
+</script>
+<script>
+    const scrollElm = (function () {
+        if ('scrollingElement' in document) return document.scrollingElement;
+        if (navigator.userAgent.indexOf('WebKit') !== -1) return document.body;
+        return document.documentElement;
+    })();
+    (function () {
+        const duration = 600;
+        const ignore = '.noscroll';
+        const easing = function (t, b, c, d) {
+            return c * (0.5 - Math.cos(t / d * Math.PI) / 2) + b;
+        };
+        const smoothScrollElm = document.querySelectorAll('a[href^="#"]:not(' + ignore + ')');
+        Array.prototype.forEach.call(smoothScrollElm, function (elm) {
+            elm.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetElm = document.querySelector(elm.getAttribute('href'));
+                if (!targetElm) return;
+                let targetPos;
+                if (targetElm.id !== 'page_t') {
+                    targetPos = targetElm.getBoundingClientRect().top + 15;
+                    console.log('true')
+                } else {
+                    targetPos = targetElm.getBoundingClientRect().top - 80;
+                    console.log('False')
+                }
+                console.log(targetPos);
+                const startTime = Date.now();
+                const scrollFrom = scrollElm.scrollTop;
+                (function loop() {
+                    const currentTime = Date.now() - startTime;
+                    if (currentTime < duration) {
+                        scrollTo(0, easing(currentTime, scrollFrom, targetPos, duration));
+                        window.requestAnimationFrame(loop);
+                    } else {
+                        scrollTo(0, targetPos + scrollFrom);
+                    }
+                })();
+            })
+        });
+    })();
+</script>
+</body>
+</html>

@@ -15,6 +15,7 @@ def main(case_name, domain_name, category_list, site_name, unlock_list):
     case_name = 'case_dir/' + case_name
     md_list = pick_up_md_files(case_name)
     md_list = pickup_mod_md_files(case_name, md_list, unlock_list)
+    md_list = [x for x in md_list if '_tbd' not in x]
     print(md_list)
     if case_name + '/md/index.md' in md_list:
         import_from_markdown([case_name + '/md/index.md'],
@@ -39,7 +40,7 @@ def new_case_preparation(case_name):
     for file_name in ['main_tmp.html', 'top_tmp.html']:
         if not os.path.exists(case_name + '/template/' + file_name):
             shutil.copyfile(file_name, case_name + '/template/' + file_name.replace('base', 'tmp'))
-    for file_name_c in ['css/base5.css']:
+    for file_name_c in ['css/base6.css']:
         if not os.path.exists(case_name + '/' + file_name_c):
             shutil.copyfile(file_name_c, case_name + '/product/' + file_name_c)
 
@@ -97,12 +98,8 @@ def make_split_list_inner(li3_str_l, long_str, sp_num):
                     x_r = '<div class="sp_ti">' + x.replace('%%', '</div><span>') + '</span>'
                     li3_str_r = li3_str_r.replace(x, x_r)
         else:
-            print(li3_str_r)
             li3_l = re.findall(r'<li class=".+?">(.+?)</li>', li3_str_r)
-            print('li3_l')
-            print(li3_l)
             for x in li3_l:
-                print(x)
                 if '%%' in x:
                     x_r = '<div class="sp_ti">' + x.replace('%%', '</div><span>') + '</span>'
                     li3_str_r = li3_str_r.replace(x, x_r)
@@ -186,6 +183,8 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                 # print(plain_txt)
                 # print('markdown start!')
                 con_str = markdown.markdown(plain_txt, extensions=['tables'])
+                con_str = p_filter(con_str)
+                # print(con_str)
                 con_str = con_str.replace('\n', '')
                 h1_text = re.findall(r'<h1>(.+?)</h1>', con_str)[0]
                 con_str = re.sub(r'^[\s\S]*</h1>', '', con_str)
@@ -215,9 +214,9 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                 if fsp_str:
                     new_str = new_str.replace('<!--free_script-->', fsp_str)
                 if new_path.count('/') == 3:
-                    new_str = new_str.replace('<link href="css/base5.css"', '<link href="css/base5.css"')
+                    new_str = new_str.replace('<link href="css/base6.css"', '<link href="css/base6.css"')
                 elif new_path.count('/') == 4:
-                    new_str = new_str.replace('<link href="css/base5.css"', '<link href="../css/base5.css"')
+                    new_str = new_str.replace('<link href="css/base6.css"', '<link href="../css/base6.css"')
                 new_str = new_str.replace('.md"', '.html"')
                 new_str = link_filter(new_str, new_path)
                 new_str, h2_dec = insert_anchor(new_str)
@@ -245,6 +244,22 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                 new_data = [new_path, title_str, '', str(now.date()), directory, description]
                 pk_dec = add_pickle_dec(pk_dec, new_data, case_name)
     return upload_list, pk_dec
+
+
+def p_filter(long_str):
+    result = ''
+    line_str = long_str.splitlines()
+    p_flag = False
+    for x in line_str:
+        if x.startswith('<p>') and not x.endswith('</p>'):
+            p_flag = True
+        elif not x.startswith('<p>') and x.endswith('</p>'):
+            p_flag = False
+        if p_flag:
+            result += x + '<br />\n'
+        else:
+            result += x + '\n'
+    return result
 
 
 def insert_next_link(long_str, h2_dec):
@@ -314,6 +329,7 @@ def insert_wrapper(long_str):
 
 # 平文の句読点の整理
 def punctuation_filter(long_str):
+    # print(long_str)
     new_str = long_str.replace('<br /></p>', '</p>')
     new_str = new_str.replace('。。<br />', '。</p><p>')
     new_str = new_str.replace('。。', '。</p><p>')
@@ -323,7 +339,7 @@ def punctuation_filter(long_str):
     new_str = new_str.replace('）。', '）</p><p>')
     new_str = new_str.replace('？。', '？<br />')
     new_str = new_str.replace('？。。', '？</p><p>')
-    new_str = re.sub(r'([^>])。([^<])', r'\1。<br />\2', new_str)
+    # new_str = re.sub(r'([^>])。([^<])', r'\1。<br />\2', new_str)
     new_str = new_str.replace('。<a ', '。<br /><a ')
     new_str = new_str.replace('。<br />）', '。）')
     new_str = new_str.replace('。<br />)', '。)')
@@ -400,7 +416,7 @@ def css_setup(case_name, css_data):
         css_tmp = re.sub(r'/\*side_bar_width\*[\s\S]*?\*side_bar_width_e\*/',
                          'width:' + str(side_bar_width) + '%;/*side_bar_width*/', css_tmp)
         print(css_tmp)
-    with open(case_name + '/base5.css', 'w', encoding='utf-8') as g:
+    with open(case_name + '/base6.css', 'w', encoding='utf-8') as g:
         g.write(css_tmp)
 
 
@@ -496,7 +512,6 @@ def clear_css_duplication(css_path):
                     if con_s3 in main_dict[1][s3]:
                         main_dict[3][s3].remove(con_s3)
         result_str = make_css_str(main_dict)
-        print(result_str)
         new_path = css_path.replace('.css', '_test.css')
         with open(new_path, 'w') as g:
             g.write(result_str)
@@ -524,7 +539,7 @@ if __name__ == '__main__':
     unlock_l = ['all']
     main('wmelon', 'https://www.wmelon.co.jp', category_li, '株式会社ウォーターメロン', unlock_l)
 
-    # clear_css_duplication('case_dir/wmelon/product/css/base5.css')
+    # clear_css_duplication('case_dir/wmelon/product/css/base6.css')
 
     # make_test_image_list('/Users/nakataketetsuhiko/Downloads/watermelon_images/photo/preview/about_us')
 

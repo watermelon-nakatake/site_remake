@@ -7,7 +7,7 @@
 	<meta name="description" content="<!--description-->">
 	<meta name="robots" content="index,follow"/>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link href="../product/css/base5.css" rel="stylesheet" type="text/css"/>
+	<link href="../product/css/base6_test.css" rel="stylesheet" type="text/css"/>
 	<link rel="shortcut icon" href="../product/images/favicon.ico">
 </head>
 <body>
@@ -112,10 +112,11 @@
 		</div>
 	</div>
 </footer>
-<div class="page-top"><p><a href="#page_t" id="move-page-top" class="sa"><img src="../product/images/big2.png"
+<div id="page-top"><p><a href="#page_t" id="move-page-top" class="sa"><img src="../product/images/big2.png"
                                                                               alt="ページTOPに戻る"/></a></p>
 </div>
 <!--free_script-->
+<script type="text/javascript" src="../product/designChange.js" charset="UTF-8"></script>
 <script>
     const now = new Date().getFullYear();
     const cpY = document.getElementById('cp_year');
@@ -140,7 +141,8 @@
     const b_height = document.getElementsByClassName('bc_view');
     let bcH;
     if (sW >= 769) {
-        bcH = String(sH - 127) + 'px'
+        bcH = String(sH - 80) + 'px';
+        console.log('bcH: ' + String(bcH));
     } else {
         bcH = 'auto'
     }
