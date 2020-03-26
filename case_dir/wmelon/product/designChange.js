@@ -18,14 +18,25 @@ if (designFlag) {
     }
     if (targetImg != null) {
         boxStr += '<div><a href="#page_t" id="test_b2">＜＜</a>画像' +
-            '<a href="#page_t" id="test_b1">＞＞</a><span id="img_name"></span></div>';
+            '<a href="#page_t" id="test_b1">＞＞</a><span id="img_name"></span></div>'
     }
     nElement.innerHTML = boxStr;
     document.body.insertBefore(nElement, topPage);
+    let oElement = document.createElement('div');
+    oElement.id = 'turn_on';
+    oElement.innerHTML = '' + '<a href="#page_t" id="t_on">D_TEST</a>';
+    document.body.insertBefore(oElement, topPage);
     const designOff = document.getElementById('design_off');
     const testBox = document.getElementById('test_button');
+    const onBox = document.getElementById('turn_on');
+    const designOn = document.getElementById('t_on');
     designOff.onclick = function () {
-        testBox.style.display = 'none'
+        testBox.style.display = 'none';
+        onBox.style.display = 'block'
+    };
+    designOn.onclick = function () {
+        testBox.style.display = 'block';
+        onBox.style.display = 'none'
     };
     /* 全体のデザイン方針 */
     const dsNameAndNum = ['flat20', 'flat', 'material', 'retroModern'];

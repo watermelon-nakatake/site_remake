@@ -115,6 +115,7 @@ def insert_class(long_str):
 def make_class_box(long_str):
     long_str = re.sub(r'<p>%arbox%</p>([^%]+?)<p>%%%</p>', r'<div class="arrow_box">\1</div>', long_str)
     long_str = re.sub(r'<p>%sibox%</p>([^%]+?)<p>%%%</p>', r'<div class="sim_box">\1</div>', long_str)
+    long_str = re.sub(r'<p>%obox%</p>([^%]+?)<p>%%%</p>', r'<div class="out_box">\1</div>', long_str)
     return long_str
 
 

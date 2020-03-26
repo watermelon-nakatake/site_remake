@@ -111,6 +111,7 @@ def first_backup(domain_str, user_name, password_str, root_directory, backup_dir
         ssh.connect(hostname=domain_str, port=22, username=user_name, password=password_str)
         # リモートのディレクトリ確認
         sftp_connection = ssh.open_sftp()
+        print(sftp_connection.listdir('www/wmelon'))
         remote_files = search_files_in_scp(root_directory, sftp_connection)
         print(remote_files)
         with scp.SCPClient(ssh.get_transport()) as scpc:
@@ -127,6 +128,7 @@ def first_backup(domain_str, user_name, password_str, root_directory, backup_dir
 
 def search_files_in_scp(directory_name, sftp_connection):
     result = []
+    print(directory_name)
     remote_files = sftp_connection.listdir(directory_name)
     for remote_file in remote_files:
         if '.' in remote_file:

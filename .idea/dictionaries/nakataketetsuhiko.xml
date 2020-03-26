@@ -2,12 +2,17 @@
   <dictionary name="nakataketetsuhiko">
     <words>
       <w>arbox</w>
+      <w>funahiki</w>
       <w>itemscope</w>
       <w>itemtype</w>
+      <w>kiyotakecho</w>
       <w>mcli</w>
+      <w>miyazaki</w>
+      <w>nakatake</w>
       <w>nakataketetsuhiko</w>
       <w>nolist</w>
       <w>noscroll</w>
+      <w>obox</w>
       <w>retrlines</w>
       <w>sakura</w>
       <w>scpc</w>
@@ -15,6 +20,7 @@
       <w>slsd</w>
       <w>slsn</w>
       <w>stor</w>
+      <w>tetsuhiko</w>
       <w>wmelon</w>
     </words>
   </dictionary>
