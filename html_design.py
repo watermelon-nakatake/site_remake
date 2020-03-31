@@ -227,6 +227,9 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                     new_str = insert_next_link(new_str, h2_dec_r)
                     new_str = new_str.replace('<!--dir_name-->', directory)
                     new_str = new_str.replace('%%nolist', '')
+                elif 'product/index.html' in new_path:
+                    new_str, h2_dec_r = insert_top_section_in_top_page(new_str, h2_dec)
+                    new_str = insert_next_link(new_str, h2_dec_r)
                 new_str = insert_split_list(new_str)
                 new_str = insert_class(new_str)
                 new_str = make_class_box(new_str)
@@ -284,6 +287,20 @@ def insert_top_section(long_str, h2_dec_o, page_title):
                       h2_dec[i] + '</span></a></li>'
     insert_str += '</ul></div></section>'
     long_str = re.sub(r'<article>', r'<article>' + insert_str, long_str)
+    h2_dec_r = {x: h2_dec_o[x].replace('%%nolist', '') for x in h2_dec_o}
+    return long_str, h2_dec_r
+
+
+# topページのページトップの目次作成
+def insert_top_section_in_top_page(long_str, h2_dec_o):
+    h2_dec = {x: h2_dec_o[x] for x in h2_dec_o if '%%nolist' not in h2_dec_o[x]}
+    insert_str = '<ul>'
+    width_class = width_class_list[len(h2_dec)]
+    for i in h2_dec:
+        insert_str += '<li class="' + width_class + '"><a href="#sec' + str(i).zfill(2) + '"><span class="ts_a">' + \
+                      h2_dec[i] + '</span></a></li>'
+    insert_str += '</ul>'
+    long_str = long_str.replace('<!--top-page-top-sec-->', insert_str)
     h2_dec_r = {x: h2_dec_o[x].replace('%%nolist', '') for x in h2_dec_o}
     return long_str, h2_dec_r
 

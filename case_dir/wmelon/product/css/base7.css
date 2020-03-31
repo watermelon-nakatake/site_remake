@@ -1471,23 +1471,23 @@ a:hover .ts_a:after {
         transform: none
     }
 
-    .ts_nav .width_100 {
+    .ts_nav .width_100, #top_page_nav .width_100 {
         width: 100%
     }
 
-    .ts_nav .width_50 {
-        width: 50%
+    .ts_nav .width_50, #top_page_nav .width_50 {
+        width: 49.5%
     }
 
-    .ts_nav .width_33 {
+    .ts_nav .width_33, #top_page_nav .width_33 {
         width: 33%
     }
 
-    .ts_nav .width_25 {
+    .ts_nav .width_25, #top_page_nav .width_25 {
         width: 25%
     }
 
-    .ts_nav .width_20 {
+    .ts_nav .width_20, #top_page_nav .width_20 {
         width: 20%
     }
 
