@@ -1,4 +1,4 @@
-let designFlag = true;
+let designFlag = false;
 let imgFlag = false;
 console.log(designFlag);
 if (designFlag) {

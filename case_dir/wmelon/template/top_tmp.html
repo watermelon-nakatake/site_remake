@@ -127,23 +127,42 @@
 </script>
 <!--画面への高さ合わせ-->
 <script>
-    const sH = window.innerHeight;
     const sW = window.innerWidth;
-    const b_height = document.getElementsByClassName('bc_view');
-    for (let i = 0; i < b_height.length; i++) {
-        b_height[i].style.height = String(sH - 80) + 'px'
-    }
+    const sH = window.innerHeight;
+    let hPlus;
+    console.log('sH : ' + String(sH));
     const m_height = document.getElementsByClassName('mc_view');
-    for (let j = 0; j < m_height.length; j++) {
-        m_height[j].style.height = String(sH - 127) + 'px'
+    if (sW < 768) {
+        hPlus = 0
+    } else {
+        hPlus = 0
+    }
+    for (let i = 0; i < m_height.length; i++) {
+        m_height[i].style.height = String(sH - 127 - hPlus) + 'px'
+    }
+    const b_height = document.getElementsByClassName('bc_view');
+    let bcH;
+    if (sW >= 769) {
+        bcH = String(sH - 80) + 'px';
+        console.log('bcH: ' + String(bcH));
+    } else {
+        bcH = 'auto'
+    }
+    console.log('bcH: ' + String(bcH));
+    for (let j = 0; j < b_height.length; j++) {
+        b_height[j].style.height = bcH
     }
     const t_height = document.getElementById('top_img');
+    const img_height = document.getElementsByClassName('top_img_in');
     let tpH = 0;
     if (sW < 768) {
         tpH = 100
     }
     console.log(String(sH - 200 - tpH) + 'px');
-    t_height.style.height = String(sH - 200 - tpH) + 'px'
+    t_height.style.height = String(sH - 200 - tpH) + 'px';
+	for (let k = 0;k < img_height.length;k++){
+	    img_height[k].style.height = String(sH - 200 - tpH) + 'px'
+	}
 </script>
 <!--back_tot_opの表示操作-->
 <script>

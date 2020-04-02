@@ -38,3 +38,12 @@ e::英語のタイトル  トップいらない場合　no_top
 - [見出し%%詳細](main_temp/css)
 - [見出し%%詳細](main_temp/css)
 - [見出し%%詳細](main_temp/css)
+
+
+
+%img_box1(r)%  文中の挿入画像を右へ
+
+![スマホ非対応サイト](case_dir/wmelon/product/images/ss_dt.png)
+[![スマホ対応サイト](case_dir/wmelon/product/images/ss_mob.png)](case_dir/wmelon/product/index.html)
+
+%%%
