@@ -4,7 +4,7 @@ d::株式会社ウォーターメロンでは、Webサイトの作成代行以�
 
 k::Webサイト 技術 SEO 構造化 高速化
 
-e::Out technology
+e::Our technology
 
 # Web技術
 

@@ -96,13 +96,13 @@
 				<h2><span class="main_cl_bdb">webサイトを改善する技術</span></h2>
 				<p>webサイトを改善する技術には以下のようなものがあります。</p>
 				<ul class="mc_li">
-					<li class="sp_li3 fi fi_up">
+					<li class="sp_li3 fi fi_up" data-fi_margin="0" id="fi_e1">
 						<div class="sp_ti">表示速度高速化</div>
 						<span>サイトが表示される速度を早くします</span></li>
-					<li class="sp_li3 fi fi_down">
+					<li class="sp_li3 fi fi_up" data-fi_trigger="#fi_e1" data-fi_delay="300">
 						<div class="sp_ti">UI/UX対策</div>
 						<span>お客様が知りたい情報を探しやすくします</span></li>
-					<li class="sp_li3 fi fi_lr">
+					<li class="sp_li3 fi fi_up" data-fi_trigger="#fi_e1" data-fi_delay="600">
 						<div class="sp_ti">常時SSL化対応</div>
 						<span>サイト閲覧時に個人情報が漏れないようにします</span></li>
 					<li class="sp_li3 fi fi_rl">
@@ -198,7 +198,36 @@
 <!--free_script-->
 <script type="text/javascript" src="../designChange.js" charset="UTF-8"></script>
 <script>
-const scrollAnimationClass = 'fi';const scrollAnimationShowClass = 'is_active';const triggerMarginDefault = 200;const scrollAnimationElm = document.querySelectorAll('.' + scrollAnimationClass);const fadeInScrollAnimationFunc = function () {const dataMargin = scrollAnimationClass + '_margin';const dataTrigger = scrollAnimationClass + '_trigger';const dataDelay = scrollAnimationClass + '_delay';for (let l = 0; l < scrollAnimationElm.length; l++) {let triggerMargin = triggerMarginDefault;const elm = scrollAnimationElm[l];let showPos = 0;if (elm.dataset[dataMargin] != null) {triggerMargin = parseInt(elm.dataset[dataMargin]);}if (elm.dataset[dataTrigger]) {showPos = document.querySelector(elm.dataset[dataTrigger]).getBoundingClientRect().top + triggerMargin;} else {showPos = elm.getBoundingClientRect().top + triggerMargin;}if (window.innerHeight > showPos) {const delay = (elm.dataset[dataDelay]) ? elm.dataset[dataDelay] : 0;setTimeout(function (index) {scrollAnimationElm[index].classList.add(scrollAnimationShowClass);}.bind(null, l), delay);}}};window.addEventListener('load', fadeInScrollAnimationFunc);window.addEventListener('scroll', fadeInScrollAnimationFunc);
+    const scrollAnimationClass = 'fi';
+    const scrollAnimationShowClass = 'is_active';
+    const triggerMarginDefault = 200;
+    const scrollAnimationElm = document.querySelectorAll('.' + scrollAnimationClass);
+    const fadeInScrollAnimationFunc = function () {
+        const dataMargin = scrollAnimationClass + '_margin';
+        const dataTrigger = scrollAnimationClass + '_trigger';
+        const dataDelay = scrollAnimationClass + '_delay';
+        for (let l = 0; l < scrollAnimationElm.length; l++) {
+            let triggerMargin = triggerMarginDefault;
+            const elm = scrollAnimationElm[l];
+            let showPos = 0;
+            if (elm.dataset[dataMargin] != null) {
+                triggerMargin = parseInt(elm.dataset[dataMargin]);
+            }
+            if (elm.dataset[dataTrigger]) {
+                showPos = document.querySelector(elm.dataset[dataTrigger]).getBoundingClientRect().top + triggerMargin;
+            } else {
+                showPos = elm.getBoundingClientRect().top + triggerMargin;
+            }
+            if (window.innerHeight > showPos) {
+                const delay = (elm.dataset[dataDelay]) ? elm.dataset[dataDelay] : 0;
+                setTimeout(function (index) {
+                    scrollAnimationElm[index].classList.add(scrollAnimationShowClass);
+                }.bind(null, l), delay);
+            }
+        }
+    };
+    window.addEventListener('load', fadeInScrollAnimationFunc);
+    window.addEventListener('scroll', fadeInScrollAnimationFunc);
 </script>
 <script>
     const now = new Date().getFullYear();

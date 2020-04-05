@@ -5,7 +5,6 @@ import markdown
 import datetime
 import shutil
 import time
-import sys
 from list_lib import js_dict
 
 css_vars = ['wrapper_width', 'main_width_per', 'header_height', 'footer_height']
@@ -119,14 +118,11 @@ def make_class_box(long_str):
     long_str = re.sub(r'<p>%sibox%</p>([^%]+?)<p>%%%</p>', r'<div class="sim_box">\1</div>', long_str)
     long_str = re.sub(r'<p>%obox%</p>([^%]+?)<p>%%%</p>', r'<div class="out_box">\1</div>', long_str)
     if '%img_box1' in long_str:
-        # print(long_str)
         ib1_l = re.findall(r'<p>%img_box1\(.+?\)%</p>[^%]+?<p>%%%</p>', long_str)
         if ib1_l:
             for ib1 in ib1_l:
-                print(ib1)
                 insert_str = ib1.replace('<p>%img_box1(r)%</p>', '<div class="img_box1 fl_r">')
                 insert_str = insert_str.replace('<p>%img_box1(l)%</p>', '<div class="img_box1 fl_l">')
-                print(insert_str)
                 insert_str = insert_str.replace('<p>%%%</p>', '</div>')
                 insert_str = insert_str.replace('<br />', '')
                 insert_str = insert_str.replace('<p>', '')
@@ -137,12 +133,10 @@ def make_class_box(long_str):
                     fi_class = 'img33p'
                 else:
                     fi_class = 'img100p'
-                print(re.findall(r'<img alt="(.*?)" src="(.*?)" />', insert_str))
                 insert_str = re.sub(r'<img alt="(.*?)" src="(.*?)" />',
                                     '<figure class="' + fi_class +
                                     r'"><img alt="\1" src="\2" /><figcaption>\1</figcaption></figure>',
                                     insert_str)
-                print(insert_str)
                 long_str = long_str.replace(ib1, insert_str)
     return long_str
 
@@ -591,7 +585,7 @@ if __name__ == '__main__':
     category_li = {'works': '実績', 'company': '会社案内', 'making_site': 'サイト作成', 'contact': 'お問合せ',
                    'technology': 'web技術', 'policy': 'サイトポリシー'}
     unlock_l = ['all']
-    # main('wmelon', 'https://www.wmelon.co.jp', category_li, '株式会社ウォーターメロン', unlock_l)
+    main('wmelon', 'https://www.wmelon.co.jp', category_li, '株式会社ウォーターメロン', unlock_l)
 
     # clear_css_duplication('case_dir/wmelon/product/css/base6.css')
 
@@ -605,5 +599,3 @@ if __name__ == '__main__':
     # css_setup('test_case', [1100, 75, 0, 0])
     # gradation_maker('#ffffff', 'a')
     # todo: 複数パターンのhtmlサンプルを一括作成　パラメータは色、サイズ、フォント等
-
-    print(insert_js('aaaaaaaああああああ<div class="kain fi piko">あああああああああああああああああああああああああああ<!--free_script-->ああああ'))
