@@ -1,83 +1,204 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=<!--dd-ga_code-->"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '<!--dd-ga_code-->');
+</script>
 	<meta charset="UTF-8">
-	<title><!--title--></title>
+	<title><!--title-->|<!--dd-会社名--></title>
 	<meta name="keywords" content="<!--meta-key-->">
-	<meta name="description" content="<!--description--">
+	<meta name="description" content="<!--description-->">
 	<meta name="robots" content="index,follow"/>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link href="css/base.css" rel="stylesheet" type="text/css"/>
+	<link href="../product/css/base.css" rel="stylesheet" type="text/css"/>
+	<link rel="shortcut icon" href="../product/images/favicon.ico">
 </head>
 <body>
-<header>
+<header id="page_t">
 	<div id="h_wrapper">
-		<div id="site_title">Site title</div>
-		<nav id="g_nav">
-			<ul>
-				<li><a href="url">page</a></li>
-				<li><a href="url">page</a></li>
-				<li><a href="url">page</a></li>
-				<li><a href="url">page</a></li>
-			</ul>
-		</nav>
+		<div id="header_i">
+			<div id="site_title"><a href="../product/index.html"><img src="../product/images/logo3.png"
+			                                                          alt="<!--dd-会社名-->"></a></div>
+			<nav id="g_nav">
+				<ul>
+					<li class="gn01"><a href="../product/making_site/"><span class="g_o"><span data-hover="サイト作成"
+					                                                              class="g_i">サイト作成</span></span></a>
+					</li>
+					<li class="gn02"><a href="../product/technology/"><span class="g_o"><span data-hover="Web技術"
+					                                                             class="g_i">Web技術</span></span></a>
+					</li>
+					<li class="gn03"><a href="../product/company"><span class="g_o"><span data-hover="会社案内"
+					                                                         class="g_i">会社案内</span></span></a></li>
+					<li class="gn04"><a href="../product/contact"><span class="g_o"><span data-hover="お問合せ"
+					                                                         class="g_i">お問合せ</span></span></a></li>
+				</ul>
+			</nav>
+		</div>
+		<div id="bread_crumb"><!--b_c--></div>
 	</div>
 </header>
-<div class="wrapper">
-	<main role="main">
-		<h1><!--h1_text--></h1>
-		<article>
-			<section>
-				<h2>H2 text</h2>
-				<p>p text<br>ああああああああああああああああああああああああああああああああああああああああああああああああ
-					ああああああああああああああ</p>
-				<p>あああああああああああああああああああああああああああああああああああああああああああああああああああああ
-					あああああああああああああああああああああ<br>あああああああああああああああああああああああああああああああ
-					ああああああああああああああああああああああ</p>
-			</section>
-			<div class="split_li">
-				<ul>
-					<li class="sp_li2"><a href="url">テキスト</a></li>
-					<li class="sp_li2"><a href="url">テキスト</a></li>
-					<li class="sp_li3"><a href="url">テキスト</a></li>
-					<li class="sp_li3"><a href="url">テキスト</a></li>
-					<li class="sp_li3"><a href="url">テキスト</a></li>
-				</ul>
-			</div>
-		</article>
-		<div id="bread_crumb"><!--b_c--></div>
-	</main>
-	<div id="side_bar">
-		<div class="sb_section">
-			<div class="sb_title">sb title</div>
+<main role="main">
+	<article>
+		<section><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p></section>
+	</article>
+</main>
+
+<footer class="main_cl_bg">
+	<div id="f_wrapper">
+		<div id="company_info">
 			<ul>
-				<li><a href="url">link text</a></li>
-				<li><a href="url">link text</a></li>
-				<li><a href="url">link text</a></li>
-				<li><a href="url">link text</a></li>
-				<li><a href="url">link text</a></li>
-				<li><a href="url">link text</a></li>
+				<li id="c_name_o"><img src="../product/images/logo.png" id="c_logo" alt="<!--dd-会社名-->ロゴ"/><span
+						id="c_name"><!--dd-会社名--></span>
+				</li>
+				<li id="c_address"><!--dd-住所--></li>
+				<li id="c_tel"><!--dd-電話--></li>
 			</ul>
 		</div>
-		<div class="sb_section">
-			<div class="sb_title">sb title</div>
+		<div id="footer_l">
 			<ul>
-				<li><a href="url">link text</a></li>
-				<li><a href="url">link text</a></li>
-				<li><a href="url">link text</a></li>
-				<li><a href="url">link text</a></li>
-				<li><a href="url">link text</a></li>
-				<li><a href="url">link text</a></li>
+				<li class="fl_cat fn01"><a href="../product/making_site/" class="bold_f">サイト作成</a>
+					<ul>
+						<li><a href="../product/making_site/index.html#sec01">Webサイト作成の流れ</a></li>
+						<li><a href="../product/making_site/index.html#sec02">サイト作成料金</a></li>
+						<li><a href="../product/making_site/index.html#sec03">よくあるご質問</a></li>
+					</ul>
+				</li>
+				<li class="fl_cat fn02"><a href="../product/technology/" class="bold_f">Web技術</a>
+					<ul>
+						<li><a href="../product/technology/">Webサイトのモバイル対応</a></li>
+						<li><a href="../product/technology/">SSL対応</a></li>
+						<li><a href="../product/technology/">表示速度の高速化</a></li>
+						<li><a href="../product/technology/">構造化データの追加</a></li>
+					</ul>
+				</li>
+				<li class="fl_cat fn03"><a href="../product/company/" class="bold_f">会社案内</a>
+					<ul>
+						<li><a href="../product/company/index.html#sec01">会社情報</a></li>
+						<li><a href="../product/company/index.html#sec02">弊社の強み</a></li>
+						<li><a href="../product/company/index.html#sec03">代表プロフィール</a></li>
+					</ul>
+				</li>
+				<li class="fl_cat fn04"><a href="../product/contact/" class="bold_f">お問合せ</a>
+					<ul>
+						<li><a href="../product/contact/">メール</a></li>
+					</ul>
+				</li>
+				<li class="fl_cat fn05"><a href="../product/policy/" class="bold_f">サイトポリシー</a>
+					<ul>
+						<li><a href="../product/policy/index.html#sec01">プライバシーポリシー</a></li>
+					</ul>
+				</li>
 			</ul>
 		</div>
-	</div><!--e/side_bar-->
-</div>
-<footer>
-	<div id="f_wrapper">footer text
-		<div id="copy_rights">copy right</div>
+
+		<div id="copy_rights">&copy;
+			<span id="cp_year"></span>
+			<!--dd-会社名(英語)-->
+		</div>
 	</div>
 </footer>
-
-
+<div id="page-top"><p><a href="#page_t" id="move-page-top" class="sa"><img src="../product/images/big2.png"
+                                                                           alt="ページTOPに戻る"/></a></p>
+</div>
+<!--free_script-->
+<script type="text/javascript" src="../product/designChange.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    const cpY = document.getElementById('cp_year');
+    cpY.innerText = String(new Date().getFullYear())
+</script>
+<script type="text/javascript">
+    let TopPosition = 0;
+    const documentElement = document.documentElement;
+    const toTop = document.getElementById('move-page-top');
+    const hdBottom = document.getElementById('header_i');
+    let timer = null;
+    const scrollAnimationFunc = function () {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            TopPosition = documentElement.scrollTop;
+            console.log(TopPosition);
+            if (window.innerHeight / 3 * 2 < TopPosition) {
+                toTop.classList.add('show');
+            } else if (window.innerHeight / 3 * 2 > TopPosition) {
+                toTop.classList.remove('show')
+            }
+            if (TopPosition > 100) {
+                hdBottom.style.boxShadow = '0 3px 3px 0 rgba(40, 40, 40, 0.1)'
+            } else if (TopPosition < 300) {
+                hdBottom.style.boxShadow = 'none'
+            }
+        }, 100);
+    };
+    window.addEventListener('load', scrollAnimationFunc);
+    window.addEventListener('scroll', scrollAnimationFunc);
+</script>
+<script type="text/javascript">
+    const scrollElm = (function () {
+        if ('scrollingElement' in document) return document.scrollingElement;
+        if (navigator.userAgent.indexOf('WebKit') !== -1) return document.body;
+        return document.documentElement;
+    })();
+    (function () {
+        const duration = 600;
+        const ignore = '.noscroll';
+        const easing = function (t, b, c, d) {
+            return c * (0.5 - Math.cos(t / d * Math.PI) / 2) + b;
+        };
+        const smoothScrollElm = document.querySelectorAll('a[href^="#"]:not(' + ignore + ')');
+        Array.prototype.forEach.call(smoothScrollElm, function (elm) {
+            elm.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetElm = document.querySelector(elm.getAttribute('href'));
+                if (!targetElm) return;
+                let targetPos;
+                if (targetElm.id !== 'page_t') {
+                    targetPos = targetElm.getBoundingClientRect().top + 15;
+                    console.log('true')
+                } else {
+                    targetPos = targetElm.getBoundingClientRect().top - 80;
+                    console.log('False')
+                }
+                console.log(targetPos);
+                const startTime = Date.now();
+                const scrollFrom = scrollElm.scrollTop;
+                (function loop() {
+                    const currentTime = Date.now() - startTime;
+                    if (currentTime < duration) {
+                        scrollTo(0, easing(currentTime, scrollFrom, targetPos, duration));
+                        window.requestAnimationFrame(loop);
+                    } else {
+                        scrollTo(0, targetPos + scrollFrom);
+                    }
+                })();
+            })
+        });
+    })();
+</script>
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Corporation",
+		"name": "<!--dd-会社名-->",
+		"alternateName":  "<!--dd-会社名(英語)-->",
+		"description":  "<!--dd-description-->",
+		"founder":  "<!--dd-founder-->",
+		"foundingDate":  "<!--dd-foundingDate-->",
+		"telephone":  "<!--dd-電話-->",
+		"url":  "<!--dd-url-->",
+		"address": {
+			"@type": "PostalAddress",
+			"postalCode":  "<!--dd-郵便番号-->",
+			"addressCountry": "JP",
+			"addressRegion":  "<!--dd-addressRegion-->",
+			"addressLocality":  "<!--dd-addressLocality-->",
+			"streetAddress":  "<!--dd-streetAddress-->"
+		}
+	}
+</script>
 </body>
 </html>

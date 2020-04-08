@@ -20,9 +20,9 @@ def main(case_name, domain_name, category_list, site_name, unlock_list):
     print(md_list)
     if case_name + '/md/index.md' in md_list:
         import_from_markdown([case_name + '/md/index.md'],
-                             case_name + '/template/top_tmp.html', domain_name, site_name, category_list, case_name)
+                             case_name + '/template/top_base.html', domain_name, site_name, category_list, case_name)
         md_list.remove(case_name + '/md/index.md')
-    import_from_markdown(md_list, case_name + '/template/main_tmp.html', domain_name, site_name, category_list,
+    import_from_markdown(md_list, case_name + '/template/main_base.html', domain_name, site_name, category_list,
                          case_name)
 
 
@@ -32,18 +32,6 @@ def link_filter(long_str, new_path):
     else:
         long_str = long_str.replace('../product/', '../')
     return long_str
-
-
-def new_case_preparation(case_name):
-    for dir_name in ['product', 'product/css', 'template']:
-        if not os.path.exists(case_name + '/' + dir_name):
-            os.mkdir(case_name + '/' + dir_name)
-    for file_name in ['main_tmp.html', 'top_tmp.html']:
-        if not os.path.exists(case_name + '/template/' + file_name):
-            shutil.copyfile(file_name, case_name + '/template/' + file_name.replace('base', 'tmp'))
-    for file_name_c in ['css/base6.css']:
-        if not os.path.exists(case_name + '/' + file_name_c):
-            shutil.copyfile(file_name_c, case_name + '/product/' + file_name_c)
 
 
 def pickup_mod_md_files(case_name, md_list, unlock_list):
@@ -519,7 +507,8 @@ def constitute_md_files(case_name, c_dic):
 def insert_js(long_str):
     for x in js_dict:
         if re.findall(r'class="[^"]*' + x + r'[^"]*"', long_str):
-            long_str = long_str.replace('<!--free_script-->', '<!--free_script-->' + js_dict[x])
+            long_str = long_str.replace('<!--free_script-->', '<!--free_script--><script type="text/javascript">'
+                                        + js_dict[x] + '</script>')
     return long_str
 
 
@@ -578,15 +567,99 @@ def make_css_str(css_dict):
     return css_str
 
 
+def line_and_tab_remove(long_str):
+    line_str = long_str.split('\n')
+    result = ''.join([x.strip() for x in line_str])
+    result = result.replace('spanclass', 'span class')
+    result = result.replace('imgsrc', 'img src')
+    result = result.replace('ahref', 'a href')
+    result = result.replace('blockquotecite', 'blockquote cite')
+    result = result.replace('"content="', '" content="')
+    result = result.replace('"alt="', '" alt="')
+    result = result.replace('"data-size="', '" data-size="')
+    result = result.replace('"data-href="', '" data-href="')
+    result = result.replace('"data-tabs="', '" data-tabs="')
+    result = result.replace('"data-adapt-container-width="', '" data-adapt-container-width="')
+    result = result.replace('"class="', '" class="')
+    return result
+
+
+# main_tmpのナビをtop_tmpにコピー
+def copy_template_data(case_name):
+    with open('case_dir/' + case_name + '/template/main_tmp.html', 'r', encoding='utf-8') as f:
+        main_str = f.read()
+        main_str = line_and_tab_remove(main_str)
+        g_nav = re.findall(r'<nav id="g_nav">[\s|\S]*?</nav>', main_str)[0]
+        f_nav = re.findall(r'<div id="footer_l">[\s|\S]*?</div>', main_str)[0]
+        with open('case_dir/' + case_name + '/template/top_tmp.html', 'r', encoding='utf-8') as g:
+            top_str = g.read()
+            top_str = re.sub(r'<nav id="g_nav">[\s|\S]*?</nav>', g_nav.replace('../', ''), top_str)
+            top_str = re.sub(r'<div id="footer_l">[\s|\S]*?</nav>', f_nav.replace('../', ''), top_str)
+            with open('case_dir/' + case_name + '/template/top_tmp.html', 'w', encoding='utf-8') as h:
+                h.write(top_str)
+
+
+# 新規案件の準備
+def new_case_preparation(case_name):
+    if not os.path.exists('case_dir/' + case_name):
+        os.mkdir('case_dir/' + case_name)
+    for dir_name in ['product', 'product/css', 'template', 'md', 'backup', 'pickle_pot', ]:
+        if not os.path.exists('case_dir/' + case_name + '/' + dir_name):
+            os.mkdir('case_dir/' + case_name + '/' + dir_name)
+    for file_name in ['main_base.html', 'top_base.html', 'md_tmp.md']:
+        if not os.path.exists('case_dir/' + case_name + '/template/' + file_name.replace('base', 'tmp')):
+            shutil.copyfile('main_temp/' + file_name, 'case_dir/' + case_name + '/template/'
+                            + file_name.replace('base', 'tmp'))
+    for file_name_c in ['css/base.css']:
+        if not os.path.exists('case_dir/' + case_name + '/' + file_name_c):
+            shutil.copyfile('main_temp/' + file_name_c, 'case_dir/' + case_name + '/product/' + file_name_c)
+    if not os.path.exists('case_dir/' + case_name + '/data_' + case_name + '.txt'):
+        shutil.copyfile('main_temp/data.txt', 'case_dir/' + case_name + '/data_' + case_name + '.txt')
+
+
+# 基本データの挿入
+def insert_cop_data(case_name):
+    with open('case_dir/' + case_name + '/template/main_tmp.html', 'r', encoding='utf-8') as t:
+        tmp_str = t.read()
+    with open('case_dir/' + case_name + '/template/top_tmp.html', 'r', encoding='utf-8') as f:
+        top_str = f.read()
+    with open('case_dir/' + case_name + '/data_' + case_name + '.txt', 'r', encoding='utf-8') as d:
+        data_str = d.read()
+        print(data_str)
+        for line in data_str.split('\n'):
+            print(line)
+            if line:
+                d_list = line.split(':')
+                d_title = d_list[0].strip()
+                if len(d_list) > 1:
+                    d_data = d_list[1].strip()
+                    if '<!--dd-' + d_title + '-->' in tmp_str:
+                        tmp_str = tmp_str.replace('<!--dd-' + d_title + '-->', d_data)
+                    if '<!--dd-' + d_title + '-->' in top_str:
+                        top_str = top_str.replace('<!--dd-' + d_title + '-->', d_data)
+    with open('case_dir/' + case_name + '/template/main_tmp.html', 'w', encoding='utf-8') as u:
+        u.write(tmp_str)
+    with open('case_dir/' + case_name + '/template/top_tmp.html', 'w', encoding='utf-8') as g:
+        g.write(top_str)
+
+
 # todo:イメージ、背景色、レイアウト、フォント等をテストできるjavascript 一つのダイアログ風の箱で浮かせる
 # todo:事前にインタビューした好みや方針、セールスポイント等から叩き台のデザインを作るアプリ
 
 if __name__ == '__main__':
+    # new_case_preparation('kuma')
+    # insert_cop_data('kuma')
+    unlock_k = ['all']
+    category_li_k = {'works': '実績', 'company': '会社案内', 'making_site': 'サイト作成', 'contact': 'お問合せ',
+                     'technology': 'web技術', 'policy': 'サイトポリシー'}
+    main('kuma', 'https://https://www.kuma-kensetu.jp/', category_li_k, '株式会社ウォーターメロン', unlock_k)
+
+    """
     category_li = {'works': '実績', 'company': '会社案内', 'making_site': 'サイト作成', 'contact': 'お問合せ',
                    'technology': 'web技術', 'policy': 'サイトポリシー'}
     unlock_l = ['all']
     main('wmelon', 'https://www.wmelon.co.jp', category_li, '株式会社ウォーターメロン', unlock_l)
-
+    """
     # clear_css_duplication('case_dir/wmelon/product/css/base6.css')
 
     # make_test_image_list('/Users/nakataketetsuhiko/Downloads/watermelon_images/photo/preview/about_us')

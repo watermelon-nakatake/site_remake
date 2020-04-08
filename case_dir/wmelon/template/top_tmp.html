@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162811878-1"></script>
+	<script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-162811878-1');
+	</script>
+
 	<meta charset="UTF-8">
 	<title><!--title--></title>
 	<meta name="keywords" content="<!--meta-key-->">
@@ -113,7 +126,7 @@
 	</div>
 </footer>
 <div id="page-top"><p><a href="#page_t" id="move-page-top" class="sa"><img src="../product/images/big2.png"
-                                                                              alt="ページTOPに戻る"/></a></p>
+                                                                           alt="ページTOPに戻る"/></a></p>
 </div>
 <!--free_script-->
 <script type="text/javascript" src="../product/designChange.js" charset="UTF-8"></script>
@@ -160,9 +173,9 @@
     }
     console.log(String(sH - 200 - tpH) + 'px');
     t_height.style.height = String(sH - 200 - tpH) + 'px';
-	for (let k = 0;k < img_height.length;k++){
-	    img_height[k].style.height = String(sH - 200 - tpH) + 'px'
-	}
+    for (let k = 0; k < img_height.length; k++) {
+        img_height[k].style.height = String(sH - 200 - tpH) + 'px'
+    }
 </script>
 <!--back_tot_opの表示操作-->
 <script>

@@ -1,0 +1,20 @@
+ドメイン名:
+
+会社名:
+会社名(英語):
+郵便番号:
+住所:
+電話:
+
+alternateName:
+description:
+founder:
+foundingDate:
+url: https://
+addressRegion: -ken
+addressLocality: -shi
+streetAddress:
+
+ga_code:
+
+

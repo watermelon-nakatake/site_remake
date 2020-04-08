@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162811878-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-162811878-1');
+</script>
+
 	<meta charset="UTF-8">
 	<title><!--title-->|株式会社ウォーターメロン</title>
 	<meta name="keywords" content="<!--meta-key-->">
@@ -117,14 +127,14 @@
 </div>
 <!--free_script-->
 <script type="text/javascript" src="../product/designChange.js" charset="UTF-8"></script>
-<script>
+<script type="text/javascript">
     const now = new Date().getFullYear();
     const cpY = document.getElementById('cp_year');
     if (now > 2014) {
         cpY.innerText = "- " + new Date().getFullYear()
     }
 </script>
-<script>
+<script type="text/javascript">
     const sW = window.innerWidth;
     const sH = window.innerHeight;
     let hPlus;
@@ -151,7 +161,7 @@
         b_height[j].style.height = bcH
     }
 </script>
-<script>
+<script type="text/javascript">
     let TopPosition = 0;
     const documentElement = document.documentElement;
     const toTop = document.getElementById('move-page-top');
@@ -177,7 +187,7 @@
     window.addEventListener('load', scrollAnimationFunc);
     window.addEventListener('scroll', scrollAnimationFunc);
 </script>
-<script>
+<script type="text/javascript">
     const scrollElm = (function () {
         if ('scrollingElement' in document) return document.scrollingElement;
         if (navigator.userAgent.indexOf('WebKit') !== -1) return document.body;
