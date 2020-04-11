@@ -8,6 +8,16 @@ e::top
 
 # 隈建設株式会社トップ
 
+<section class="mc_view top_page_top">
+			<div id="top_img"><div class="top_img_in" id="top_t1"></div>
+				<div class="top_img_in" id="top_t2"></div>
+				<div class="top_img_in" id="top_t3"></div>
+				<p class="blend__text">PCよりも<br>スマホで調べ物をする人の方が<br>多いんです</p></div>
+			<div id="top_page_nav" class="main_cl_bg">
+				<!--top-page-top-sec-->
+			</div>
+		</section>
+
 ## 心で創る、技で応える
 
 戸建住宅の設計・建築から、リフォームやマンション建築まで、幅広く対応いたします。

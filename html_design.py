@@ -15,14 +15,15 @@ def main(case_name, domain_name, category_list, site_name, unlock_list):
     # new_case_preparation(case_name)
     case_name = 'case_dir/' + case_name
     md_list = pick_up_md_files(case_name)
+    print(md_list)
     md_list = pickup_mod_md_files(case_name, md_list, unlock_list)
     md_list = [x for x in md_list if '_tbd' not in x]
     print(md_list)
     if case_name + '/md/index.md' in md_list:
         import_from_markdown([case_name + '/md/index.md'],
-                             case_name + '/template/top_base.html', domain_name, site_name, category_list, case_name)
+                             case_name + '/template/top_tmp.html', domain_name, site_name, category_list, case_name)
         md_list.remove(case_name + '/md/index.md')
-    import_from_markdown(md_list, case_name + '/template/main_base.html', domain_name, site_name, category_list,
+    import_from_markdown(md_list, case_name + '/template/main_tmp.html', domain_name, site_name, category_list,
                          case_name)
 
 
@@ -47,7 +48,10 @@ def pickup_mod_md_files(case_name, md_list, unlock_list):
 
 def pick_up_md_files(directory):
     result = []
+    directory = directory + '/md'
+    print(directory)
     md_list = os.listdir(directory)
+    print(md_list)
     for file_name in md_list:
         if file_name not in ['images', 'css', 'template', 'product', 'test']:
             mk_dir_path = directory + '/' + file_name
@@ -58,6 +62,8 @@ def pick_up_md_files(directory):
                 result.extend(pick_up_md_files(mk_dir_path))
             elif '.md' in file_name:
                 if os.path.exists(html_path):
+                    result.append(mk_dir_path)
+                else:
                     result.append(mk_dir_path)
             else:
                 pass
@@ -643,16 +649,36 @@ def insert_cop_data(case_name):
         g.write(top_str)
 
 
+# cssを作業しやすいように整頓する
+def css_trimmer(css_path, html_path):
+    inner_order = ['ul', 'ol', 'li', 'span']
+    with open(html_path, 'r', encoding='utf-8') as h:
+        html_str = h.read()
+        id_class_l = re.findall(r'(id|class)="(.+?)"', html_str)
+
+
+    with open(css_path, 'r', encoding='utf-8') as f:
+        css_str = f.read()
+        str_li = css_str.splitlines()
+        j_str = ''.join([x.strip() for x in str_li])
+        sp_str_l = j_str.split('@')
+        for i in range(1, 4):
+            print(sp_str_l[i])
+
+
 # todo:イメージ、背景色、レイアウト、フォント等をテストできるjavascript 一つのダイアログ風の箱で浮かせる
 # todo:事前にインタビューした好みや方針、セールスポイント等から叩き台のデザインを作るアプリ
 
 if __name__ == '__main__':
+
+    print(re.findall(r'(id|class)="(.+?)"', html_str))
+
     # new_case_preparation('kuma')
     # insert_cop_data('kuma')
     unlock_k = ['all']
     category_li_k = {'works': '実績', 'company': '会社案内', 'making_site': 'サイト作成', 'contact': 'お問合せ',
                      'technology': 'web技術', 'policy': 'サイトポリシー'}
-    main('kuma', 'https://https://www.kuma-kensetu.jp/', category_li_k, '株式会社ウォーターメロン', unlock_k)
+    # main('kuma', 'https://https://www.kuma-kensetu.jp/', category_li_k, '株式会社ウォーターメロン', unlock_k)
 
     """
     category_li = {'works': '実績', 'company': '会社案内', 'making_site': 'サイト作成', 'contact': 'お問合せ',

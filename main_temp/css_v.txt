@@ -1,0 +1,87 @@
+<!--h2-水平線-->
+----
+<h2><span>ご挨拶</span></h2>
+----
+h2 {
+    padding: 0;
+    margin: 20px 0 60px 20px;
+    height: 39px;
+    position: relative;
+    z-index: 5;
+}
+
+h2 span {
+    display: inline-block;
+    padding: 0 5px;
+    width: auto;
+    margin: 0 auto;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    background-color: #ffffff;
+    z-index: 5;
+}
+
+h2:before{
+    content: "";
+    display: block;
+    border-top: solid 2px #6B6B6B;
+    width: 45%;
+    height: 1px;
+    position: relative;
+    left: 0;
+    top: 50%;
+    z-index: -1;
+}
+<!--e/h2-水平線-->
+
+<!--g_nav-変色縦スライド-->
+-------
+
+<nav id="g_nav">
+				<ul>
+					<li class="gn01"><a href="making_site/"><span class="g_o"><span data-hover="建築"
+					                                                                class="g_i">建築</span></span></a>
+					</li>
+					<li class="gn02"><a href="technology/"><span class="g_o"><span data-hover="設計"
+					                                                               class="g_i">設計</span></span></a>
+					</li>
+					<li class="gn03"><a href="company"><span class="g_o"><span data-hover="実績"
+					                                                           class="g_i">実績</span></span></a></li>
+					<li class="gn04"><a href="contact"><span class="g_o"><span data-hover="会社案内"
+					                                                           class="g_i">会社案内</span></span></a></li>
+					<li class="gn05"><a href="contact"><span class="g_o"><span data-hover="お問い合わせ"
+					                                                           class="g_i">お問い合わせ</span></span></a></li>
+				</ul>
+			</nav>
+
+-------
+
+#g_nav {
+        float: right;
+        width: 50%;
+        margin-top: 30px
+    }
+
+    #g_nav li a {
+        padding-top: 10px
+    }
+
+    #g_nav li a .g_i:before {
+        position: absolute;
+        top: 100%;
+        content: attr(data-hover);
+        font-weight: bold;
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0)
+    }
+
+    #g_nav li a:focus .g_i, #g_nav li a:hover .g_i {
+        -webkit-transform: translateY(-100%);
+        -moz-transform: translateY(-100%);
+        transform: translateY(-100%);
+        color: #007bbb
+    }
+
+<!--e/g_nav-変色縦スライド-->

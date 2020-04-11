@@ -6,6 +6,7 @@ import re
 import datetime
 import time
 import html_design
+import pathlib
 
 
 def all_upload(case_name, domain_str, user_name, password_str, root_directory):
@@ -138,8 +139,19 @@ def search_files_in_scp(directory_name, sftp_connection):
     return result
 
 
+def sample_page_upload(case_name):
+    up_files = []
+    p = pathlib.Path('case_dir/' + case_name + '/product')
+    up_files = [y.as_posix().replace('case_dir/' + case_name + '/product/', '')
+                for y in p.glob('**/*') if '.' in y.as_posix()]
+    print(up_files)
+
+    scp_upload(case_name, 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon/sample/kuma', up_files)
+
+
 if __name__ == '__main__':
-    all_upload('wmelon', 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon')
+    # all_upload('wmelon', 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon')
+    sample_page_upload('kuma')
 
     # first_backup('wmelon', 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon')
 
