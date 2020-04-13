@@ -621,6 +621,8 @@ def new_case_preparation(case_name):
             shutil.copyfile('main_temp/' + file_name_c, 'case_dir/' + case_name + '/product/' + file_name_c)
     if not os.path.exists('case_dir/' + case_name + '/data_' + case_name + '.txt'):
         shutil.copyfile('main_temp/data.txt', 'case_dir/' + case_name + '/data_' + case_name + '.txt')
+    if not os.path.exists('case_dir/' + case_name + '/md/test.md'):
+        shutil.copyfile('main_temp/md_tmp.md', 'case_dir/' + case_name + '/md/test.md')
 
 
 # 基本データの挿入
@@ -649,29 +651,96 @@ def insert_cop_data(case_name):
         g.write(top_str)
 
 
-# cssを作業しやすいように整頓する
-def css_trimmer(css_path, html_path):
-    inner_order = ['ul', 'ol', 'li', 'span']
+def make_selector_list_in_html(html_path):
+    ic_list = []
     with open(html_path, 'r', encoding='utf-8') as h:
         html_str = h.read()
-        id_class_l = re.findall(r'(id|class)="(.+?)"', html_str)
+        id_class_l = re.findall(r'\s(id|class)="(.+?)"', html_str)
+        for x in id_class_l:
+            if x[0] == 'id':
+                ic_list.append('#' + x[1])
+            elif x[0] == 'class':
+                if ' ' not in x[1]:
+                    ic_list.append('.' + x[1])
+                else:
+                    class_i_l = x[1].split(' ')
+                    for class_name in class_i_l:
+                        ic_list.append('.' + class_name)
+    return list(dict.fromkeys(ic_list))
 
 
+# cssを作業しやすいように整頓する
+def css_trimmer(css_path, html_path):
+    # inner_order = ['ul', 'ol', 'li', 'span']
+    css_list = []
+    key_list = []
+    result = ''
+    media_str = ['', '@media screen and (min-width: 768px) {', '@media screen and (min-width: 1020px) {']
+    ic_list = make_selector_list_in_html(html_path)
     with open(css_path, 'r', encoding='utf-8') as f:
         css_str = f.read()
         str_li = css_str.splitlines()
         j_str = ''.join([x.strip() for x in str_li])
-        sp_str_l = j_str.split('@')
-        for i in range(1, 4):
-            print(sp_str_l[i])
+        reset_css = re.findall(r'^.+?/\*\sreset\sCSS\send\s\*/', j_str)[0]
+        j_str = re.sub(r'^.+?/\*\sreset\sCSS\send\s\*/', '', j_str)
+        parts_l = re.split(r'@media.+?{', j_str)
+        for part in parts_l:
+            # print(part)
+            p_list = []
+            key_i = {}
+            key_f_l = re.findall(r'@keyframes\s.+?\}\}', part)
+            if key_f_l:
+                part = re.sub(r'@keyframes\s.+?\}\}', '', part)
+                for key_f in key_f_l:
+                    key_i[re.findall(r'@keyframes\s(.+?)\s', key_f)[0]] = key_f
+            selector_l = part.split('}')
+            for z in selector_l:
+                if z:
+                    first_selector_l = re.findall(r'([.#].+?)[\s:,].*?{(.+?)$', z)
+                    if first_selector_l:
+                        # print(first_selector_l[0])
+                        p_list.append([first_selector_l[0][0], z])
+                    else:
+                        # print(re.findall(r'^(.+?)[\s,:].*?\{', z)[0])
+                        p_list.append([re.findall(r'^(.+?)[\s,:].*?{', z)[0], z])
+            css_list.append(p_list)
+            key_list.append(key_i)
+    # print(ic_list)
+    # print(css_list)
+    # print(key_list)
+    for cat_num in range(3):
+        s_str = ''
+        for h_css in ic_list:
+            for css_s in css_list[cat_num]:
+                if css_s[0] == h_css:
+                    # print(css_s[0])
+                    # print(h_css)
+                    s_str += css_s[1] + '}'
+                    if 'animation:' in css_s[1]:
+                        # print(css_s[1])
+                        a_str = re.findall(r'animation:\s(.+?)[\s|;]', css_s[1])[0]
+                        s_str += key_list[cat_num][a_str]
+        no_selector = '}'.join([a[1] for a in css_list[cat_num] if '.' not in a[0] and '#' not in a[0]])
+        if no_selector:
+            no_selector += '}'
+        result += media_str[cat_num] + no_selector + s_str
+        if cat_num != 0:
+            result += '}'
+    result = reset_css + result
+    print(result)
+    with open(css_path.replace('.css', '_new.css'), 'w', encoding='utf-8') as n:
+        n.write(result)
 
 
 # todo:イメージ、背景色、レイアウト、フォント等をテストできるjavascript 一つのダイアログ風の箱で浮かせる
 # todo:事前にインタビューした好みや方針、セールスポイント等から叩き台のデザインを作るアプリ
 
-if __name__ == '__main__':
+this_case = 'kuma'
+target_url = ''
 
-    print(re.findall(r'(id|class)="(.+?)"', html_str))
+if __name__ == '__main__':
+    print(this_case)
+    # css_trimmer('case_dir/kuma/product/css/base.css', 'case_dir/kuma/product/test.html')
 
     # new_case_preparation('kuma')
     # insert_cop_data('kuma')

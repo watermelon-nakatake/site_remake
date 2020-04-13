@@ -150,8 +150,7 @@ def sample_page_upload(case_name):
 
 
 if __name__ == '__main__':
-    # all_upload('wmelon', 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon')
-    sample_page_upload('kuma')
+    all_upload('wmelon', 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon')
 
     # first_backup('wmelon', 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon')
 
