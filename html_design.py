@@ -609,7 +609,7 @@ def copy_template_data(case_name):
 def new_case_preparation(case_name):
     if not os.path.exists('case_dir/' + case_name):
         os.mkdir('case_dir/' + case_name)
-    for dir_name in ['product', 'product/css', 'template', 'md', 'backup', 'pickle_pot', ]:
+    for dir_name in ['product', 'product/css', 'product/images', 'template', 'md', 'backup', 'pickle_pot', ]:
         if not os.path.exists('case_dir/' + case_name + '/' + dir_name):
             os.mkdir('case_dir/' + case_name + '/' + dir_name)
     for file_name in ['main_base.html', 'top_base.html', 'md_tmp.md']:
@@ -619,10 +619,17 @@ def new_case_preparation(case_name):
     for file_name_c in ['css/base.css']:
         if not os.path.exists('case_dir/' + case_name + '/' + file_name_c):
             shutil.copyfile('main_temp/' + file_name_c, 'case_dir/' + case_name + '/product/' + file_name_c)
+    for file_name_c in ['angle-arrow-down-m.png', 'angle-arrow-down-w1.png', 'back.png', 'f_logo.png',
+                        'twitter_icon.png']:
+        if not os.path.exists('case_dir/' + case_name + '/product/images/' + file_name_c):
+            shutil.copyfile('main_temp/images/' + file_name_c,
+                            'case_dir/' + case_name + '/product/images/' + file_name_c)
     if not os.path.exists('case_dir/' + case_name + '/data_' + case_name + '.txt'):
         shutil.copyfile('main_temp/data.txt', 'case_dir/' + case_name + '/data_' + case_name + '.txt')
     if not os.path.exists('case_dir/' + case_name + '/md/test.md'):
         shutil.copyfile('main_temp/md_tmp.md', 'case_dir/' + case_name + '/md/test.md')
+    if not os.path.exists('case_dir/' + case_name + '/product/test.html'):
+        shutil.copyfile('main_temp/sample.html', 'case_dir/' + case_name + '/product/test.md')
 
 
 # 基本データの挿入
@@ -649,6 +656,24 @@ def insert_cop_data(case_name):
         u.write(tmp_str)
     with open('case_dir/' + case_name + '/template/top_tmp.html', 'w', encoding='utf-8') as g:
         g.write(top_str)
+
+
+# サンプルhtmlにデータ挿入
+def insert_cop_data_to_sample(case_name):
+    with open('case_dir/' + case_name + '/product/test.html', 'r', encoding='utf-8') as t:
+        smp_str = t.read()
+    with open('case_dir/' + case_name + '/data_' + case_name + '.txt', 'r', encoding='utf-8') as d:
+        data_str = d.read()
+        for line in data_str.split('\n'):
+            if line:
+                d_list = line.split(':')
+                d_title = d_list[0].strip()
+                if len(d_list) > 1:
+                    d_data = d_list[1].strip()
+                    if '<!--dd-' + d_title + '-->' in smp_str:
+                        smp_str = smp_str.replace('<!--dd-' + d_title + '-->', d_data)
+    with open('case_dir/' + case_name + '/product/test.html', 'w', encoding='utf-8') as g:
+        g.write(smp_str)
 
 
 def make_selector_list_in_html(html_path):
@@ -732,11 +757,25 @@ def css_trimmer(css_path, html_path):
         n.write(result)
 
 
+def pick_up_case_url(case_name):
+    with open('data_pickle/case_data.pkl', 'rb') as f:
+        pk_data = pickle.load(f)
+        if case_name in pk_data:
+            p_url = pk_data[case_name]['url']
+        else:
+            print('no case name !')
+            return
+        return p_url
+
+
 # todo:イメージ、背景色、レイアウト、フォント等をテストできるjavascript 一つのダイアログ風の箱で浮かせる
 # todo:事前にインタビューした好みや方針、セールスポイント等から叩き台のデザインを作るアプリ
+# todo:サンプルページのアクセス解析
 
-this_case = 'kuma'
-target_url = ''
+# プロジェクト名
+this_case = 'iroha_pro'
+# 既存サイトのurl
+target_url = pick_up_case_url(this_case)
 
 if __name__ == '__main__':
     print(this_case)

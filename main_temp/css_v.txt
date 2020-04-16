@@ -85,3 +85,153 @@ h2:before{
     }
 
 <!--e/g_nav-変色縦スライド-->
+<!--#top_img 横スライドぼかし-->
+----------------------------
+
+#top_img {
+        width: 100%;
+        position: fixed;
+        z-index: -10;
+        overflow: hidden;
+        height: 500px;
+        margin-top: 0;
+        background-image: url("../images/t4.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        will-change: contents;
+    }
+
+    .top_img_f {
+        width: 100%;
+        animation: imgFrame 21s 0s infinite;
+        -webkit-animation: imgFrame 21s 0s infinite;
+        /*transform: scaleX(1);*/
+        position: relative;
+        margin-left: -100%;
+        transform: scaleX(0) translateX(0%) scaleY(1);
+        filter: blur(15px);
+        will-change: contents;
+    }
+
+    @keyframes imgFrame {
+        0% {
+            transform: scaleX(0) translateX(0) scaleY(1);
+            filter: blur(15px);
+        }
+
+        20% {
+            transform: scaleX(1) translateX(100%);
+            filter: blur(0);
+        }
+        50% {
+            transform: scaleX(1) translateX(100%) scaleY(1);
+            filter: blur(0);
+            opacity: 1;
+        }
+        51% {
+            transform: scaleX(0) translateY(-100%) scaleY(0);
+            opacity: 0;
+        }
+        99% {
+            transform: scaleX(0) translateX(0) scaleY(0);
+        }
+        100% {
+            transform: scaleX(0) translateX(0) scaleY(1);
+        }
+    }
+    .top_img_f:nth-of-type(2) {
+        -webkit-animation-delay: 5s;
+        animation-delay: 5s;
+    }
+
+    .top_img_f:nth-of-type(3) {
+        -webkit-animation-delay: 10s;
+        animation-delay: 10s;
+    }
+
+    .top_img_f:nth-of-type(4) {
+        -webkit-animation-delay: 15s;
+        animation-delay: 15s;
+    }
+
+    .top_img_in {
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 100%;
+        background-position: center center;
+        position: absolute;
+        will-change: contents;
+    }
+
+    /*transform: translateX(-50%);
+    -webkit-animation: anime 20s 0s infinite;
+    animation: anime 20s 0s infinite;
+    opacity: 0
+}
+
+@keyframes anime {
+    0% {
+        filter: blur(0);
+    }
+    % {
+    }
+    35% {
+
+
+    }
+    50% {
+        opacity: 0;
+        transform: translateX(50%);
+        filter: blur(0);
+        z-index: 9;
+    }
+    51% {
+        transform: scale(2);
+    }
+    100% {
+        opacity: 0
+    }
+}.top_img_in:nth-of-type(2) {
+     -webkit-animation-delay: 8s;
+     animation-delay: 8s;
+ }
+
+.top_img_in:nth-of-type(3) {
+    -webkit-animation-delay: 16s;
+    animation-delay: 16s;
+}*/
+    #top_t1 {
+        background-image: url("../images/t1.jpg");
+    }
+
+    #top_t2 {
+        background-image: url("../images/t2.jpg");
+    }
+
+    #top_t3 {
+        background-image: url("../images/t3.jpg");
+    }
+
+    #top_t4 {
+        background-image: url("../images/t4.jpg");
+    }
+-------------------
+
+<script type="text/javascript">
+	const t4 = document.getElementById('last_f');
+	function z2display() {
+	    console.log('block');
+	    t4.style.zIndex = '10'
+    }
+	function z2back() {
+	    console.log('banish');
+		t4.style.zIndex = '-10'
+		setTimeout('z2display()', 5000)
+    }
+    setInterval('z2back()', 21000);
+</script>
+
+-----------------------
+
+<!--e/#top_img 横スライドぼかし-->
