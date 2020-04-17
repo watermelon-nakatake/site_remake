@@ -80,39 +80,65 @@
 				<span id="blend_second">自分誌や同人誌、コミュニティプレスなど、オリジナルの本を作りませんか？<br>私たちがお手伝いします。</span></div>
 			<div id="top_page_nav" class="main_cl_bg">
 				<ul>
-					<li>大判デジタル印刷</li>
-					<li>オンデマンド印刷</li>
-					<li>CTP印刷</li>
-					<li>機器紹介</li>
+					<li><a href=""><span class="top_page_nav_title">大判デジタル印刷</span><span class="top_page_nav_d">壁紙や垂幕のような大きな紙や布に印刷ができます</span></a>
+					</li>
+					<li><a href=""><span class="top_page_nav_title">オンデマンド印刷</span><span class="top_page_nav_d">必要なものを必要なだけ、スピーディーに印刷します</span></a>
+					</li>
+					<li><a href=""><span class="top_page_nav_title">CTP印刷</span><span class="top_page_nav_d">従来とは異なる高品質・低価格・短納期な印刷システムです</span></a>
+					</li>
 				</ul>
 			</div>
 		</section>
 		<div class="zigzag"></div>
 		<section class="l_view">
-			<div class="wrapper"><a id="sec01" class="ach"></a>
-				<h2><span class="main_cl_bdb">私たちにお任せください</span></h2>
-				<p>お客様のお役に立ちます！</p>
-				<ul class="mc_li">
-					<li class="sp_li2 fi fi_up" data-fi_margin="0" id="fi_e1"><span class="tst">業務内容</span>
-						<span>弊社の業務内容をご紹介します。</span></li>
-					<li class="sp_li2 fi fi_up" data-fi_trigger="#fi_e1" data-fi_delay="300"><span
-							class="tst">弊社の技術</span>
-						<span>弊社にはこんな意外な技術があります。</span></li>
-					<li class="sp_li2 fi fi_up" data-fi_trigger="#fi_e1" data-fi_delay="600"><span
-							class="tst">実績</span>
-						<span>これまでの主な実績をご紹介します。</span>
-					</li>
-					<li class="sp_li2 fi fi_up" data-fi_trigger="#fi_e1" data-fi_delay="900"><span
-							class="tst">会社案内</span>
-						<span>弊社のことを少しご紹介します。</span>
-					</li>
+			<div class="wrapper">
+				<h2 class="h2_info"><span>お知らせ</span></h2>
+				<ul id="top_info">
+					<li><span class="info_date">2020.3.15</span><span class="info_cont">社屋前ポスターをリニューアルしました</span></li>
+					<li><span class="info_date">2020.4.17</span><span class="info_cont">webサイトをリニューアルしました</span></li>
+
 				</ul>
-				<h2><span>ご挨拶</span></h2>
-				<p>思いついたら即実行</p>
-
-				<p>お客様のお役に立ちます！</p>
-
 			</div>
+		</section>
+		<section class="l_view">
+			<a id="sec01" class="ach"></a>
+			<div class="area1">
+				<div class="text_area1 fi fi_up_and_opa" data-fi_margin="300"><h2>お客様のイメージを形にします</h2>
+					<p>私たちの仕事は、お客様の持っているイメージを印刷して「形」にすることです。</p>
+					<p>技術と、経験と、そして何よりも熱意でお客様のやりたいことを実現します。</p>
+					<p>決して「NO」は言わない。<br>それが私たちの誇りです。</p></div>
+				<div class="image_area1"></div>
+			</div>
+		</section>
+		<section class="l_view">
+
+				<div class="fi fi_filter bg_img" id="bg_img1">
+					<h2>弊社のコア技術</h2>
+					<ul class="mc_li">
+						<li class="sp_li2 fi fi_up" data-fi_margin="0" id="fi_e1"><span class="tst">業務内容</span>
+							<span>弊社の業務内容をご紹介します。</span></li>
+						<li class="sp_li2 fi fi_up" data-fi_trigger="#fi_e1" data-fi_delay="300"><span
+								class="tst">弊社の技術</span>
+							<span>弊社にはこんな意外な技術があります。</span></li>
+						<li class="sp_li2 fi fi_up" data-fi_trigger="#fi_e1" data-fi_delay="600"><span
+								class="tst">実績</span>
+							<span>これまでの主な実績をご紹介します。</span>
+						</li>
+						<li class="sp_li2 fi fi_up" data-fi_trigger="#fi_e1" data-fi_delay="900"><span
+								class="tst">会社案内</span>
+							<span>弊社のことを少しご紹介します。</span>
+						</li>
+					</ul>
+				</div>
+
+		</section>
+		<section class="l_view">
+			<h2><span>ご挨拶</span></h2>
+			<p>思いついたら即実行</p>
+
+			<p>お客様のお役に立ちます！</p>
+
+
 		</section>
 	</article>
 </main>
@@ -128,8 +154,8 @@
 	<div id="f_wrapper">
 		<div id="company_info">
 			<ul>
-				<li id="c_name_o"><!--<img src="images/main_logo.png" id="c_logo" alt="ロゴ"/><img
-						src="images/main_logo.png" id="f_logo">-->有限会社いろは企画
+				<li id="c_name_o"><img
+						src="images/main_logo.png" id="f_logo">
 				</li>
 				<li id="c_post">〒889-1603</li>
 				<li id="c_address">宮崎市清武町正手3丁目19-2</li>
@@ -290,43 +316,42 @@
     const fIcon = document.getElementById('f_icon');
     const tIcon = document.getElementById('t_icon');
     const tNum = document.getElementById('tel_num');
-
     const scrollAnimationFunc = function () {
-            TopPosition = documentElement.scrollTop;
-            console.log(TopPosition);
-            if (window.innerHeight / 3 * 2 < TopPosition) {
-                toTop.classList.add('show');
-            } else if (window.innerHeight / 3 * 2 > TopPosition) {
-                toTop.classList.remove('show')
+        TopPosition = documentElement.scrollTop;
+        console.log(TopPosition);
+        if (window.innerHeight / 3 * 2 < TopPosition) {
+            toTop.classList.add('show');
+        } else if (window.innerHeight / 3 * 2 > TopPosition) {
+            toTop.classList.remove('show')
+        }
+        if (TopPosition > 100) {
+            hdBottom.style.boxShadow = '0 3px 3px 0 rgba(40, 40, 40, 0.1)'
+        } else if (TopPosition < 100) {
+            hdBottom.style.boxShadow = 'none'
+        }
+        if (TopPosition < 100) {
+            hdBottom.style.backgroundColor = 'rgba(255, 255, 255, 0)'
+        } else if (TopPosition >= 100) {
+            hdBottom.style.backgroundColor = 'rgba(255, 255, 255, 0.9)'
+        }
+        if (TopPosition < 100) {
+            fIcon.style.backgroundColor = '#ffffff'
+            tIcon.style.backgroundColor = '#ffffff'
+            tNum.style.color = '#ffffff'
+            for (let i = 0; i < gNavA.length; i++) {
+                gNavA[i].style.color = '#ffffff'
+                gNavA[i].style.textShadow = 'rgba(165, 165, 165, 0.7)'
             }
-            if (TopPosition > 100) {
-                hdBottom.style.boxShadow = '0 3px 3px 0 rgba(40, 40, 40, 0.1)'
-            } else if (TopPosition < 300) {
-                hdBottom.style.boxShadow = 'none'
-            }
-            if (TopPosition < 600) {
-                hdBottom.style.backgroundColor = 'rgba(255, 255, 255, ' + String((TopPosition / 600) * 0.9) + ')'
-            } else if (TopPosition >= 600) {
-                hdBottom.style.backgroundColor = 'rgba(255, 255, 255, 0.9)'
-            }
-            if (TopPosition < 300) {
-                let gNum = String(Math.round(255 - (TopPosition / 300 * (255 - 51))));
-                fIcon.style.backgroundColor = 'rgb(' + gNum + ', ' + gNum + ', ' + gNum + ')'
-                tIcon.style.backgroundColor = 'rgb(' + gNum + ', ' + gNum + ', ' + gNum + ')'
-                tNum.style.color = 'rgb(' + gNum + ', ' + gNum + ', ' + gNum + ')'
-                for (let i = 0; i < gNavA.length; i++) {
-                    gNavA[i].style.color = 'rgb(' + gNum + ', ' + gNum + ', ' + gNum + ')'
-                    gNavA[i].style.textShadow = 'rgba(165, 165, 165, ' + String((TopPosition / 300) * 0.7) + ')'
-                }
-            } else if (TopPosition >= 300) {
-                for (let i = 0; i < gNavA.length; i++) {
-                    gNavA[i].style.color = 'rgb(51, 51, 51)';
-                    gNavA[i].style.textShadow = 'none';
-                }
-
+        } else if (TopPosition >= 100) {
+            fIcon.style.backgroundColor = '#333333'
+            tIcon.style.backgroundColor = '#333333'
+            tNum.style.color = '#333333'
+            for (let i = 0; i < gNavA.length; i++) {
+                gNavA[i].style.color = '#333333';
+                gNavA[i].style.textShadow = 'none';
             }
         }
-    ;
+    }
     window.addEventListener('load', scrollAnimationFunc);
     window.addEventListener('scroll', scrollAnimationFunc)
 </script>

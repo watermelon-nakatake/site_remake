@@ -235,3 +235,86 @@ h2:before{
 -----------------------
 
 <!--e/#top_img 横スライドぼかし-->
+
+<!--ボックスanimation-->
+
+<script>
+    const scrollAnimationClass = 'fi';
+    const scrollAnimationShowClass = 'is_active';
+    const triggerMarginDefault = 200;
+    const scrollAnimationElm = document.querySelectorAll('.' + scrollAnimationClass);
+    const fadeInScrollAnimationFunc = function () {
+        const dataMargin = scrollAnimationClass + '_margin';
+        const dataTrigger = scrollAnimationClass + '_trigger';
+        const dataDelay = scrollAnimationClass + '_delay';
+        for (let l = 0; l < scrollAnimationElm.length; l++) {
+            let triggerMargin = triggerMarginDefault;
+            const elm = scrollAnimationElm[l];
+            let showPos = 0;
+            if (elm.dataset[dataMargin] != null) {
+                triggerMargin = parseInt(elm.dataset[dataMargin]);
+            }
+            if (elm.dataset[dataTrigger]) {
+                showPos = document.querySelector(elm.dataset[dataTrigger]).getBoundingClientRect().top + triggerMargin;
+            } else {
+                showPos = elm.getBoundingClientRect().top + triggerMargin;
+            }
+            if (window.innerHeight > showPos) {
+                const delay = (elm.dataset[dataDelay]) ? elm.dataset[dataDelay] : 0;
+                setTimeout(function (index) {
+                    scrollAnimationElm[index].classList.add(scrollAnimationShowClass);
+                }.bind(null, l), delay);
+            }
+        }
+    };
+    window.addEventListener('load', fadeInScrollAnimationFunc);
+    window.addEventListener('scroll', fadeInScrollAnimationFunc);
+</script>
+
+---------------
+
+    /* fade in */
+    .fi {
+        opacity: 0;
+        transition: all 0.5s ease;
+        will-change: contents;
+    }
+
+    .fi.is_active {
+        opacity: 1;
+        transform: none
+    }
+
+    .fi_lr {
+        transform: translate(-200px, 0);
+    }
+
+    .fi_rl {
+        transform: translate(200px, 0);
+    }
+
+    .fi_up {
+        transform: translate(0, 200px);
+    }
+
+    .fi_down {
+        transform: translate(0, -200px);
+    }
+
+    .fi_scaleUp {
+        transform: scale(.5);
+    }
+
+    .fi_scaleDown {
+        transform: scale(1.5);
+    }
+
+    .fi_rotateL {
+        transform: rotate(180deg);
+    }
+
+    .fi_rotateR {
+        transform: rotate(-180deg);
+    }
+
+<!--e/ボックスanimation-->

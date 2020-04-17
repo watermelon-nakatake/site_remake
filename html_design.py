@@ -771,9 +771,10 @@ def pick_up_case_url(case_name):
 # todo:イメージ、背景色、レイアウト、フォント等をテストできるjavascript 一つのダイアログ風の箱で浮かせる
 # todo:事前にインタビューした好みや方針、セールスポイント等から叩き台のデザインを作るアプリ
 # todo:サンプルページのアクセス解析
+# todo:ドロップダウンメニュ　by js
 
 # プロジェクト名
-this_case = 'iroha_pro'
+this_case = 'kuma'
 # 既存サイトのurl
 target_url = pick_up_case_url(this_case)
 
