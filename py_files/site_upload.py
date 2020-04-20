@@ -5,7 +5,7 @@ import scp
 import re
 import datetime
 import time
-import html_design
+from py_files import html_design
 import pathlib
 
 

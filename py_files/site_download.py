@@ -8,8 +8,8 @@ import time
 import re
 import chardet
 import pickle
-from html_design import this_case
-from html_design import target_url
+from py_files.html_design import this_case
+from py_files.html_design import target_url
 
 
 def download_site(url, save_name):

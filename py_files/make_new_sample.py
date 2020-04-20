@@ -1,5 +1,5 @@
-import html_design
-from html_design import this_case
+from py_files import html_design
+from py_files.html_design import this_case
 import os
 import shutil
 from PIL import Image
@@ -11,10 +11,10 @@ def make_new_sample_from_data(case_name):
         os.mkdir('case_dir/' + case_name + '/product')
         os.mkdir('case_dir/' + case_name + '/product/css')
         os.mkdir('case_dir/' + case_name + '/md')
-        shutil.copyfile('main_temp/css/base_sample.css', 'case_dir/' + case_name + '/product/css/base_sample.css')
-        shutil.copyfile('main_temp/data.txt', 'case_dir/' + case_name + '/data_' + case_name + '.txt')
+        shutil.copyfile('../main_temp/css/base_sample.css', 'case_dir/' + case_name + '/product/css/base_sample.css')
+        shutil.copyfile('../main_temp/data.txt', 'case_dir/' + case_name + '/data_' + case_name + '.txt')
         shutil.copyfile('main_temp/sample.htm', 'case_dir/' + case_name + '/product/test.html')
-        shutil.copyfile('main_temp/md_tmp.md', 'case_dir/' + case_name + '/md/test.md')
+        shutil.copyfile('../main_temp/md_tmp.md', 'case_dir/' + case_name + '/md/test.md')
     else:
         html_design.insert_cop_data_to_sample(case_name)
     resize_images(case_name)

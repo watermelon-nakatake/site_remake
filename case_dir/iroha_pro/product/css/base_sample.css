@@ -119,14 +119,16 @@ article ol li {
 
 h2 {
     padding: 0;
-    margin: 20px 0 60px 3%;
-    width: 90%;
+    margin: 20px 0;
+    width: 100%;
     height: 39px;
     position: relative;
     z-index: 5;
+    text-align: center;
+    font-size: 25px ;
 }
 
-h2 span {
+/*h2 span {
     display: inline-block;
     padding: 0 5px;
     width: auto;
@@ -148,7 +150,7 @@ h2:before {
     left: 0;
     top: 50%;
     z-index: -1;
-}
+}*/
 
 h3 {
     font-size: 20px;
@@ -487,19 +489,22 @@ form {
     border-bottom: #00a3a3 2px solid;
 }
 
-.top_page_nav_title{
+.top_page_nav_title {
     display: block;
     font-weight: bold;
     font-size: 18px;
 }
-a .top_page_nav_title{
+
+a .top_page_nav_title {
     text-decoration: none;
     color: #333333;
 }
-.top_page_nav_d{
+
+.top_page_nav_d {
     display: block;
 }
-a .top_page_nav_d{
+
+a .top_page_nav_d {
     text-decoration: none;
     color: #333333;
 }
@@ -526,7 +531,8 @@ a .top_page_nav_d{
 
 .zigzag::before {
     top: -20px;
-    background: linear-gradient(45deg, #f5f5f5 10px, transparent 0), linear-gradient(315deg, #f5f5f5 10px, transparent 0);
+    background: linear-gradient(45deg, #f5f5f5 10px, transparent 0),
+    linear-gradient(315deg, #f5f5f5 10px, transparent 0);
     background-size: 20px 20px;
 }
 
@@ -551,6 +557,7 @@ a .top_page_nav_d{
     display: block;
     clear: both
 }
+
 .h2_info {
     padding: 0;
     margin: 20px 0 60px 3%;
@@ -558,11 +565,12 @@ a .top_page_nav_d{
     height: 39px;
     position: relative;
     z-index: 5;
+    text-align: left;
 }
 
 .h2_info span {
     display: inline-block;
-    padding: 0 5px;
+    padding: 0 10px;
     width: auto;
     margin: 0 auto;
     font-size: 18px;
@@ -570,6 +578,7 @@ a .top_page_nav_d{
     letter-spacing: 1px;
     background-color: #f5f5f5;
     z-index: 5;
+    position: absolute;
 }
 
 .h2_info:before {
@@ -583,18 +592,36 @@ a .top_page_nav_d{
     top: 45%;
     z-index: -1;
 }
-#top_info{
+
+#top_info {
     width: 80%;
     margin: 20px auto;
     list-style: none;
 }
-#top_info li{
+
+#top_info li {
     margin-bottom: 10px;
 }
-.info_date{
+
+.info_date {
     display: inline-block;
     margin-right: 30px;
 }
+
+.bg_img_text {
+    position: relative;
+    z-index: 10;
+    color: #ffffff;
+    font-size: 20px;
+    text-shadow: #bbbbbb 0 0 2px;
+}
+
+.bg_img_text p {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
 .ach {
     display: block;
     padding-top: 90px;
@@ -854,7 +881,7 @@ a .top_page_nav_d{
         margin-left: -100%;
         transform: scaleX(0) translateX(0%) scaleY(1);
         filter: blur(15px);
-        will-change: contents;
+        will-change: contents
     }
 
     @keyframes imgFrame {
@@ -904,7 +931,7 @@ a .top_page_nav_d{
         width: 100%;
         background-position: center center;
         position: absolute;
-        will-change: contents;
+        will-change: contents
     }
 
     .top_img_in:before {
@@ -1209,7 +1236,8 @@ a .top_page_nav_d{
 
     .zigzag::before {
         top: -20px;
-        background: linear-gradient(45deg, #f5f5f5 10px, transparent 0), linear-gradient(315deg, #f5f5f5 10px, transparent 0);
+        background: linear-gradient(45deg, #f5f5f5 10px, transparent 0),
+        linear-gradient(315deg, #f5f5f5 10px, transparent 0);
         background-size: 20px 20px;
     }
 
@@ -1222,15 +1250,18 @@ a .top_page_nav_d{
         padding: 60px 7%;
         float: right;
     }
-    .text_area1 h2{
+
+    .text_area1 h2 {
         text-align: center;
         font-size: 22px;
         margin-bottom: 30px;
     }
-    .text_area1 h2:before{
+
+    .text_area1 h2:before {
         display: none;
     }
-    article .text_area1 p{
+
+    article .text_area1 p {
         margin-left: 10px;
     }
 
@@ -1318,10 +1349,13 @@ a .top_page_nav_d{
     .fi_rotateR {
         transform: rotate(-180deg);
     }
-    .fi_up_and_opa{
+
+    .fi_up_and_opa {
         transform: translate(0, 50px);
         opacity: 0;
     }
+
+    /* 背景ぼかし */
     .fi_filter {
         filter: blur(0);
         opacity: 1;
@@ -1329,9 +1363,10 @@ a .top_page_nav_d{
         overflow: hidden;
         position: relative;
     }
-    .fi_filter.is_active::before{
+
+    .fi_filter.is_active::before {
         content: '';
-        background:inherit;
+        background: inherit;
         filter: blur(2px);
         z-index: 2;
         position: absolute;
@@ -1340,7 +1375,8 @@ a .top_page_nav_d{
         right: -5px;
         left: -5px;
     }
-    .bg_img h2{
+
+    .bg_img h2 {
         text-align: center;
         font-size: 25px;
         color: #ffffff;
@@ -1350,14 +1386,88 @@ a .top_page_nav_d{
         margin: 20px 0 10px;
         width: 100%;
     }
-    #bg_img1{
+
+    #bg_img1 {
         background-image: url("../images/bg1.jpeg");
         background-size: cover;
         background-repeat: no-repeat;
         height: 600px;
         margin: 30px 0;
+        /* 背景ぼかし ここまで */
     }
-
+    .img_li{
+        margin: 0;
+        list-style: none
+    }
+    .img_li2{
+        width: 45%;
+        height: 250px;
+        float: left;
+        margin: 20px 2%;
+        background-size: cover;
+        position: relative;
+        overflow: hidden;
+    }
+    .img_li_in {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    .img_li_img:before{
+        content: '';
+        background-color: rgba(0, 0, 0, 0.1);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+    .img_li2 a{
+        color: #ffffff;
+        position: relative;
+        z-index: 10;
+        text-decoration: none;
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+    .img_li2 a span{
+        display: inline-block;
+        margin: 25px 0 0 25px;
+        font-size: 20px;
+        position: relative;
+        z-index: 10;
+    }
+    .img_li_img{
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        will-change: contents;
+        z-index: 9;
+        transition: 0.5s
+    }
+    a:hover .img_li_img{
+        transform: scale(1.1);
+        transition: all 0.5s;
+    }
+    #img_li_1{
+        background-image: url("../images/t1.jpg");
+    }
+    #img_li_2{
+        background-image: url("../images/t2.jpg");
+    }
+    #img_li_3{
+        background-image: url("../images/t3.jpg");
+    }
+    #img_li_4{
+        background-image: url("../images/t4.jpg");
+    }
     #company_info {
         width: 35%;
         margin: 10px 0 0 0;

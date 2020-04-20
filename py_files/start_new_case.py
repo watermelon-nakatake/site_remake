@@ -1,7 +1,6 @@
-import html_design
-from html_design import this_case
-from html_design import target_url
-import site_download
+from py_files import html_design, site_download
+from py_files.html_design import this_case
+from py_files.html_design import target_url
 import os
 
 

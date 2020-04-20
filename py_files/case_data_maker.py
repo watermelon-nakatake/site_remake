@@ -1,5 +1,4 @@
 import pickle
-import html_design
 
 
 # 案件の基本データを追加保存

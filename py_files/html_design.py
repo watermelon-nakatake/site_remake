@@ -5,7 +5,7 @@ import markdown
 import datetime
 import shutil
 import time
-from list_lib import js_dict
+from py_files.list_lib import js_dict
 
 css_vars = ['wrapper_width', 'main_width_per', 'header_height', 'footer_height']
 width_class_list = ['', 'width_100', 'width_50', 'width_33', 'width_25', 'width_20']
@@ -625,11 +625,11 @@ def new_case_preparation(case_name):
             shutil.copyfile('main_temp/images/' + file_name_c,
                             'case_dir/' + case_name + '/product/images/' + file_name_c)
     if not os.path.exists('case_dir/' + case_name + '/data_' + case_name + '.txt'):
-        shutil.copyfile('main_temp/data.txt', 'case_dir/' + case_name + '/data_' + case_name + '.txt')
+        shutil.copyfile('../main_temp/data.txt', 'case_dir/' + case_name + '/data_' + case_name + '.txt')
     if not os.path.exists('case_dir/' + case_name + '/md/test.md'):
-        shutil.copyfile('main_temp/md_tmp.md', 'case_dir/' + case_name + '/md/test.md')
+        shutil.copyfile('../main_temp/md_tmp.md', 'case_dir/' + case_name + '/md/test.md')
     if not os.path.exists('case_dir/' + case_name + '/product/test.html'):
-        shutil.copyfile('main_temp/sample.html', 'case_dir/' + case_name + '/product/test.md')
+        shutil.copyfile('../main_temp/sample.html', 'case_dir/' + case_name + '/product/test.md')
 
 
 # 基本データの挿入
