@@ -36,6 +36,10 @@ def scp_upload(case_name, domain_str, user_name, password_str, root_directory, u
         ssh.connect(hostname=domain_str, port=22, username=user_name, password=password_str)
         # リモートのディレクトリ確認
         sftp_connection = ssh.open_sftp()
+        print(root_directory)
+        dir_list = sftp_connection.listdir('www/wmelon/sample')
+        if not root_directory.replace('www/wmelon/sample', '') in dir_list:
+            ssh.exec_command('mkdir ' + root_directory)
         remote_files = sftp_connection.listdir(root_directory)
         remote_dir = list(set([re.sub(r'/.+$', '', remote_file) for remote_file in remote_files]))
         local_dir_l = pickup_dir(up_file_list)
@@ -145,8 +149,7 @@ def sample_page_upload(case_name):
     up_files = [y.as_posix().replace('case_dir/' + case_name + '/product/', '')
                 for y in p.glob('**/*') if '.' in y.as_posix()]
     print(up_files)
-
-    scp_upload(case_name, 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon/sample/kuma', up_files)
+    scp_upload(case_name, 'wmelon01.sakura.ne.jp', 'wmelon01', '4tmy3uap6y', 'www/wmelon/sample/' + case_name, up_files)
 
 
 if __name__ == '__main__':

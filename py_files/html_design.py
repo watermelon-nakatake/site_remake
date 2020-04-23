@@ -774,7 +774,7 @@ def pick_up_case_url(case_name):
 # todo:ドロップダウンメニュ　by js
 
 # プロジェクト名
-this_case = 'kuma'
+this_case = 'iroha_pro'
 # 既存サイトのurl
 target_url = pick_up_case_url(this_case)
 
@@ -787,7 +787,7 @@ if __name__ == '__main__':
     unlock_k = ['all']
     category_li_k = {'works': '実績', 'company': '会社案内', 'making_site': 'サイト作成', 'contact': 'お問合せ',
                      'technology': 'web技術', 'policy': 'サイトポリシー'}
-    # main('kuma', 'https://https://www.kuma-kensetu.jp/', category_li_k, '株式会社ウォーターメロン', unlock_k)
+    # main('', 'https://https://www.kuma-kensetu.jp/', category_li_k, '株式会社ウォーターメロン', unlock_k)
 
     """
     category_li = {'works': '実績', 'company': '会社案内', 'making_site': 'サイト作成', 'contact': 'お問合せ',

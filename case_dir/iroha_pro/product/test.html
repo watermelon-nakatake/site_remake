@@ -45,27 +45,34 @@
 						src="images/main_logo.png" alt="有限会社いろは企画" id="main_logo" width="200" height="36"></a>
 				</div>
 				<div id="header_info">
-					<div id="tel_num">0985-85-5889</div>
+					<div id="tel_num"><span class="w2b" id="phone_icon"></span>0985-85-5889</div>
 					<div class="w2b" id="f_icon"></div>
 					<div class="w2b" id="t_icon"></div>
 				</div>
 			</div>
 			<nav id="g_nav">
 				<ul>
-					<li class="gn01"><a href="#top_page" class="g_nav_a"><span class="g_o"><span data-hover="業務案内"
-					                                                                             class="g_i">業務案内</span></span></a>
+					<li class="gn01 g_nav_li"><a href="#top_page" class="g_nav_a"><span
+							class="g_nav_a_s">業務案内</span></a>
 					</li>
-					<li class="gn02"><a href="#top_page" class="g_nav_a"><span class="g_o"><span data-hover="印刷技術"
-					                                                                             class="g_i">印刷技術</span></span></a>
+					<li class="gn02 g_nav_li">
+						<a class="g_nav_a" id="g_nav_btn"><span
+								class="g_nav_a_s drop">印刷技術<span class="mob_none"> &#9662;</span></span></a>
+						<ul id="g_nav_c1">
+							<li class="g_nav_c" id="gnc1"><a href="#top_page">大判デジタル印刷</a></li>
+							<li class="g_nav_c" id="gnc2"><a href="#top_page">オンデマンド印刷</a></li>
+							<li class="g_nav_c" id="gnc3"><a href="#top_page">CTP印刷</a></li>
+							<li class="g_nav_c" id="gnc4"><a href="#top_page">CPT印刷</a></li>
+						</ul>
 					</li>
-					<li class="gn03"><a href="#top_page" class="g_nav_a"><span class="g_o"><span data-hover="実績紹介"
-					                                                                             class="g_i">実績紹介</span></span></a>
+					<li class="gn03 g_nav_li"><a href="#top_page" class="g_nav_a"><span
+							class="g_nav_a_s">実績紹介</span></a>
 					</li>
-					<li class="gn04"><a href="#top_page" class="g_nav_a"><span class="g_o"><span data-hover="会社案内"
-					                                                                             class="g_i">会社案内</span></span></a>
+					<li class="gn04 g_nav_li"><a href="#top_page" class="g_nav_a"><span
+							class="g_nav_a_s">会社案内</span></a>
 					</li>
-					<li class="gn05"><a href="#top_page" class="g_nav_a"><span class="g_o"><span data-hover="お問合せ"
-					                                                                             class="g_i">お問合せ</span></span></a>
+					<li class="gn05 g_nav_li"><a href="#top_page" class="g_nav_a"><span
+							class="g_nav_a_s">お問合せ</span></a>
 					</li>
 				</ul>
 			</nav>
@@ -86,7 +93,7 @@
 					<li><a href="#top_page"><span class="top_page_nav_title">オンデマンド印刷</span><span
 							class="top_page_nav_d">必要なものを必要なだけ、スピーディーに印刷します</span></a>
 					</li>
-					<li><a href="#top_page"><span class="top_page_nav_title">CTP印刷</span><span class="top_page_nav_d">従来とは異なる高品質・低価格・短納期な印刷システムです</span></a>
+					<li><a href="#top_page"><span class="top_page_nav_title">CTP印刷</span><span class="top_page_nav_d">従来とは異なる高品質・低価格・短納期の印刷システムです</span></a>
 					</li>
 				</ul>
 			</div>
@@ -105,11 +112,12 @@
 		<section class="l_view">
 			<a id="sec01" class="ach"></a>
 			<div class="area1">
+				<div class="image_area1"></div>
 				<div class="text_area1 fi fi_up_and_opa" data-fi_margin="300"><h2>お客様のイメージを形にします</h2>
 					<p>私たちの仕事は、お客様の持っているイメージを印刷して「形」にすることです。</p>
 					<p>技術と、経験と、そして何よりも熱意でお客様のやりたいことを実現します。</p>
 					<p>決して「NO」は言わない。<br>それが私たちの誇りです。</p></div>
-				<div class="image_area1"></div>
+
 			</div>
 		</section>
 		<!--<section class="l_view">
@@ -146,17 +154,17 @@
 						</div>
 					</a></li>
 					<li class="img_li2 fi fi_up" data-fi_delay="300" data-fi_trigger="#img_t"><a href="#top_page">
-						<div class="img_li_in"><span>大判印刷技術</span>
+						<div class="img_li_in"><span>オンデマンド印刷技術</span>
 							<div id="img_li_2" class="img_li_img"></div>
 						</div>
 					</a></li>
 					<li class="img_li2 fi fi_up" data-fi_delay="600" data-fi_trigger="#img_t"><a href="#top_page">
-						<div class="img_li_in"><span>大判印刷技術</span>
+						<div class="img_li_in"><span>CTP印刷技術</span>
 							<div id="img_li_3" class="img_li_img"></div>
 						</div>
 					</a></li>
 					<li class="img_li2 fi fi_up" data-fi_delay="900" data-fi_trigger="#img_t"><a href="#top_page">
-						<div class="img_li_in"><span>大判印刷技術</span>
+						<div class="img_li_in"><span>WEB技術</span>
 							<div id="img_li_4" class="img_li_img"></div>
 						</div>
 					</a></li>
@@ -165,10 +173,22 @@
 		</section>
 
 		<section class="l_view">
-			<h2><span>オリジナル本作成の流れ</span></h2>
-			<p>お客様のオリジナルの本を作成する場合、このような流れで作っていきます。</p>
-
-
+			<div class="wrapper">
+				<h2><span>オリジナル本作成の流れ</span></h2>
+				<p>お客様のオリジナルの本を作成する場合、このような流れで作っていきます。</p>
+				<div class="arrow_box"><h3>概算見積もり</h3>
+					<p>ページ数などから大まかな見積もりをします</p></div>
+				<div class="arrow_box fi fi_down"><h3>装丁や素材の検討</h3>
+					<p>表紙や中身の髪質などを決めます
+					</p></div>
+				<div class="arrow_box fi fi_down"><h3>デザインの決定</h3>
+					<p>全体的な本のデザインを決めます。</p></div>
+				<div class="arrow_box fi fi_down"><h3>原稿の入稿</h3>
+					<p>原稿を入稿して頂き、ページ数などを検討します</p>
+				</div>
+				<div class="sim_box fi fi_down"><h3>印刷</h3>
+					<p>本を印刷します。</p></div>
+			</div>
 
 		</section>
 	</article>
@@ -199,13 +219,16 @@
 			<ul>
 				<li class="fl_cat fn01"><a href="#top_page" class="bold_f">業務内容</a>
 					<ul>
-						<li><a href="#top_page">弊社の強み</a></li>
-						<li><a href="#top_page">料金</a></li>
+						<li><a href="#top_page">屋内壁紙クロス印刷</a></li>
+						<li><a href="#top_page">屋内外横断幕・垂幕</a></li>
+						<li><a href="#top_page">カッティングシート</a></li>
 					</ul>
 				</li>
 				<li class="fl_cat fn02"><a href="#top_page" class="bold_f">弊社の技術</a>
 					<ul>
-						<li><a href="#top_page">実績</a></li>
+						<li><a href="#top_page">大判デジタル印刷</a></li>
+						<li><a href="#top_page">オンデマンド印刷</a></li>
+						<li><a href="#top_page">CTP印刷</a></li>
 					</ul>
 				</li>
 				<li class="fl_cat fn03"><a href="#top_page" class="bold_f">会社案内</a>
@@ -220,6 +243,7 @@
 					<ul>
 						<li><a href="#top_page">メール</a></li>
 						<li><a href="#top_page">プライバシー</a></li>
+						<li><a href="#top_page">著作権</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -235,6 +259,29 @@
                                                                            alt="ページTOPに戻る"/></a></p>
 </div>
 <!--free_script-->
+<script type="text/javascript">
+    (function () {
+        document.addEventListener('DOMContentLoaded', function () { // HTML解析が終わったら
+            const btn = document.getElementById('g_nav_btn'); // ボタンをidで取得
+            if (btn) { // ボタンが存在しないときにエラーになるのを回避
+                btn.addEventListener('click', function () { //ボタンがクリックされたら
+                    this.classList.toggle('is_open'); // is-openを付加する
+                    console.log('is_open')
+                });
+            }
+        });
+    }());
+    (function () {
+        document.addEventListener('DOMContentLoaded', function () { // HTML解析が終わったら
+            const btn = document.getElementById('dropdown__btn'); // ボタンをidで取得
+            if (btn) { // ボタンが存在しないときにエラーになるのを回避
+                btn.addEventListener('click', function () { //ボタンがクリックされたら
+                    this.classList.toggle('is-open'); // is-openを付加する
+                });
+            }
+        });
+    }());
+</script>
 <script type="text/javascript">
     const t4 = document.getElementById('last_f');
 
@@ -287,16 +334,16 @@
 <script type="text/javascript">
     const sW = window.innerWidth;
     const sH = window.innerHeight;
-    let hPlus;
+    let mInt;
     console.log('sH : ' + String(sH));
     const m_height = document.getElementsByClassName('mc_view');
     if (sW < 768) {
-        hPlus = 0
+        mInt = '450px'
     } else {
-        hPlus = 0
+        mInt = String(sH) + 'px'
     }
     for (let i = 0; i < m_height.length; i++) {
-        m_height[i].style.height = String(sH) + 'px'
+        m_height[i].style.height = mInt
     }
     const b_height = document.getElementsByClassName('bc_view');
     let bcH;
@@ -317,9 +364,17 @@
         tpH = 100
     }
     console.log(String(sH - 200 - tpH) + 'px');
-    t_height.style.height = String(sH) + 'px';
+    if (sW < 768) {
+        t_height.style.height = '450px';
+    } else {
+        t_height.style.height = String(sH) + 'px'
+    }
     for (let k = 0; k < img_height.length; k++) {
-        img_height[k].style.height = String(sH) + 'px'
+        if (sW < 768) {
+            img_height[k].style.height = '450px';
+        } else {
+            img_height[k].style.height = String(sH) + 'px'
+        }
     }
 </script>
 <!--サイズ変更でリロード-->
@@ -343,43 +398,48 @@
     const documentElement = document.documentElement;
     const toTop = document.getElementById('move-page-top');
     const hdBottom = document.getElementById('header_i');
-    const gNavA = document.getElementsByClassName('g_nav_a');
+    const gNavAS = document.getElementsByClassName('g_nav_a_s');
     const fIcon = document.getElementById('f_icon');
     const tIcon = document.getElementById('t_icon');
+    const pIcon = document.getElementById('phone_icon');
     const tNum = document.getElementById('tel_num');
     const scrollAnimationFunc = function () {
-        TopPosition = documentElement.scrollTop;
-        console.log(TopPosition);
-        if (window.innerHeight / 3 * 2 < TopPosition) {
-            toTop.classList.add('show');
-        } else if (window.innerHeight / 3 * 2 > TopPosition) {
-            toTop.classList.remove('show')
-        }
-        if (TopPosition > 100) {
-            hdBottom.style.boxShadow = '0 3px 3px 0 rgba(40, 40, 40, 0.1)'
-        } else if (TopPosition < 100) {
-            hdBottom.style.boxShadow = 'none'
-        }
-        if (TopPosition < 100) {
-            hdBottom.style.backgroundColor = 'rgba(255, 255, 255, 0)'
-        } else if (TopPosition >= 100) {
-            hdBottom.style.backgroundColor = 'rgba(255, 255, 255, 0.9)'
-        }
-        if (TopPosition < 100) {
-            fIcon.style.backgroundColor = '#ffffff'
-            tIcon.style.backgroundColor = '#ffffff'
-            tNum.style.color = '#ffffff'
-            for (let i = 0; i < gNavA.length; i++) {
-                gNavA[i].style.color = '#ffffff'
-                gNavA[i].style.textShadow = 'rgba(165, 165, 165, 0.7)'
+        if (sW > 768) {
+            TopPosition = documentElement.scrollTop;
+            console.log(TopPosition);
+            if (window.innerHeight / 3 * 2 < TopPosition) {
+                toTop.classList.add('show');
+            } else if (window.innerHeight / 3 * 2 > TopPosition) {
+                toTop.classList.remove('show')
             }
-        } else if (TopPosition >= 100) {
-            fIcon.style.backgroundColor = '#333333'
-            tIcon.style.backgroundColor = '#333333'
-            tNum.style.color = '#333333'
-            for (let i = 0; i < gNavA.length; i++) {
-                gNavA[i].style.color = '#333333';
-                gNavA[i].style.textShadow = 'none';
+            if (TopPosition > 100) {
+                hdBottom.style.boxShadow = '0 3px 3px 0 rgba(40, 40, 40, 0.1)'
+            } else if (TopPosition < 100) {
+                hdBottom.style.boxShadow = 'none'
+            }
+            if (TopPosition < 100) {
+                hdBottom.style.backgroundColor = 'rgba(255, 255, 255, 0)'
+            } else if (TopPosition >= 100) {
+                hdBottom.style.backgroundColor = 'rgba(255, 255, 255, 0.9)'
+            }
+            if (TopPosition < 100) {
+                fIcon.style.backgroundColor = '#ffffff'
+                tIcon.style.backgroundColor = '#ffffff'
+	            pIcon.style.backgroundColor = '#ffffff'
+                tNum.style.color = '#ffffff'
+                for (let i = 0; i < gNavAS.length; i++) {
+                    gNavAS[i].style.color = '#ffffff'
+                    gNavAS[i].style.textShadow = 'rgba(165, 165, 165, 0.7)'
+                }
+            } else if (TopPosition >= 100) {
+                fIcon.style.backgroundColor = '#333333'
+                tIcon.style.backgroundColor = '#333333'
+	            pIcon.style.backgroundColor = '#333333'
+                tNum.style.color = '#333333'
+                for (let i = 0; i < gNavAS.length; i++) {
+                    gNavAS[i].style.color = '#333333';
+                    gNavAS[i].style.textShadow = 'none';
+                }
             }
         }
     }
