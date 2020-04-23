@@ -13,8 +13,8 @@ width_class_list = ['', 'width_100', 'width_50', 'width_33', 'width_25', 'width_
 
 def main(case_name, domain_name, category_list, site_name, unlock_list):
     # new_case_preparation(case_name)
-    case_name = 'case_dir/' + case_name
-    md_list = pick_up_md_files(case_name)
+    case_name = '../case_dir/' + case_name
+    md_list = pick_up_md_files(case_name + '/md')
     print(md_list)
     md_list = pickup_mod_md_files(case_name, md_list, unlock_list)
     md_list = [x for x in md_list if '_tbd' not in x]
@@ -48,7 +48,6 @@ def pickup_mod_md_files(case_name, md_list, unlock_list):
 
 def pick_up_md_files(directory):
     result = []
-    directory = directory + '/md'
     print(directory)
     md_list = os.listdir(directory)
     print(md_list)
@@ -246,6 +245,7 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                 elif 'product/index.html' in new_path:
                     new_str, h2_dec_r = insert_top_section_in_top_page(new_str, h2_dec)
                     new_str = insert_next_link(new_str, h2_dec_r)
+                    new_str = new_str.replace('="../', '="')
                 new_str = insert_split_list(new_str)
                 new_str = insert_class(new_str)
                 new_str = make_class_box(new_str)
@@ -758,7 +758,7 @@ def css_trimmer(css_path, html_path):
 
 
 def pick_up_case_url(case_name):
-    with open('data_pickle/case_data.pkl', 'rb') as f:
+    with open('../data_pickle/case_data.pkl', 'rb') as f:
         pk_data = pickle.load(f)
         if case_name in pk_data:
             p_url = pk_data[case_name]['url']
