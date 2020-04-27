@@ -1919,8 +1919,7 @@ aside {
         position: relative;
         overflow: hidden;
         will-change: scroll-position;
-        bottom: 0;
-        transition: 3s;
+        bottom: 0
     }
 
     .sb_title {

@@ -287,18 +287,18 @@
         funcSB()
     };
     let topPoint = 80 + 47,
-        bottomPoint = topPoint + sbHeight;
+        bottomPoint = topPoint + sbHeight + 80;
     sbInner.style.width = String(sbWidth) + 'px';
     const funcSB = function () {
         if (TopPosition - lastPosition < 0) {
             console.log('s : ' + String(topPoint + 80));
             console.log('g : ' + String(topPoint + mainHeight - sbHeight));
-            if (TopPosition <= topPoint + 80) {
+            if (TopPosition <= topPoint) {
                 console.log('上3');
                 sbInner.style.position = 'relative';
                 sbInner.style.marginTop = '0';
                 sbInner.style.top = '0'
-            } else if (TopPosition > topPoint + 80 && TopPosition <= topPoint + mainHeight - sbHeight) {
+            } else if (TopPosition > topPoint && TopPosition <= topPoint + mainHeight - sbHeight - 80) {
                 console.log('上2');
                 sbInner.style.position = 'fixed';
                 sbInner.style.marginTop = '0px';
@@ -317,7 +317,7 @@
                 sbInner.style.position = 'relative';
                 sbInner.style.marginTop = '0';
                 sbInner.style.top = '0'
-            } else if (TopPosition > bottomPoint - sH && TopPosition <= topPoint + mainHeight - sbHeight) {
+            } else if (TopPosition > bottomPoint - sH && TopPosition <= topPoint + mainHeight - sH) {
                 console.log('下2');
                 sbInner.style.position = 'fixed';
                 sbInner.style.marginTop = '0px';
