@@ -136,7 +136,8 @@ def make_class_box(long_str):
 
 def import_from_markdown(md_file_list, template_file, domain_name, site_name, category_list, case_name):
     upload_list = []
-    pk_dec = {}
+    pk_dec = read_pickle('data_list', '../case_dir/' + case_name)
+    pub_date_list = {pk_dec[y][0]: pk_dec[y][6] for y in pk_dec}
     now = datetime.datetime.now()
     with open(template_file, 'r', encoding='utf-8') as t:
         tmp_str = t.read()
@@ -158,7 +159,7 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                 if 'p::' in plain_txt:
                     pub_date = re.findall(r'p::(.+?)\n', plain_txt)[0]
                 else:
-                    pub_date = str(now)
+                    pub_date = ''
                 if 'k::' in plain_txt:
                     keyword_str = re.findall(r'k::(.+?)\n', plain_txt)[0]
                     keyword = keyword_str.split(' ')
@@ -172,6 +173,10 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                     id_str = re.findall(r'id::(.+?)\n', plain_txt)[0]
                 else:
                     id_str = ''
+                if 'i::' in plain_txt:
+                    img_list = [re.findall(r'i::(.+?)\n', plain_txt)[0]]
+                else:
+                    img_list = []
                 title_l = re.findall(r't::(.+?)\n', plain_txt)
                 if title_l:
                     title_str = title_l[0]
@@ -199,6 +204,9 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                 # print(plain_txt)
                 # print('markdown start!')
                 con_str = markdown.markdown(plain_txt, extensions=['tables'])
+                if '<img ' in con_str:
+                    img_list.extend([z.replace('../images/', '') for z in re.findall(r'<img .*?src="(.+?)"', con_str)
+                                     if z])
                 con_str = p_filter(con_str)
                 # print(con_str)
                 con_str = con_str.replace('\n', '')
@@ -211,21 +219,33 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                 new_str = new_str.replace('<!--file-path-->', url_str)
                 new_str = re.sub(r'<article>[\s\S]*</article>', '<article><section class="z_m">'
                                  + con_str + '</section></article>', new_str)
+                new_str = structured_data_insert(new_str, new_path)
+                if not pub_date:
+                    if new_path in pub_date_list:
+                        pub_date = pub_date_list[new_path]
+                    else:
+                        pub_date = str(now.year) + '-' + str(now.month).zfill(2) + '-' + str(now.day).zfill(2)
                 new_str = new_str.replace('<!--mod-date-->', str(now.date()))
-                new_str = new_str.replace('<!--mod-date-j-->',
-                                          str(now.year) + '/' + str(now.month) + '/' + str(now.day))
-                if pub_date:
-                    new_str = new_str.replace('<!--pub-date-->', pub_date)
-                    new_str = new_str.replace('<!--pub-date-j-->', pub_date.replace('-', '/').replace('/0', '/'))
-                else:
-                    new_str = new_str.replace('<!--pub-date-->', str(now.date()))
-                    new_str = new_str.replace('<!--pub-date-j-->',
-                                              str(now.year) + '/' + str(now.month) + '/' + str(now.day))
+                new_str = new_str.replace('insertArticleModDate',
+                                          str(now.year) + '-' + str(now.month).zfill(2) + '-' + str(now.day).zfill(2))
+                new_str = new_str.replace('<!--pub-date-->', pub_date)
+                new_str = new_str.replace('insertArticlePubDate', pub_date)
+                date_str = '<div id="pmDate"><span class="modDate">{}/{}/{}</span>' \
+                           '</div>'.format(str(now.year), str(now.month), str(now.day))
+                print(date_str)
+                new_str = new_str.replace('</article>', date_str + '</article>')
                 new_str = punctuation_filter(new_str)
                 new_str = new_str.replace('<table>', '<table class="tb_n">')
                 new_str = new_str.replace('<!--b_c-->', breadcrumb_maker(category_str, directory, md_file_path))
                 new_str = new_str.replace('<!--title-->', title_str.replace('<br />', ''))
+                new_str = new_str.replace('insertArticleHeadline', title_str.replace('<br />', ''))
                 new_str = new_str.replace('<!--description-->', description)
+                new_str = new_str.replace('insertArticleDescription', description)
+                if img_list:
+                    img_str = '","'.join(['https://www.wmelon.co.jp/images/' + q for q in img_list if q])
+                    new_str = new_str.replace('insertArticleImages', img_str)
+                else:
+                    new_str = re.sub(r'"image":\s*?\[\s*?"insertArticleImages"\s*?\],', '', new_str)
                 new_str = new_str.replace('<!--h1_text-->', h1_text)
                 if fsp_str:
                     new_str = new_str.replace('<!--free_script-->', fsp_str)
@@ -260,10 +280,24 @@ def import_from_markdown(md_file_list, template_file, domain_name, site_name, ca
                 with open(new_path, 'w', encoding='utf-8') as g:
                     g.write(new_str)
                     upload_list.append(new_path)
-
-                new_data = [new_path, title_str, '', str(now.date()), directory, description]
+                if '/' in pub_date:
+                    pub_date = pub_date.replace('/', '-')
+                new_data = [new_path, title_str, '', str(now.date()), directory, description, pub_date]
                 pk_dec = add_pickle_dec(pk_dec, new_data, case_name)
     return upload_list, pk_dec
+
+
+def structured_data_insert(long_str, new_path):
+    j_str = '{"@context": "https://schema.org","@type": "Corporation","name": "株式会社ウォーターメロン",' \
+            '"alternateName": "watermelon Co., Ltd.","logo": "https://www.wmelon.co.jp/images/logo_h60.png",' \
+            '"description": "スマホ対応デザインのWebサイトをお手頃な料金でお作りします！","founder": "中武 哲彦",' \
+            '"foundingDate": "17 Oct,2012","telephone": "+81-090-1873-5668","url": "https://www.wmelon.co.jp/",' \
+            '"address": {"@type": "PostalAddress","postalCode": "8891604","addressCountry": "JP",' \
+            '"addressRegion": "宮崎県","addressLocality": "宮崎市","streetAddress": "清武町"}}'
+    if 'product/contact/index.html' in new_path or 'product/company/index.html' in new_path:
+        long_str = re.sub(r'<script type="application/ld+json">.*?</script>',
+                          r'<script type="application/ld+json">{}</script>'.format(j_str), long_str)
+    return long_str
 
 
 def p_filter(long_str):
@@ -771,7 +805,7 @@ def pick_up_case_url(case_name):
 # todo:イメージ、背景色、レイアウト、フォント等をテストできるjavascript 一つのダイアログ風の箱で浮かせる
 # todo:事前にインタビューした好みや方針、セールスポイント等から叩き台のデザインを作るアプリ
 # todo:サンプルページのアクセス解析
-# todo:ドロップダウンメニュ　by js
+# todo:ドロップダウンメニュ by js
 
 # プロジェクト名
 this_case = 'iroha_pro'
@@ -779,6 +813,7 @@ this_case = 'iroha_pro'
 target_url = pick_up_case_url(this_case)
 
 if __name__ == '__main__':
+    print(read_pickle('data_list', '../case_dir/wmelon'))
     print(this_case)
     # css_trimmer('case_dir/kuma/product/css/base.css', 'case_dir/kuma/product/test.html')
 

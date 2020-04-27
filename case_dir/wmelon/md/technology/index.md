@@ -6,6 +6,8 @@ k::Webサイト 技術 SEO 構造化 高速化
 
 e::Our technology
 
+i::technology_t.jpg
+
 # Web技術
 
 ## スマホ対応サイトリニューアル

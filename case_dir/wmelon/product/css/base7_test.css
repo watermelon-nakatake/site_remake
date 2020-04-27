@@ -417,7 +417,7 @@ article p {
     color: #333333; /*文字色*/
     border-radius: 3px; /*角の丸み*/
     cursor: pointer;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); /*影*/
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
     -webkit-tap-highlight-color: transparent;
     transition: .3s ease-out; /*変化を緩やかに*/
     text-decoration: none;
@@ -623,7 +623,7 @@ article strong {
 }
 
 .wrapper:after, .h_wrapper:after, #g_nav:after, .split_li:after, #footer_l:after, #g_nav:after, #header_i:after,
-#company_info:after, .l_view:after, .ts_nav:after, section:after, .mc_li:after, .img_box1:after {
+#company_info:after, .l_view:after, .ts_nav:after, section:after, .mc_li:after, .img_box1:after, #blogLike:after {
     content: "";
     display: block;
     clear: both
@@ -981,7 +981,7 @@ input[type="radio"]:checked + label {
     padding: 15px 1em; /*ボタン内の余白*/
     border-radius: 3px; /*角の丸み*/
     cursor: pointer;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); /*影*/
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
     -webkit-tap-highlight-color: transparent;
     transition: .3s ease-out; /*変化を緩やかに*/
     margin: 0 10px;
@@ -1264,13 +1264,15 @@ a:hover .ts_a:after {
     text-decoration: none;
     color: #333333;
 }
-#pmDate{
+
+#pmDate {
     font-size: 13px;
     color: #6E6E6E;
     text-align: right;
     margin-right: 15%;
 }
-#pmDate span{
+
+#pmDate span {
     background-image: url("../images/moddate.png");
     background-position: left;
     background-size: 13px 13px;
@@ -1278,6 +1280,10 @@ a:hover .ts_a:after {
     padding-left: 18px;
     display: inline-block;
 
+}
+
+aside {
+    display: none;
 }
 
 /* タブレット */
@@ -1866,7 +1872,80 @@ a:hover .ts_a:after {
         transform: rotate(-180deg);
     }
 
+    #blogLike {
+        width: 100%;
+        position: relative;
+    }
 
+    #mainA {
+        width: 60%;
+        margin: 0;
+        padding: 0 4% 0 6%;
+        float: left;
+    }
+
+    #h1_dummy {
+        padding: 20px 0;
+        margin: 0;
+        text-align: center;
+        font-size: 25px;
+    }
+
+    #blogLike h2 {
+        width: 100%;
+        margin: 30px 0;
+        padding: 0;
+        text-align: left
+    }
+
+    #blogLike h2 span {
+        border-bottom: none;
+    }
+
+    #blogLike aside {
+        display: block;
+        width: 30%;
+        float: left;
+        padding-top: 80px;
+        position: relative;
+        background-color: #f8f8f8;
+        will-change: scroll-position;
+    }
+
+    #sb_inner {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        overflow: hidden;
+        will-change: scroll-position;
+        bottom: 0;
+        transition: 3s;
+    }
+
+    .sb_title {
+        width: 80%;
+        margin: 0 auto 10px;
+        padding: 10px 5% 10px;
+        border-bottom: #cccccc 1px solid;
+        will-change: scroll-position;
+        font-size: 20px;
+    }
+
+    #sb_inner ul {
+        position: relative;
+        padding: 10px 10%;
+        margin: 0 0 30px;
+        width: 80%;
+        will-change: scroll-position;
+    }
+    #sb_inner li{
+        width: 90%;
+        margin-left: 10%;
+    }
+    #sb_inner li a{
+        text-decoration: none;
+    }
     /* デスクトップ */
     @media screen and (min-width: 1020px)/* ラッパー幅 */ {
         .wrapper {
@@ -1879,5 +1958,7 @@ a:hover .ts_a:after {
             width: 1020px;
             margin: 0 auto;
         }
+
+
     }
 }

@@ -6,6 +6,8 @@ k::webサイト作成 ホームページ作成 代行
 
 e::Making web site
 
+i::making_site_t.jpg
+
 # サイト作成
 
 ## webサイトの効果

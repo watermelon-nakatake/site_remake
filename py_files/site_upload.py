@@ -11,12 +11,15 @@ import pathlib
 
 def all_upload(case_name, domain_str, user_name, password_str, root_directory):
     today = datetime.date.today()
+    """
     backup_dir = 'case_dir/' + case_name + '/backup/' + re.sub(r'\D', '', str(today))
     if not os.path.isdir(backup_dir):
         first_backup(domain_str, user_name, password_str, root_directory, backup_dir)
-    up_list = [x.replace('case_dir/' + case_name + '/product/', '')
-               for x in file_pickup('case_dir/' + case_name + '/product')]
-    up_list = pickup_mod_files('case_dir/' + case_name, up_list)
+    """
+    up_list = [x.replace('../case_dir/' + case_name + '/product/', '')
+               for x in file_pickup('../case_dir/' + case_name + '/product')]
+    print(up_list)
+    # up_list = pickup_mod_files('../case_dir/' + case_name, up_list)
     print(up_list)
     # ftp_upload(case_name, domain_str, user_name, password_str, root_directory, up_list)
     scp_upload(case_name, domain_str, user_name, password_str, root_directory, up_list)
@@ -25,6 +28,7 @@ def all_upload(case_name, domain_str, user_name, password_str, root_directory):
 def pickup_mod_files(case_name, up_list):
     now = time.time()
     current_mod = html_design.read_pickle('up_time', case_name)
+    print(up_list)
     result = [x for x in up_list if os.path.getmtime(case_name + '/product/' + x) > current_mod]
     html_design.save_data_to_pickle(now, 'up_time', case_name)
     return result
@@ -59,7 +63,7 @@ def scp_upload(case_name, domain_str, user_name, password_str, root_directory, u
                     up_dir = '/' + re.findall(r'^(.+)/', up_file)[0]
                 else:
                     up_dir = ''
-                scpc.put('case_dir/' + case_name + '/product/' + up_file,
+                scpc.put('../case_dir/' + case_name + '/product/' + up_file,
                          root_directory + '/' + up_dir)
 
 
