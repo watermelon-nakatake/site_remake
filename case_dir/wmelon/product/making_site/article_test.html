@@ -271,7 +271,12 @@
     aside.style.height = String(mainHeight - 80) + 'px';
     let timer = null,
         TopPosition = 0,
-        lastPosition = 0;
+        lastPosition = 0,
+        topPoint = 80 + 47,
+        bottomPoint = topPoint + sbHeight + 80;
+    const sbBuffer = sbHeight - sH + 80;
+    let sbTopPos = TopPosition + sbBuffer + topPoint;
+    console.log('sbBuffer : ' + String(sbBuffer));
     const scrollAnimationFunc = function () {
         TopPosition = documentElement.scrollTop;
         if (window.innerHeight / 3 * 2 < TopPosition) {
@@ -284,10 +289,45 @@
         } else if (TopPosition < 300) {
             hdBottom.style.boxShadow = 'none'
         }
-        funcSB()
+        funcSB2()
     };
-    let topPoint = 80 + 47,
-        bottomPoint = topPoint + sbHeight + 80;
+    const funcSB2 = function () {
+        /*if (TopPosition <= topPoint + sbBuffer) {
+            console.log('下1');
+            sbInner.style.position = 'relative';
+            sbInner.style.marginTop = '0';
+            sbInner.style.top = '0';
+            sbTopPos = 0
+        } else */
+
+        if (TopPosition >= topPoint + mainHeight - sH) {
+            console.log('下2');
+            sbInner.style.position = 'relative';
+            sbInner.style.marginTop = String(mainHeight - sbHeight - 80) + 'px';
+            sbInner.style.top = '0'
+        } else {
+            console.log('下3');
+            sbTopPos -= TopPosition - lastPosition
+            if (TopPosition < topPoint) {
+                if (sbTopPos < 0) {
+                    sbTopPos = 0
+                } else if (sbTopPos > sbBuffer + topPoint) {
+                    sbTopPos = sbBuffer + topPoint;
+                }
+            } else {
+                if (sbTopPos < 0) {
+                    sbTopPos = 0
+                } else if (sbTopPos > sbBuffer) {
+                    sbTopPos = sbBuffer
+                }
+            }
+            console.log('sbTopPos : ' + String(sbTopPos));
+            sbInner.style.position = 'fixed';
+            sbInner.style.marginTop = '0';
+            sbInner.style.top = String(sbTopPos - sbBuffer + 80) + 'px'
+        }
+        lastPosition = TopPosition
+    }
     sbInner.style.width = String(sbWidth) + 'px';
     const funcSB = function () {
         if (TopPosition - lastPosition < 0) {
@@ -302,7 +342,7 @@
                 console.log('上2');
                 sbInner.style.position = 'fixed';
                 sbInner.style.marginTop = '0px';
-                sbInner.style.top = String(80) + 'px';
+                sbInner.style.top = '80px'
             } else {
                 console.log('上1');
                 sbInner.style.position = 'relative';
@@ -321,7 +361,8 @@
                 console.log('下2');
                 sbInner.style.position = 'fixed';
                 sbInner.style.marginTop = '0px';
-                sbInner.style.top = String(sH - sbHeight) + 'px';
+                sbInner.style.top = String(sH - sbHeight) + 'px'
+
             } else {
                 console.log('下3');
                 sbInner.style.position = 'relative';
