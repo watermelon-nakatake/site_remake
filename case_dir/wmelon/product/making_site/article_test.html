@@ -267,20 +267,17 @@
         aside = document.getElementById('sideBar'),
         sbInner = document.getElementById('sb_inner'),
         sbHeight = sbInner.clientHeight,
-        sbWidth = sbInner.clientWidth;
-    aside.style.height = String(mainHeight - 80) + 'px';
+        sbWidth = sbInner.clientWidth, sbBuffer = sbHeight - sH + 80;
     let timer = null,
         TopPosition = 0,
         lastPosition = 0,
         topPoint = 80 + 47,
-        bottomPoint = topPoint + sbHeight + 80;
-    const sbBuffer = sbHeight - sH + 80;
-    let sbTopPos = TopPosition + sbBuffer + topPoint;
-    console.log('sbBuffer : ' + String(sbBuffer));
+        sbTopPos = TopPosition + sbBuffer + topPoint;
+    aside.style.height = String(mainHeight - 80) + 'px';
     const scrollAnimationFunc = function () {
         TopPosition = documentElement.scrollTop;
         if (window.innerHeight / 3 * 2 < TopPosition) {
-            toTop.classList.add('show');
+            toTop.classList.add('show')
         } else if (window.innerHeight / 3 * 2 > TopPosition) {
             toTop.classList.remove('show')
         }
@@ -289,24 +286,14 @@
         } else if (TopPosition < 300) {
             hdBottom.style.boxShadow = 'none'
         }
-        funcSB2()
-    };
-    const funcSB2 = function () {
-        /*if (TopPosition <= topPoint + sbBuffer) {
-            console.log('下1');
-            sbInner.style.position = 'relative';
-            sbInner.style.marginTop = '0';
-            sbInner.style.top = '0';
-            sbTopPos = 0
-        } else */
-
+        funcSB()
+    }
+    const funcSB = function () {
         if (TopPosition >= topPoint + mainHeight - sH) {
-            console.log('下2');
             sbInner.style.position = 'relative';
             sbInner.style.marginTop = String(mainHeight - sbHeight - 80) + 'px';
             sbInner.style.top = '0'
         } else {
-            console.log('下3');
             sbTopPos -= TopPosition - lastPosition
             if (TopPosition < topPoint) {
                 if (sbTopPos < 0) {
@@ -321,7 +308,6 @@
                     sbTopPos = sbBuffer
                 }
             }
-            console.log('sbTopPos : ' + String(sbTopPos));
             sbInner.style.position = 'fixed';
             sbInner.style.marginTop = '0';
             sbInner.style.top = String(sbTopPos - sbBuffer + 80) + 'px'
@@ -329,49 +315,6 @@
         lastPosition = TopPosition
     }
     sbInner.style.width = String(sbWidth) + 'px';
-    const funcSB = function () {
-        if (TopPosition - lastPosition < 0) {
-            console.log('s : ' + String(topPoint + 80));
-            console.log('g : ' + String(topPoint + mainHeight - sbHeight));
-            if (TopPosition <= topPoint) {
-                console.log('上3');
-                sbInner.style.position = 'relative';
-                sbInner.style.marginTop = '0';
-                sbInner.style.top = '0'
-            } else if (TopPosition > topPoint && TopPosition <= topPoint + mainHeight - sbHeight - 80) {
-                console.log('上2');
-                sbInner.style.position = 'fixed';
-                sbInner.style.marginTop = '0px';
-                sbInner.style.top = '80px'
-            } else {
-                console.log('上1');
-                sbInner.style.position = 'relative';
-                sbInner.style.marginTop = String(mainHeight - sbHeight - 80) + 'px';
-                sbInner.style.top = '0'
-            }
-        } else {
-            console.log('s : ' + String(bottomPoint - sH));
-            console.log('g : ' + String(topPoint + mainHeight - sbHeight));
-            if (TopPosition <= bottomPoint - sH) {
-                console.log('下1');
-                sbInner.style.position = 'relative';
-                sbInner.style.marginTop = '0';
-                sbInner.style.top = '0'
-            } else if (TopPosition > bottomPoint - sH && TopPosition <= topPoint + mainHeight - sH) {
-                console.log('下2');
-                sbInner.style.position = 'fixed';
-                sbInner.style.marginTop = '0px';
-                sbInner.style.top = String(sH - sbHeight) + 'px'
-
-            } else {
-                console.log('下3');
-                sbInner.style.position = 'relative';
-                sbInner.style.marginTop = String(mainHeight - sbHeight - 80) + 'px';
-                sbInner.style.top = '0'
-            }
-        }
-        lastPosition = TopPosition
-    }
     window.addEventListener('load', scrollAnimationFunc);
     window.addEventListener('scroll', scrollAnimationFunc)
 </script>
