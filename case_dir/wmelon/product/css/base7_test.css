@@ -412,7 +412,6 @@ article p {
 
 #top_page_nav_fs2 li a {
     background-color: #cccccc;
-
     display: inline-block;
     color: #333333; /*文字色*/
     border-radius: 3px; /*角の丸み*/
@@ -1938,13 +1937,40 @@ aside {
         width: 80%;
         will-change: scroll-position;
     }
-    #sb_inner li{
+
+    #sb_inner li {
         width: 90%;
         margin-left: 10%;
     }
-    #sb_inner li a{
+
+    #sb_inner li a {
         text-decoration: none;
     }
+
+    .code_box {
+        padding: 1% 20px;
+        width: 90%;
+        background-color: #333333;
+        overflow: scroll;
+    }
+
+    code {
+        font-family: Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .prettyprint ol.linenums > li {
+        list-style-type: decimal;
+    }
+
+    .prettyprint li {
+        margin-bottom: 0;
+        border-left: 2px solid #bbbbbb;
+        margin-left: 15px;
+        padding-left: 10px;
+    }
+
     /* デスクトップ */
     @media screen and (min-width: 1020px)/* ラッパー幅 */ {
         .wrapper {
